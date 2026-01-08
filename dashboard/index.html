@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLUMEE 2026 - Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles/dashboard.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>PLUMEE 2026</h2>
+                <p>Admin Dashboard</p>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active">
+                        <a href="#" data-section="overview">
+                            <i class="fas fa-home"></i> Overview
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" data-section="registrations">
+                            <i class="fas fa-users"></i> Registrations
+                            <span class="badge" id="registration-count">0</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" data-section="abstracts">
+                            <i class="fas fa-file-alt"></i> Abstracts
+                            <span class="badge" id="abstract-count">0</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" data-section="export">
+                            <i class="fas fa-file-export"></i> Export Data
+                        </a>
+                    </li>
+                </ul>
+                
+                <div class="sidebar-footer">
+                    <button id="logoutBtn" class="btn-logout">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search...">
+                </div>
+                <div class="user-info">
+                    <span id="welcome-message">Welcome, Admin</span>
+                    <div class="user-avatar">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="content-area">
+                <!-- Overview Section -->
+                <section id="overview" class="dashboard-section active">
+                    <h2>Overview</h2>
+                    <div class="stats-container">
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background: #e3f2fd;">
+                                <i class="fas fa-users" style="color: #2196f3;"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Total Registrations</h3>
+                                <p class="stat-number" id="total-registrations">0</p>
+                                <p class="stat-change"><span class="positive">+0%</span> from last week</p>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background: #e8f5e9;">
+                                <i class="fas fa-file-alt" style="color: #4caf50;"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Abstracts Submitted</h3>
+                                <p class="stat-number" id="total-abstracts">0</p>
+                                <p class="stat-change"><span class="positive">+0%</span> from last week</p>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background: #fff3e0;">
+                                <i class="fas fa-chart-line" style="color: #ff9800;"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Attendance Rate</h3>
+                                <p class="stat-number">0%</p>
+                                <p class="stat-change">Based on registrations</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="recent-activity">
+                        <h3>Recent Registrations</h3>
+                        <div class="table-responsive">
+                            <table id="recent-registrations">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Institution</th>
+                                        <th>Type</th>
+                                        <th>Status</th>
+                                        <th>Date</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Will be populated by JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Registrations Section -->
+                <section id="registrations" class="dashboard-section">
+                    <div class="section-header">
+                        <h2>Registrations</h2>
+                        <div class="section-actions">
+                            <button id="export-registrations" class="btn btn-primary">
+                                <i class="fas fa-download"></i> Export CSV
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="filters">
+                        <div class="filter-group">
+                            <label>Registration Type:</label>
+                            <select id="filter-type" class="form-control">
+                                <option value="all">All Types</option>
+                                <option value="student">Student</option>
+                                <option value="academic">Academic</option>
+                                <option value="industry">Industry</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label>Status:</label>
+                            <select id="filter-status" class="form-control">
+                                <option value="all">All Statuses</option>
+                                <option value="pending">Pending</option>
+                                <option value="confirmed">Confirmed</option>
+                                <option value="cancelled">Cancelled</option>
+                            </select>
+                        </div>
+                        
+                        <button id="apply-filters" class="btn btn-secondary">
+                            <i class="fas fa-filter"></i> Apply Filters
+                        </button>
+                    </div>
+                    
+                    <div class="table-responsive">
+                        <table id="registrations-table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Institution</th>
+                                    <th>Type</th>
+                                    <th>Participation</th>
+                                    <th>Status</th>
+                                    <th>Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="pagination">
+                        <button id="prev-page" class="btn btn-secondary" disabled>
+                            <i class="fas fa-chevron-left"></i> Previous
+                        </button>
+                        <span id="page-info">Page 1 of 1</span>
+                        <button id="next-page" class="btn btn-secondary" disabled>
+                            Next <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Abstracts Section -->
+                <section id="abstracts" class="dashboard-section">
+                    <div class="section-header">
+                        <h2>Submitted Abstracts</h2>
+                        <div class="section-actions">
+                            <button id="download-all-abstracts" class="btn btn-primary">
+                                <i class="fas fa-download"></i> Download All
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="table-responsive">
+                        <table id="abstracts-table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Author</th>
+                                    <th>Title</th>
+                                    <th>Type</th>
+                                    <th>Status</th>
+                                    <th>Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Export Section -->
+                <section id="export" class="dashboard-section">
+                    <h2>Export Data</h2>
+                    <div class="export-options">
+                        <div class="export-card">
+                            <i class="fas fa-file-csv"></i>
+                            <h3>Export to CSV</h3>
+                            <p>Download all registration data in CSV format</p>
+                            <button id="export-csv" class="btn btn-primary">
+                                <i class="fas fa-download"></i> Export CSV
+                            </button>
+                        </div>
+                        
+                        <div class="export-card">
+                            <i class="fas fa-file-excel"></i>
+                            <h3>Export to Excel</h3>
+                            <p>Download all registration data in Excel format</p>
+                            <button id="export-excel" class="btn btn-success">
+                                <i class="fas fa-file-export"></i> Export Excel
+                            </button>
+                        </div>
+                        
+                        <div class="export-card">
+                            <i class="fas fa-file-pdf"></i>
+                            <h3>Generate Report</h3>
+                            <p>Create a detailed PDF report of all registrations</p>
+                            <button id="generate-report" class="btn btn-danger">
+                                <i class="fas fa-file-pdf"></i> Generate PDF
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal for viewing registration details -->
+    <div id="registration-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Registration Details</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body" id="registration-details">
+                <!-- Will be populated by JavaScript -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary close-modal">Close</button>
+                <button class="btn btn-primary" id="print-registration">
+                    <i class="fas fa-print"></i> Print
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>

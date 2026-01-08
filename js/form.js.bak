@@ -1,0 +1,669 @@
+// Form submission handler
+async function handleFormSubmit(e) {
+    e.preventDefault();
+    
+    const form = document.getElementById('regForm');
+    if (!form) {
+        console.error('Form element not found');
+        return;
+    }
+    
+    // Update summary before submission
+    updateSummary();
+    
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalBtnText = submitBtn ? submitBtn.innerHTML : '';
+    
+    // Validate all sections before submission
+    const sections = document.querySelectorAll('.form-section');
+    let isValid = true;
+    
+    sections.forEach(section => {
+        if (!validateSection(section)) {
+            isValid = false;
+            // Navigate to the first section with errors
+            if (!section.querySelector('.error')) {
+                const firstError = section.querySelector('.error');
+                if (firstError) {
+                    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    section.classList.add('active');
+                    // Hide other sections
+                    sections.forEach(s => {
+                        if (s !== section) s.classList.remove('active');
+                    });
+                }
+            }
+        }
+    });
+    
+    if (!isValid) {
+        showError('Please fill in all required fields correctly');
+        if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnText;
+        }
+        return;
+    }
+    
+    try {
+        // Show loading state
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+        }
+
+        // Validate all sections before submission
+        const sections = document.querySelectorAll('.form-section');
+        let isValid = true;
+        
+        sections.forEach(section => {
+            if (!validateSection(section)) {
+                isValid = false;
+                // Find the first section with errors
+                const firstError = section.querySelector('.error');
+                if (firstError) {
+                    // Navigate to the section with the error
+                    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    section.classList.add('active');
+                    // Hide other sections
+                    sections.forEach(s => {
+                        if (s !== section) s.classList.remove('active');
+                    });
+                }
+            }
+        });
+        
+        if (!isValid) {
+            throw new Error('Please fill in all required fields correctly');
+        }
+
+        // Create FormData from the form
+        const formData = new FormData(form);
+        
+        // Add timestamp
+        formData.append('submissionDate', new Date().toISOString());
+        
+        // Add any additional data if needed
+        formData.append('timestamp', new Date().toISOString());
+        
+        try {
+            // Send data to server using fetch
+            const response = await fetch('process_registration.php', {
+                method: 'POST',
+                body: formData,
+                // Don't set Content-Type header, let the browser set it with the correct boundary
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            
+            // Check if the response is JSON
+            const contentType = response.headers.get('content-type');
+            if (!contentType || !contentType.includes('application/json')) {
+                const text = await response.text();
+                throw new Error('Invalid server response. Expected JSON but got: ' + text);
+            }
+            
+            const result = await response.json();
+            
+            if (!response.ok) {
+                throw new Error(result.message || 'Failed to submit form');
+            }
+            
+            // Show success message
+            const statusEl = document.getElementById('form-status') || createStatusElement(form);
+            statusEl.textContent = result.message || 'Registration submitted successfully!';
+            statusEl.className = 'status-message success';
+            statusEl.style.display = 'block';
+            
+            // Scroll to top to show success message
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // Reset form
+            resetForm();
+            
+            // Show thank you message after a delay
+            setTimeout(() => {
+                // Show success alert
+                alert('Thank you for your registration! Your submission has been received.');
+                
+                // Reset the form status after a delay
+                statusEl.style.display = 'none';
+            }, 2000);
+            
+        } catch (error) {
+            console.error('Error submitting form:', error);
+            showError(`Failed to submit form: ${error.message || 'Please check your connection and try again.'}`);
+            
+            // Log detailed error for debugging
+            if (error.response) {
+                console.error('Server response:', error.response);
+            }
+        } finally {
+            if (submitBtn) {
+                submitBtn.innerHTML = originalBtnText;
+                submitBtn.disabled = false;
+            }
+        }
+    } catch (error) {
+        console.error('Unexpected error:', error);
+        showError('An unexpected error occurred. Please try again.');
+    } finally {
+        if (submitBtn) {
+            submitBtn.innerHTML = originalBtnText;
+            submitBtn.disabled = false;
+        }
+    }
+}
+
+// Save form data to localStorage
+function saveFormData() {
+    const form = document.getElementById('regForm');
+    if (!form) return;
+    
+    const formData = new FormData(form);
+    const formObject = {};
+    
+    // Convert FormData to plain object
+    for (let [key, value] of formData.entries()) {
+        formObject[key] = value;
+    }
+    
+    // Save file info if present
+    const fileInput = document.getElementById('abstract_file');
+    if (fileInput && fileInput.files.length > 0) {
+        formObject['abstract_file_name'] = fileInput.files[0].name;
+    }
+    
+    // Save to localStorage
+    localStorage.setItem('plumeeRegistrationDraft', JSON.stringify(formObject));
+    console.log('Form data saved');
+}
+
+// Load form data from localStorage
+function loadFormData() {
+    const savedData = localStorage.getItem('plumeeRegistrationDraft');
+    if (!savedData) return;
+    
+    try {
+        const formData = JSON.parse(savedData);
+        const form = document.getElementById('regForm');
+        
+        // Fill in form fields
+        Object.keys(formData).forEach(key => {
+            const input = form.querySelector(`[name="${key}"]`);
+            if (!input) return;
+            
+            if (input.type === 'radio' || input.type === 'checkbox') {
+                input.checked = input.value === formData[key];
+            } else if (input.type === 'file') {
+                // Handle file input separately
+                const fileInfo = document.getElementById('file-info');
+                if (fileInfo) {
+                    fileInfo.textContent = formData[`${key}_name`] || '';
+                }
+            } else {
+                input.value = formData[key] || '';
+            }
+        });
+        
+        // Trigger any necessary UI updates
+        if (formData.presentation_type) {
+            const event = new Event('change');
+            const presentationInput = form.querySelector(`input[name="presentation_type"][value="${formData.presentation_type}"]`);
+            if (presentationInput) {
+                presentationInput.checked = true;
+                presentationInput.dispatchEvent(event);
+            }
+        }
+        
+        console.log('Form data loaded');
+    } catch (error) {
+        console.error('Error loading form data:', error);
+    }
+}
+
+// Save registration data to localStorage
+function saveRegistrationToLocal(data) {
+    try {
+        const registrations = JSON.parse(localStorage.getItem('plumeeRegistrations') || '[]');
+        // Generate a unique ID for this registration
+        data.id = 'reg-' + Date.now();
+        data.registrationDate = new Date().toISOString();
+        registrations.push(data);
+        localStorage.setItem('plumeeRegistrations', JSON.stringify(registrations));
+        
+        // Clear the draft data after successful submission
+        localStorage.removeItem('plumeeRegistrationDraft');
+        
+        return true;
+    } catch (error) {
+        console.error('Error saving registration:', error);
+        return false;
+    }
+}
+
+// Load saved registrations
+function loadSavedRegistrations() {
+    try {
+        return JSON.parse(localStorage.getItem('plumeeRegistrations') || '[]');
+    } catch (error) {
+        console.error('Error loading registrations:', error);
+        return [];
+    }
+}
+
+// Create status element if it doesn't exist
+function createStatusElement() {
+    let statusEl = document.getElementById('form-status');
+    
+    if (!statusEl) {
+        statusEl = document.createElement('div');
+        statusEl.id = 'form-status';
+        statusEl.setAttribute('role', 'status');
+        statusEl.setAttribute('aria-live', 'polite');
+        
+        // Add close button
+        const closeBtn = document.createElement('button');
+        closeBtn.innerHTML = '&times;';
+        closeBtn.className = 'status-close';
+        closeBtn.setAttribute('aria-label', 'Close message');
+        closeBtn.onclick = () => {
+            statusEl.style.display = 'none';
+        };
+        
+        const messageContent = document.createElement('div');
+        messageContent.className = 'status-content';
+        
+        statusEl.appendChild(messageContent);
+        statusEl.appendChild(closeBtn);
+        
+        // Add to the top of the form
+        const form = document.getElementById('regForm');
+        if (form) {
+            form.insertBefore(statusEl, form.firstChild);
+        } else {
+            document.body.insertBefore(statusEl, document.body.firstChild);
+        }
+    }
+    
+    return statusEl;
+}
+
+// Add status message styles
+function addStatusStyles() {
+    if (!document.getElementById('form-styles')) {
+        const style = document.createElement('style');
+        style.id = 'form-styles';
+        style.textContent = `
+            .status-message {
+                padding: 12px 20px;
+                margin-bottom: 20px;
+                border-radius: 4px;
+                font-weight: 500;
+                display: none;
+            }
+            .success {
+                background-color: #f6ffed;
+                border: 1px solid #b7eb8f;
+                color: #52c41a;
+            }
+            .error {
+                background-color: #fff2f0;
+                border: 1px solid #ffccc7;
+                color: #ff4d4f;
+            }
+        `;
+        document.head.appendChild(style);
+    }
+}
+
+// Initialize form when DOM is loaded
+function initializeForm() {
+    console.log('Initializing form...');
+    
+    const form = document.getElementById('regForm');
+    if (!form) {
+        console.error('Form element not found');
+        return;
+    }
+
+    // Add status message styles
+    addStatusStyles();
+    
+    // Load any saved form data
+    loadFormData();
+    
+    // Set first section as active if none is active
+    const sections = document.querySelectorAll('.form-section');
+    if (sections.length > 0) {
+        const activeSection = document.querySelector('.form-section.active');
+        if (!activeSection) {
+            sections[0].classList.add('active');
+        }
+        
+        // Initialize progress bar
+        updateProgressBar();
+    }
+    
+    // Initialize file upload preview
+    initializeFileUpload();
+    
+    // Initialize abstract toggle based on presentation type
+    initializeAbstractToggle();
+    
+    // Add input event listeners to save form data as user types
+    form.addEventListener('input', saveFormData);
+    
+    // Handle navigation buttons
+    document.addEventListener('click', function(e) {
+        const nextBtn = e.target.closest('.btn-next');
+        const backBtn = e.target.closest('.btn-back');
+        
+        if (nextBtn) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const currentSection = nextBtn.closest('.form-section');
+            const nextSectionId = nextBtn.getAttribute('data-next-section');
+            const nextSection = document.getElementById(nextSectionId);
+            
+            if (currentSection && nextSection) {
+                // Validate current section before proceeding
+                let isValid = true;
+                const requiredFields = currentSection.querySelectorAll('[required]');
+                
+                requiredFields.forEach(field => {
+                    if (!field.value.trim()) {
+                        isValid = false;
+                        field.classList.add('error');
+                        
+                        // Add error message if not already present
+                        if (!field.nextElementSibling || !field.nextElementSibling.classList.contains('error-message')) {
+                            const errorMsg = document.createElement('div');
+                            errorMsg.className = 'error-message';
+                            errorMsg.textContent = 'This field is required';
+                            field.parentNode.insertBefore(errorMsg, field.nextSibling);
+                        }
+                    } else {
+                        field.classList.remove('error');
+                        const errorMsg = field.nextElementSibling;
+                        if (errorMsg && errorMsg.classList.contains('error-message')) {
+                            errorMsg.remove();
+                        }
+                    }
+                });
+                
+                // Validate email format if email field exists
+                const emailField = currentSection.querySelector('input[type="email"]');
+                if (emailField && emailField.value) {
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(emailField.value)) {
+                        isValid = false;
+                        emailField.classList.add('error');
+                        if (!emailField.nextElementSibling || !emailField.nextElementSibling.classList.contains('error-message')) {
+                            const errorMsg = document.createElement('div');
+                            errorMsg.className = 'error-message';
+                            errorMsg.textContent = 'Please enter a valid email address';
+                            emailField.parentNode.insertBefore(errorMsg, emailField.nextSibling);
+                        }
+                    } else {
+                        emailField.classList.remove('error');
+                        const errorMsg = emailField.nextElementSibling;
+                        if (errorMsg && errorMsg.classList.contains('error-message')) {
+                            errorMsg.remove();
+                        }
+                    }
+                }
+                
+                if (isValid) {
+                    navigateToSection(currentSection, nextSection);
+                } else {
+                    // Scroll to first error
+                    const firstError = currentSection.querySelector('.error');
+                    if (firstError) {
+                        firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                }
+            }
+        }
+        
+        // Handle back button
+        if (backBtn) {
+            e.preventDefault();
+            const currentSection = backBtn.closest('.form-section');
+            const prevSectionId = backBtn.getAttribute('data-prev-section');
+            const prevSection = document.getElementById(prevSectionId);
+            
+            if (currentSection && prevSection) {
+                navigateToSection(currentSection, prevSection);
+            }
+        }
+    });
+}
+
+// Navigate between sections
+function navigateToSection(currentSection, nextSection) {
+    if (!currentSection || !nextSection) {
+        console.error('Invalid sections provided for navigation');
+        return false;
+    }
+    
+    console.log(`Navigating from ${currentSection.id} to ${nextSection.id}`);
+    
+    // Validate current section before proceeding
+    if (nextSection.id !== 'section-personal' && !validateSection(currentSection)) {
+        // Find first error and scroll to it
+        const firstError = currentSection.querySelector('.error');
+        if (firstError) {
+            firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        return false;
+    }
+    
+    // Save form data before navigating
+    saveFormData();
+    
+    // Update active states
+    currentSection.classList.remove('active');
+    nextSection.classList.add('active');
+    
+    // Update progress bar and steps
+    updateProgressBar();
+    updateStepIndicators();
+    
+    // Scroll to top of the form
+    const formContent = document.querySelector('.form-content') || document.documentElement;
+    formContent.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+    
+    // Update URL hash
+    history.pushState(null, '', `#${nextSection.id}`);
+    
+    return true;
+}
+
+// Update step indicators in the progress bar
+function updateStepIndicators() {
+    const sections = document.querySelectorAll('.form-section');
+    const currentSection = document.querySelector('.form-section.active');
+    const currentIndex = Array.from(sections).indexOf(currentSection);
+    
+    document.querySelectorAll('.progress-step').forEach((step, index) => {
+        if (index < currentIndex) {
+            step.classList.add('completed');
+            step.classList.remove('active');
+        } else if (index === currentIndex) {
+            step.classList.add('active');
+            step.classList.remove('completed');
+        } else {
+            step.classList.remove('active', 'completed');
+        }
+    });
+}
+
+// Update progress bar
+function updateProgressBar() {
+    const sections = document.querySelectorAll('.form-section');
+    const currentSection = document.querySelector('.form-section.active');
+    const progressBar = document.querySelector('.progress-bar');
+    
+    if (!sections.length || !currentSection || !progressBar) return;
+    
+    // Get all sections except the confirmation section for progress calculation
+    const visibleSections = Array.from(sections).filter(section => !section.id.includes('confirmation'));
+    const currentIndex = visibleSections.indexOf(currentSection);
+    
+    // Calculate progress (0-100%)
+    const progress = (currentIndex / (visibleSections.length - 1)) * 100;
+    
+    // Update progress bar width
+    progressBar.style.width = `${progress}%`;
+    
+    // Update step indicators
+    visibleSections.forEach((section, index) => {
+        const step = section.querySelector('.progress-step');
+        if (step) {
+            if (index < currentIndex) {
+                step.classList.add('completed');
+                step.classList.remove('active');
+            } else if (index === currentIndex) {
+                step.classList.add('active');
+                step.classList.remove('completed');
+            } else {
+                step.classList.remove('active', 'completed');
+            }
+        }
+    });
+}
+
+// Update summary
+function updateSummary() {
+    const summaryContainer = document.getElementById('summary-content');
+    if (!summaryContainer) return;
+    
+    const form = document.getElementById('regForm');
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+    
+    let summaryHTML = `
+        <div class="summary-section">
+            <h4>Personal Information</h4>
+            <p><strong>Name:</strong> ${data.firstName || ''} ${data.lastName || ''}</p>
+            <p><strong>Email:</strong> ${data.email || ''}</p>
+            <p><strong>Phone:</strong> ${data.phone || 'Not provided'}</p>
+            <p><strong>Institution:</strong> ${data.institution || ''}</p>
+            <p><strong>Country:</strong> ${data.country || ''}</p>
+        </div>
+        
+        <div class="summary-section">
+            <h4>Registration Details</h4>
+            <p><strong>Registration Type:</strong> ${data.registrationType || ''}</p>
+            <p><strong>Presentation Type:</strong> ${data.presentationType || 'Not specified'}</p>
+    `;
+    
+    // Add file info if uploaded
+    const fileInput = document.getElementById('abstractFile');
+    if (fileInput && fileInput.files.length > 0) {
+        summaryHTML += `<p><strong>Abstract File:</strong> ${fileInput.files[0].name}</p>`;
+    }
+    
+    // Add any additional fields that might be in the form
+    if (data.abstractTitle) {
+        summaryHTML += `<p><strong>Abstract Title:</strong> ${data.abstractTitle}</p>`;
+    }
+    
+    if (data.abstractKeywords) {
+        summaryHTML += `<p><strong>Keywords:</strong> ${data.abstractKeywords}</p>`;
+    }
+    
+    summaryHTML += `</div>`;
+    summaryContainer.innerHTML = summaryHTML;
+}
+
+// Reset form
+function resetForm() {
+    const form = document.getElementById('regForm');
+    if (!form) return;
+    
+    // Reset form fields
+    form.reset();
+    
+    // Reset file inputs
+    const fileInputs = form.querySelectorAll('input[type="file"]');
+    fileInputs.forEach(input => {
+        input.value = '';
+    });
+    
+    // Reset file preview
+    const filePreview = document.getElementById('filePreview');
+    const fileUploadContent = document.querySelector('.file-upload-content');
+    if (filePreview && fileUploadContent) {
+        filePreview.style.display = 'none';
+        fileUploadContent.style.display = 'flex';
+    }
+    
+    // Reset active section to first one
+    const sections = document.querySelectorAll('.form-section');
+    sections.forEach((section, index) => {
+        if (index === 0) {
+            section.classList.add('active');
+        } else {
+            section.classList.remove('active');
+        }
+    });
+    
+    // Reset progress bar
+    updateProgressBar();
+    
+    // Clear error messages
+    document.querySelectorAll('.error-message').forEach(el => el.remove());
+    document.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
+    
+    // Clear status message
+    const statusEl = document.getElementById('form-status');
+    if (statusEl) {
+        statusEl.textContent = '';
+        statusEl.className = 'status-message';
+        statusEl.style.display = 'none';
+    }
+}
+
+// Helper function to validate email
+function isValidEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(String(email).toLowerCase());
+}
+
+// Show error message
+function showError(message) {
+    const statusEl = document.getElementById('form-status') || createStatusElement();
+    statusEl.textContent = message;
+    statusEl.className = 'status-message error';
+    statusEl.style.display = 'block';
+    statusEl.setAttribute('role', 'alert');
+    statusEl.setAttribute('aria-live', 'assertive');
+    
+    // Scroll to error message
+    statusEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    
+    // Hide after 8 seconds
+    setTimeout(() => {
+        statusEl.style.opacity = '0';
+        statusEl.style.transition = 'opacity 0.5s ease-in-out';
+        setTimeout(() => {
+            statusEl.style.display = 'none';
+            statusEl.style.opacity = '1';
+        }, 500);
+    }, 8000);
+}
+
+// Initialize form when document is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeForm);
+} else {
+    // Small delay to ensure all elements are available
+    setTimeout(initializeForm, 100);
+}

@@ -1,0 +1,214 @@
+// Form submission handler
+async function handleFormSubmit(e) {
+    e.preventDefault();
+    console.log('Form submission started');
+    
+    const form = e.target;
+    const submitBtn = form.querySelector('button[type="submit"]');
+    
+    if (!submitBtn) {
+        console.error('Submit button not found!');
+        return;
+    }
+    
+    const originalBtnText = submitBtn.innerHTML;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+    submitBtn.disabled = true;
+
+    // Clear any previous error messages
+    const errorMessages = document.querySelectorAll('.error-message');
+    errorMessages.forEach(msg => msg.remove());
+
+    try {
+        const formData = new FormData(form);
+        
+        // Add any additional data if needed
+        const registrationType = document.getElementById('registration-type');
+        const participationType = document.getElementById('presentation');
+        const topic = document.getElementById('topic');
+        
+        if (registrationType) formData.append('registrationType', registrationType.value || '');
+        if (participationType) formData.append('participationType', participationType.value || '');
+        if (topic) formData.append('topic', topic.value || '');
+
+        const response = await fetch('process_registration.php', {
+            method: 'POST',
+            body: formData
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+            throw new Error(result.message || 'Failed to submit form');
+        }
+
+        if (result.status === 'error') {
+            throw new Error(result.message);
+        }
+
+        // Show success message
+        alert(result.message || 'Registration submitted successfully!');
+        form.reset();
+        
+        // Reset file preview if exists
+        const filePreview = document.getElementById('filePreview');
+        const fileUploadContent = document.querySelector('.file-upload-content');
+        if (filePreview && fileUploadContent) {
+            filePreview.style.display = 'none';
+            fileUploadContent.style.display = 'flex';
+            const abstractFileInput = document.getElementById('abstractFile');
+            if (abstractFileInput) abstractFileInput.value = '';
+        }
+        
+        // Optionally redirect to a thank you page
+        // window.location.href = 'thank-you.html';
+
+    } catch (error) {
+        console.error('Form submission error:', error);
+        showError(error.message || 'An error occurred. Please try again.');
+    } finally {
+        submitBtn.innerHTML = originalBtnText;
+        submitBtn.disabled = false;
+    }
+}
+
+// Helper function to show error messages
+function showError(message) {
+    // Create error message element
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'error-message';
+    errorDiv.style.color = '#dc3545';
+    errorDiv.style.margin = '15px 0';
+    errorDiv.style.padding = '10px';
+    errorDiv.style.border = '1px solid #f5c6cb';
+    errorDiv.style.borderRadius = '4px';
+    errorDiv.style.backgroundColor = '#f8d7da';
+    errorDiv.innerHTML = `
+        <i class="fas fa-exclamation-circle"></i>
+        <span>${message}</span>
+    `;
+    
+    // Insert after the form
+    const form = document.getElementById('regForm');
+    if (form) {
+        form.parentNode.insertBefore(errorDiv, form.nextSibling);
+        // Scroll to the error
+        errorDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+}
+
+// Helper function to get file icon based on type
+function getFileIcon(fileType) {
+    if (fileType === 'application/pdf') {
+        return 'far fa-file-pdf';
+    } else if (fileType.includes('word') || fileType.includes('document')) {
+        return 'far fa-file-word';
+    } else {
+        return 'far fa-file';
+    }
+}
+
+// Initialize form when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize form elements
+    const form = document.getElementById('regForm');
+    const abstractUploadGroup = document.getElementById('abstractUploadGroup');
+    const presentationType = document.getElementById('presentation');
+    const fileUploadInput = document.getElementById('abstractFile');
+    const filePreview = document.getElementById('filePreview');
+    const fileUploadContent = document.querySelector('.file-upload-content');
+    
+    // Initialize form submission
+    if (form) {
+        // Remove any existing submit event listeners
+        const newForm = form.cloneNode(true);
+        form.parentNode.replaceChild(newForm, form);
+        
+        // Add the submit event listener to the new form
+        newForm.addEventListener('submit', handleFormSubmit);
+        console.log('Form submit event listener added');
+    }
+    
+    // Show/hide abstract upload based on presentation type
+    if (presentationType && abstractUploadGroup) {
+        const toggleAbstractUpload = () => {
+            if (presentationType.value === 'poster' || presentationType.value === 'paper') {
+                abstractUploadGroup.style.display = 'block';
+            } else {
+                abstractUploadGroup.style.display = 'none';
+            }
+        };
+        
+        presentationType.addEventListener('change', toggleAbstractUpload);
+        
+        // Initialize the state
+        toggleAbstractUpload();
+    }
+    
+    // Handle file upload preview
+    if (fileUploadInput && filePreview && fileUploadContent) {
+        fileUploadInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const fileType = file.type;
+                const validTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+                const maxSize = 5 * 1024 * 1024; // 5MB
+                
+                // Validate file type
+                if (!validTypes.includes(fileType)) {
+                    showError('Please upload a valid file (PDF or Word document)');
+                    fileUploadInput.value = '';
+                    return;
+                }
+                
+                // Validate file size
+                if (file.size > maxSize) {
+                    showError('File size exceeds 5MB limit');
+                    fileUploadInput.value = '';
+                    return;
+                }
+                
+                // Show file preview
+                const fileName = file.name.length > 25 ? file.name.substring(0, 22) + '...' : file.name;
+                const fileSize = (file.size / (1024 * 1024)).toFixed(1) + 'MB';
+                
+                filePreview.innerHTML = `
+                    <div class="file-preview-item">
+                        <i class="${getFileIcon(fileType)}"></i>
+                        <div class="file-info">
+                            <span class="file-name">${fileName}</span>
+                            <span class="file-size">${fileSize}</span>
+                        </div>
+                        <button type="button" class="remove-file" aria-label="Remove file">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                `;
+                
+                filePreview.style.display = 'flex';
+                fileUploadContent.style.display = 'none';
+                
+                // Add event listener to remove button
+                const removeBtn = filePreview.querySelector('.remove-file');
+                if (removeBtn) {
+                    removeBtn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        fileUploadInput.value = '';
+                        filePreview.style.display = 'none';
+                        fileUploadContent.style.display = 'flex';
+                        
+                        // Update summary if on confirmation page
+                        if (typeof updateSummary === 'function') {
+                            updateSummary();
+                        }
+                    });
+                }
+                
+                // Update summary if on confirmation page
+                if (typeof updateSummary === 'function') {
+                    updateSummary();
+                }
+            }
+        });
+    }
+});

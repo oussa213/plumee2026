@@ -1,0 +1,560 @@
+// DOM Elements
+const registrationForm = document.getElementById('regForm');
+const registrationTable = document.getElementById('registrations-table');
+const recentRegistrationsTable = document.getElementById('recent-registrations');
+const abstractsTable = document.getElementById('abstracts-table');
+const exportCsvBtn = document.getElementById('export-csv');
+const exportExcelBtn = document.getElementById('export-excel');
+const generateReportBtn = document.getElementById('generate-report');
+const filterType = document.getElementById('filter-type');
+const filterStatus = document.getElementById('filter-status');
+const applyFiltersBtn = document.getElementById('apply-filters');
+const prevPageBtn = document.getElementById('prev-page');
+const nextPageBtn = document.getElementById('next-page');
+const pageInfo = document.getElementById('page-info');
+const registrationModal = document.getElementById('registration-modal');
+const closeModalBtns = document.querySelectorAll('.close-modal');
+const printRegistrationBtn = document.getElementById('print-registration');
+
+// State
+let registrations = JSON.parse(localStorage.getItem('plumee_registrations')) || [];
+let currentPage = 1;
+const itemsPerPage = 10;
+let filteredRegistrations = [];
+
+// Initialize dashboard
+function initDashboard() {
+    // Load registrations from localStorage
+    loadRegistrations();
+    
+    // Set up event listeners
+    setupEventListeners();
+    
+    // Show overview section by default
+    showSection('overview');
+    
+    // Update UI
+    updateStats();
+    updateRecentRegistrations();
+    updateRegistrationsTable();
+    updateAbstractsTable();
+}
+
+// Load registrations from localStorage
+function loadRegistrations() {
+    const savedRegistrations = localStorage.getItem('plumee_registrations');
+    if (savedRegistrations) {
+        registrations = JSON.parse(savedRegistrations);
+    }
+    filteredRegistrations = [...registrations];
+}
+
+// Save registrations to localStorage
+function saveRegistrations() {
+    localStorage.setItem('plumee_registrations', JSON.stringify(registrations));
+}
+
+// Set up event listeners
+function setupEventListeners() {
+    // Navigation links
+    document.querySelectorAll('[data-section]').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const section = link.getAttribute('data-section');
+            showSection(section);
+        });
+    });
+    
+    // Export buttons
+    if (exportCsvBtn) {
+        exportCsvBtn.addEventListener('click', exportToCsv);
+    }
+    
+    if (exportExcelBtn) {
+        exportExcelBtn.addEventListener('click', exportToExcel);
+    }
+    
+    if (generateReportBtn) {
+        generateReportBtn.addEventListener('click', generatePdfReport);
+    }
+    
+    // Filter controls
+    if (applyFiltersBtn) {
+        applyFiltersBtn.addEventListener('click', applyFilters);
+    }
+    
+    // Pagination
+    if (prevPageBtn) {
+        prevPageBtn.addEventListener('click', () => changePage(-1));
+    }
+    
+    if (nextPageBtn) {
+        nextPageBtn.addEventListener('click', () => changePage(1));
+    }
+    
+    // Modal
+    closeModalBtns.forEach(btn => {
+        btn.addEventListener('click', closeModal);
+    });
+    
+    if (printRegistrationBtn) {
+        printRegistrationBtn.addEventListener('click', printRegistration);
+    }
+    
+    // Close modal when clicking outside
+    window.addEventListener('click', (e) => {
+        if (e.target === registrationModal) {
+            closeModal();
+        }
+    });
+}
+
+// Show section
+function showSection(sectionId) {
+    // Hide all sections
+    document.querySelectorAll('.dashboard-section').forEach(section => {
+        section.classList.remove('active');
+    });
+    
+    // Show selected section
+    const section = document.getElementById(sectionId);
+    if (section) {
+        section.classList.add('active');
+    }
+    
+    // Update active nav item
+    document.querySelectorAll('.sidebar-nav a').forEach(link => {
+        link.parentElement.classList.remove('active');
+        if (link.getAttribute('data-section') === sectionId) {
+            link.parentElement.classList.add('active');
+        }
+    });
+}
+
+// Update statistics
+function updateStats() {
+    // Update registration count
+    const registrationCount = registrations.length;
+    document.getElementById('total-registrations').textContent = registrationCount;
+    
+    // Update abstract count
+    const abstractCount = registrations.filter(r => r.abstractFile).length;
+    document.getElementById('total-abstracts').textContent = abstractCount;
+    
+    // Update badges
+    document.getElementById('registration-count').textContent = registrationCount;
+    document.getElementById('abstract-count').textContent = abstractCount;
+}
+
+// Update recent registrations table
+function updateRecentRegistrations() {
+    if (!recentRegistrationsTable) return;
+    
+    const tbody = recentRegistrationsTable.querySelector('tbody');
+    tbody.innerHTML = '';
+    
+    // Get 5 most recent registrations
+    const recent = [...registrations]
+        .sort((a, b) => new Date(b.registrationDate) - new Date(a.registrationDate))
+        .slice(0, 5);
+    
+    if (recent.length === 0) {
+        const row = document.createElement('tr');
+        row.innerHTML = '<td colspan="5" class="text-center">No registrations yet</td>';
+        tbody.appendChild(row);
+        return;
+    }
+    
+    recent.forEach(reg => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${reg.fullName || '-'}</td>
+            <td>${reg.affiliation || '-'}</td>
+            <td>${formatRegistrationType(reg.registrationType)}</td>
+            <td><span class="status-badge status-${reg.status || 'pending'}">${reg.status || 'Pending'}</span></td>
+            <td>${formatDate(reg.registrationDate)}</td>
+        `;
+        row.style.cursor = 'pointer';
+        row.addEventListener('click', () => showRegistrationDetails(reg.id));
+        tbody.appendChild(row);
+    });
+}
+
+// Update registrations table
+function updateRegistrationsTable() {
+    if (!registrationTable) return;
+    
+    const tbody = registrationTable.querySelector('tbody');
+    tbody.innerHTML = '';
+    
+    // Apply pagination
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const paginatedRegistrations = filteredRegistrations.slice(startIndex, startIndex + itemsPerPage);
+    
+    if (paginatedRegistrations.length === 0) {
+        const row = document.createElement('tr');
+        row.innerHTML = '<td colspan="9" class="text-center">No registrations found</td>';
+        tbody.appendChild(row);
+        return;
+    }
+    
+    paginatedRegistrations.forEach(reg => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${reg.id}</td>
+            <td>${reg.fullName || '-'}</td>
+            <td>${reg.email || '-'}</td>
+            <td>${reg.affiliation || '-'}</td>
+            <td>${formatRegistrationType(reg.registrationType)}</td>
+            <td>${formatParticipationType(reg.participationType)}</td>
+            <td><span class="status-badge status-${reg.status || 'pending'}">${reg.status || 'Pending'}</span></td>
+            <td>${formatDate(reg.registrationDate)}</td>
+            <td class="actions">
+                <button class="btn btn-sm btn-secondary" onclick="viewRegistration('${reg.id}')">
+                    <i class="fas fa-eye"></i>
+                </button>
+                <button class="btn btn-sm btn-danger" onclick="deleteRegistration('${reg.id}')">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </td>
+        `;
+        tbody.appendChild(row);
+    });
+    
+    // Update pagination
+    updatePagination();
+}
+
+// Update abstracts table
+function updateAbstractsTable() {
+    if (!abstractsTable) return;
+    
+    const tbody = abstractsTable.querySelector('tbody');
+    tbody.innerHTML = '';
+    
+    const abstracts = registrations.filter(r => r.abstractFile);
+    
+    if (abstracts.length === 0) {
+        const row = document.createElement('tr');
+        row.innerHTML = '<td colspan="7" class="text-center">No abstracts submitted yet</td>';
+        tbody.appendChild(row);
+        return;
+    }
+    
+    abstracts.forEach(reg => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${reg.id}</td>
+            <td>${reg.fullName || '-'}</td>
+            <td>${reg.abstractTitle || 'Untitled'}</td>
+            <td>${formatParticipationType(reg.participationType)}</td>
+            <td><span class="status-badge status-${reg.abstractStatus || 'pending'}">${reg.abstractStatus || 'Pending Review'}</span></td>
+            <td>${formatDate(reg.registrationDate)}</td>
+            <td class="actions">
+                <button class="btn btn-sm btn-primary" onclick="downloadAbstract('${reg.id}')">
+                    <i class="fas fa-download"></i> Download
+                </button>
+            </td>
+        `;
+        tbody.appendChild(row);
+    });
+}
+
+// Apply filters
+function applyFilters() {
+    const typeFilter = filterType.value;
+    const statusFilter = filterStatus.value;
+    
+    filteredRegistrations = registrations.filter(reg => {
+        const typeMatch = typeFilter === 'all' || reg.registrationType === typeFilter;
+        const statusMatch = statusFilter === 'all' || (reg.status || 'pending') === statusFilter;
+        return typeMatch && statusMatch;
+    });
+    
+    // Reset to first page
+    currentPage = 1;
+    updateRegistrationsTable();
+}
+
+// Change page
+function changePage(direction) {
+    const totalPages = Math.ceil(filteredRegistrations.length / itemsPerPage);
+    
+    if (direction === -1 && currentPage > 1) {
+        currentPage--;
+    } else if (direction === 1 && currentPage < totalPages) {
+        currentPage++;
+    }
+    
+    updateRegistrationsTable();
+}
+
+// Update pagination controls
+function updatePagination() {
+    const totalPages = Math.ceil(filteredRegistrations.length / itemsPerPage);
+    
+    pageInfo.textContent = `Page ${currentPage} of ${totalPages || 1}`;
+    
+    prevPageBtn.disabled = currentPage <= 1;
+    nextPageBtn.disabled = currentPage >= totalPages;
+}
+
+// Show registration details in modal
+function showRegistrationDetails(registrationId) {
+    const registration = registrations.find(r => r.id === registrationId);
+    if (!registration) return;
+    
+    const modalBody = document.getElementById('registration-details');
+    
+    // Format registration details as HTML
+    const detailsHtml = `
+        <div class="detail-row">
+            <span class="detail-label">Registration ID:</span>
+            <span class="detail-value">${registration.id}</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Full Name:</span>
+            <span class="detail-value">${registration.fullName || '-'}</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Email:</span>
+            <span class="detail-value">${registration.email || '-'}</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Phone:</span>
+            <span class="detail-value">${registration.phone || '-'}</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Country:</span>
+            <span class="detail-value">${registration.country || '-'}</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Institution/Company:</span>
+            <span class="detail-value">${registration.affiliation || '-'}</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Position/Title:</span>
+            <span class="detail-value">${registration.position || '-'}</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Registration Type:</span>
+            <span class="detail-value">${formatRegistrationType(registration.registrationType)}</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Participation Type:</span>
+            <span class="detail-value">${formatParticipationType(registration.participationType)}</span>
+        </div>
+        ${registration.abstractTitle ? `
+        <div class="detail-row">
+            <span class="detail-label">Abstract Title:</span>
+            <span class="detail-value">${registration.abstractTitle}</span>
+        </div>
+        ` : ''}
+        <div class="detail-row">
+            <span class="detail-label">Registration Date:</span>
+            <span class="detail-value">${formatDate(registration.registrationDate)}</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Status:</span>
+            <span class="status-badge status-${registration.status || 'pending'}">${registration.status || 'Pending'}</span>
+        </div>
+    `;
+    
+    modalBody.innerHTML = detailsHtml;
+    registrationModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+// Close modal
+function closeModal() {
+    registrationModal.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+// Print registration
+function printRegistration() {
+    window.print();
+}
+
+// View registration (alias for showRegistrationDetails)
+function viewRegistration(registrationId) {
+    showRegistrationDetails(registrationId);
+}
+
+// Delete registration
+function deleteRegistration(registrationId) {
+    if (confirm('Are you sure you want to delete this registration? This action cannot be undone.')) {
+        registrations = registrations.filter(r => r.id !== registrationId);
+        filteredRegistrations = filteredRegistrations.filter(r => r.id !== registrationId);
+        saveRegistrations();
+        updateStats();
+        updateRecentRegistrations();
+        updateRegistrationsTable();
+        updateAbstractsTable();
+    }
+}
+
+// Download abstract
+function downloadAbstract(registrationId) {
+    const registration = registrations.find(r => r.id === registrationId);
+    if (!registration || !registration.abstractFile) return;
+    
+    // Create a temporary link to download the file
+    const link = document.createElement('a');
+    link.href = registration.abstractFile;
+    link.download = `${registration.fullName.replace(/\s+/g, '_')}_abstract${getFileExtension(registration.abstractFile)}`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
+// Export to CSV
+function exportToCsv() {
+    const headers = [
+        'ID', 'Full Name', 'Email', 'Phone', 'Country', 'Institution/Company', 
+        'Position/Title', 'Registration Type', 'Participation Type', 
+        'Abstract Title', 'Registration Date', 'Status'
+    ];
+    
+    const csvContent = [
+        headers.join(','),
+        ...registrations.map(reg => [
+            reg.id,
+            `"${reg.fullName || ''}"`,
+            `"${reg.email || ''}"`,
+            `"${reg.phone || ''}"`,
+            `"${reg.country || ''}"`,
+            `"${reg.affiliation || ''}"`,
+            `"${reg.position || ''}"`,
+            `"${formatRegistrationType(reg.registrationType) || ''}"`,
+            `"${formatParticipationType(reg.participationType) || ''}"`,
+            `"${reg.abstractTitle || ''}"`,
+            `"${formatDate(reg.registrationDate) || ''}"`,
+            `"${reg.status || 'Pending'}"`
+        ].join(','))
+    ].join('\n');
+    
+    // Create a Blob with the CSV content
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    
+    // Create a temporary link to download the file
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `plumee2026_registrations_${formatDate(new Date(), 'YYYY-MM-DD')}.csv`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    // Clean up
+    setTimeout(() => URL.revokeObjectURL(url), 100);
+}
+
+// Export to Excel (using SheetJS library)
+function exportToExcel() {
+    // Check if SheetJS is loaded
+    if (typeof XLSX === 'undefined') {
+        // Load SheetJS library dynamically
+        const script = document.createElement('script');
+        script.src = 'https://cdn.sheetjs.com/xlsx-0.18.5/package/dist/xlsx.full.min.js';
+        script.onload = () => {
+            // Retry after loading the library
+            exportToExcel();
+        };
+        script.onerror = () => {
+            alert('Failed to load the required library. Please try again or use CSV export.');
+        };
+        document.head.appendChild(script);
+        return;
+    }
+    
+    // Prepare data for Excel
+    const data = [
+        [
+            'ID', 'Full Name', 'Email', 'Phone', 'Country', 'Institution/Company', 
+            'Position/Title', 'Registration Type', 'Participation Type', 
+            'Abstract Title', 'Registration Date', 'Status'
+        ],
+        ...registrations.map(reg => [
+            reg.id,
+            reg.fullName || '',
+            reg.email || '',
+            reg.phone || '',
+            reg.country || '',
+            reg.affiliation || '',
+            reg.position || '',
+            formatRegistrationType(reg.registrationType) || '',
+            formatParticipationType(reg.participationType) || '',
+            reg.abstractTitle || '',
+            formatDate(reg.registrationDate) || '',
+            reg.status || 'Pending'
+        ])
+    ];
+    
+    // Create a worksheet
+    const ws = XLSX.utils.aoa_to_sheet(data);
+    
+    // Create a workbook
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Registrations');
+    
+    // Generate Excel file
+    XLSX.writeFile(wb, `plumee2026_registrations_${formatDate(new Date(), 'YYYY-MM-DD')}.xlsx`);
+}
+
+// Generate PDF report (simplified version - would need a proper PDF library for full implementation)
+function generatePdfReport() {
+    alert('PDF generation would be implemented with a library like jsPDF or similar.');
+    // In a real implementation, you would use a library like jsPDF to generate a PDF
+    // This is just a placeholder to show the concept
+}
+
+// Helper function to format registration type
+function formatRegistrationType(type) {
+    const types = {
+        'student': 'Student',
+        'academic': 'Academic',
+        'industry': 'Industry'
+    };
+    return types[type] || type || '-';
+}
+
+// Helper function to format participation type
+function formatParticipationType(type) {
+    const types = {
+        'participant': 'Attendee',
+        'poster': 'Poster Presentation',
+        'paper': 'Oral Presentation'
+    };
+    return types[type] || type || '-';
+}
+
+// Helper function to format date
+function formatDate(dateString, format = 'DD/MM/YYYY') {
+    if (!dateString) return '-';
+    
+    const date = new Date(dateString);
+    if (isNaN(date.getTime())) return dateString; // Return as is if invalid date
+    
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear();
+    
+    return format
+        .replace('DD', day)
+        .replace('MM', month)
+        .replace('YYYY', year);
+}
+
+// Helper function to get file extension
+function getFileExtension(filename) {
+    return filename.slice((filename.lastIndexOf(".") - 1 >>> 0) + 2);
+}
+
+// Initialize the dashboard when the DOM is loaded
+document.addEventListener('DOMContentLoaded', initDashboard);
+
+// Make functions available globally for inline event handlers
+window.viewRegistration = viewRegistration;
+window.deleteRegistration = deleteRegistration;
+window.downloadAbstract = downloadAbstract;

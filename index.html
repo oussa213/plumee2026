@@ -1,0 +1,2175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--
+    README / TODOs
+    - Replace placeholder logos/images in /assets/ (SVGs included).
+    - Connect Registration & Contact forms to a real endpoint (see TODOs in app.js).
+    - Embed a real interactive map in the Venue & Travel section (replace static placeholder).
+    - Finalize Program & Speakers with real data (cards, images, schedule).
+  -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PLUMEE 2026 — 7th Multidisciplinary Colloquium</title>
+  <meta name="description" content="PLUMEE 2026 unites researchers, engineers and industry across materials, environment, and electronics. April 21–23, 2026 at UM6P, Benguerir, Morocco." />
+  <meta property="og:title" content="PLUMEE 2026 — 7th Multidisciplinary Colloquium" />
+  <meta property="og:description" content="Materials • Environment • Electronics — April 21–23, 2026 — UM6P, Benguerir, Morocco." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/og-placeholder.png" />
+  <meta name="theme-color" content="#C08A1D" />
+  <link rel="icon" href="assets/PLUMEE_logo (1).png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Form Styles -->
+  <link rel="stylesheet" href="css/form-styles.css">
+  <style>
+    /* =================================
+       IMPORTANT DATES SECTION STYLES
+       ================================= */
+    .dates-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    
+    .dates-header h2 {
+      color: var(--color-dark);
+      margin-bottom: 0.5rem;
+      font-size: 2.2rem;
+    }
+    
+    .dates-header p {
+      color: var(--color-text);
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto;
+      opacity: 0.9;
+    }
+
+    /* Timeline Container */
+    .timeline-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+      position: relative;
+    }
+
+    /* Conference Highlight */
+    .conference-highlight {
+      background: linear-gradient(135deg, #f0f7ff, #e3f2fd);
+      border-radius: 16px;
+      overflow: hidden;
+      margin: 0 auto 4rem;
+      border: 1px solid #bbdefb;
+      max-width: 800px;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      box-shadow: 0 10px 30px rgba(30, 136, 229, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .conference-highlight:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(30, 136, 229, 0.15);
+    }
+
+    .conference-dates {
+      background: var(--color-primary);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .conference-dates::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 50%);
+    }
+
+    .conference-date {
+      text-align: center;
+      z-index: 1;
+    }
+
+    .conference-day {
+      font-size: 2.5rem;
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 0.25rem;
+      color: white;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .conference-month {
+      font-size: 1.2rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      opacity: 0.9;
+      color: white;
+    }
+
+    .conference-details {
+      padding: 2.5rem;
+      background: white;
+    }
+
+    .conference-details h3 {
+      color: var(--color-dark);
+      font-size: 1.8rem;
+      margin: 0 0 1rem 0;
+      line-height: 1.3;
+    }
+
+    .conference-details p {
+      color: var(--color-text);
+      margin: 0;
+      line-height: 1.6;
+      font-size: 1.05rem;
+      opacity: 0.9;
+    }
+
+    /* Timeline */
+    .timeline {
+      position: relative;
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 20px;
+      list-style: none;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 4px;
+      background: linear-gradient(to bottom, #e0e0e0, #bdbdbd);
+      transform: translateX(-50%);
+      z-index: 0;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2.5rem;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      opacity: 0;
+      animation: fadeInUp 0.6s ease-out forwards;
+    }
+
+    .timeline-item:nth-child(1) { animation-delay: 0.1s; }
+    .timeline-item:nth-child(2) { animation-delay: 0.2s; }
+    .timeline-item:nth-child(3) { animation-delay: 0.3s; }
+    .timeline-item:nth-child(4) { animation-delay: 0.4s; }
+    .timeline-item:nth-child(5) { animation-delay: 0.5s; }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .timeline-content {
+      position: relative;
+      width: 46%;
+      padding: 1.8rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      transition: all 0.3s ease;
+      z-index: 1;
+      border-left: 4px solid var(--color-primary);
+    }
+
+    .timeline-item:nth-child(even) .timeline-content {
+      margin-left: auto;
+      border-left: none;
+      border-right: 4px solid var(--color-primary);
+      text-align: right;
+    }
+
+    .timeline-content::before {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: var(--color-primary);
+      border-radius: 50%;
+      top: 30px;
+      z-index: 1;
+      left: -12px;
+      border: 4px solid white;
+      box-shadow: 0 0 0 2px var(--color-primary);
+    }
+
+    .timeline-item:nth-child(even) .timeline-content::before {
+      left: auto;
+      right: -12px;
+    }
+
+    .timeline-content:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .date {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--color-primary);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .date::before {
+      content: '📅';
+      margin-right: 6px;
+      font-size: 1em;
+    }
+
+    .timeline-content h3 {
+      font-size: 1.25rem;
+      color: var(--color-dark);
+      margin: 0 0 0.75rem 0;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    .timeline-content p {
+      color: var(--color-text);
+      margin: 0 0 1rem 0;
+      line-height: 1.6;
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      background: #e8f5e9;
+      color: #2e7d32;
+      border: 1px solid #c8e6c9;
+      margin-top: 0.5rem;
+      width: fit-content;
+    }
+
+    .status-badge.upcoming {
+      background: #fff3e0;
+      color: #ef6c00;
+      border-color: #ffe0b2;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      .timeline::before {
+        left: 20px;
+      }
+      
+      .timeline-content,
+      .timeline-item:nth-child(even) .timeline-content {
+        width: calc(100% - 60px);
+        margin-left: 60px !important;
+        text-align: left;
+        border-left: 4px solid var(--color-primary) !important;
+        border-right: none !important;
+      }
+      
+      .timeline-content::before,
+      .timeline-item:nth-child(even) .timeline-content::before {
+        left: -44px !important;
+        right: auto !important;
+      }
+      
+      .conference-highlight {
+        grid-template-columns: 1fr;
+      }
+      
+      .conference-dates {
+        padding: 1.5rem;
+      }
+      
+      .conference-details {
+        padding: 1.8rem;
+      }
+      
+      .conference-details h3 {
+        font-size: 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .timeline-content,
+      .timeline-item:nth-child(even) .timeline-content {
+        width: calc(100% - 50px);
+        margin-left: 50px !important;
+        padding: 1.5rem;
+      }
+      
+      .conference-highlight {
+        margin-bottom: 3rem;
+      }
+      
+      .conference-details h3 {
+        font-size: 1.4rem;
+      }
+      
+      .timeline-content h3 {
+        font-size: 1.15rem;
+      }
+      
+      .timeline-content p {
+        font-size: 0.95rem;
+      }
+    }
+    
+    .dates-header h2 {
+      color: var(--color-dark);
+      margin-bottom: 1rem;
+      font-size: 2.2rem;
+    }
+    
+    .dates-header p {
+      color: var(--color-dark);
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto;
+      opacity: 0.9;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      color: #1a365d;
+      margin: 0 0 1.5rem;
+      font-weight: 700;
+      position: relative;
+      display: inline-block;
+      padding-bottom: 0.5rem;
+      text-align: center;
+      width: 100%;
+    }
+    
+    .section-title:after {
+      content: '';
+      position: absolute;
+      width: 60px;
+      height: 3px;
+      background: #C08A1D;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .section-subtitle {
+      font-size: 1.1rem;
+      color: #4a5568;
+      max-width: 700px;
+      margin: 0.75rem auto 2rem;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    /* Modern Timeline Layout */
+    .timeline-container {
+      position: relative;
+      padding: 2rem 0 4rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    .timeline::before {
+      display: none;
+    }
+
+    .timeline-item {
+      position: relative;
+      width: 100%;
+      margin-bottom: 2rem;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s ease;
+    }
+
+    .timeline-dot {
+      display: none;
+    }
+
+    .timeline-content {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+      border-left: 4px solid #2E8B57;
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 1.5rem;
+      align-items: flex-start;
+    }
+
+    .timeline-content:hover {
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+      transform: translateY(-2px);
+    }
+
+    .timeline-item:hover .timeline-dot {
+      transform: translateY(-50%) scale(1.2);
+      box-shadow: 0 0 0 3px rgba(46, 139, 87, 0.3);
+    }
+
+    .date {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #2E8B57;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .date::before {
+      content: '\f073';
+      font-family: 'Font Awesome 5 Free';
+      font-weight: 900;
+      font-size: 0.9em;
+    }
+
+    .timeline-content h3 {
+      font-size: 1.3rem;
+      color: #1a202c;
+      margin: 0 0 0.5rem 0;
+      font-weight: 700;
+      line-height: 1.4;
+      grid-column: 2;
+    }
+
+    .timeline-content p {
+      color: #4a5568;
+      margin: 0 0 1rem 0;
+      line-height: 1.6;
+      font-size: 1rem;
+      opacity: 0.9;
+      grid-column: 2;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.35rem 1rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      background: #f0fdf4;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+      margin-top: 0.5rem;
+      grid-column: 2;
+      width: fit-content;
+    }
+
+    .status-badge.upcoming {
+      background: #fffbeb;
+      color: #b45309;
+      border-color: #fcd34d;
+    }
+
+    /* Conference Highlight */
+    .conference-highlight {
+      background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+      border-radius: 12px;
+      overflow: hidden;
+      margin: 4rem auto;
+      border: 1px solid #bbf7d0;
+      max-width: 800px;
+      width: 100%;
+      position: relative;
+      z-index: 2;
+    }
+
+    .conference-dates {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      padding: 2rem;
+      background: var(--color-primary);
+      color: white;
+      text-align: center;
+    }
+    
+    .conference-date {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 1.5rem 1rem;
+      border-radius: 8px;
+      min-width: 80px;
+    }
+    
+    .conference-day {
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+    
+    .conference-month {
+      font-size: 1rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      opacity: 0.9;
+    }
+    
+    .conference-details {
+      padding: 2rem;
+    }
+    
+    .conference-details h3 {
+      color: var(--color-dark);
+      font-size: 1.8rem;
+      margin: 0 0 1rem 0;
+    }
+    
+    .conference-details p {
+      color: var(--color-dark);
+      opacity: 0.9;
+      margin: 0;
+      line-height: 1.6;
+      max-width: 500px;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 1400px) {
+      .events-grid {
+        padding: 1.25rem 5%;
+        gap: 1.25rem;
+      }
+      
+      .event-card {
+        width: 260px;
+        min-width: 260px;
+        max-width: 260px;
+      }
+      
+      .conference-highlight {
+        width: 480px;
+        min-width: 480px;
+        max-width: 480px;
+      }
+      
+      .event-date {
+        padding: 1.25rem 1.5rem;
+      }
+      
+      .event-content {
+        padding: 1.5rem 1.5rem 1.75rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .events-grid {
+        padding: 1rem 5% 1.5rem;
+        width: 100%;
+        gap: 1rem;
+        margin: 1.5rem 0 2.5rem;
+        scroll-padding: 0 5%;
+      }
+      
+      .event-card {
+        width: 280px;
+        min-width: 280px;
+        max-width: 280px;
+        border-radius: 14px;
+      }
+      
+      .conference-highlight {
+        width: 280px;
+        min-width: 280px;
+        max-width: 280px;
+        grid-template-columns: 1fr;
+      }
+      
+      .conference-dates {
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 1rem;
+      }
+      
+      .conference-date {
+        flex: 0 0 calc(33.333% - 0.5rem);
+        margin: 0.25rem;
+      }
+      
+      .event-date {
+        padding: 1.25rem 1.5rem;
+      }
+      
+      .event-day {
+        font-size: 2.25rem;
+        min-width: 50px;
+      }
+      
+      .event-month {
+        font-size: 0.9rem;
+      }
+      
+      .event-content {
+        padding: 1.5rem 1.5rem 1.75rem;
+      }
+      
+      .event-title {
+        font-size: 1.15rem;
+        padding-bottom: 0.5rem;
+      }
+      
+      .event-description {
+        font-size: 0.9rem;
+        margin-bottom: 1.25rem;
+      }
+      
+      .event-status {
+        padding: 0.55rem 1.2rem;
+        font-size: 0.82rem;
+      }
+    }  
+      .conference-highlight {
+        grid-template-columns: 1fr;
+      }
+      
+      .conference-dates {
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 1.5rem 1rem;
+      }
+      
+      .conference-date {
+        padding: 1rem 0.75rem;
+        min-width: 70px;
+      }
+      
+      .conference-day {
+        font-size: 1.5rem;
+      }
+      
+      .conference-month {
+        font-size: 0.9rem;
+      }
+      
+      .conference-details {
+        padding: 1.5rem;
+        text-align: center;
+      }
+      
+      .conference-details h3 {
+        font-size: 1.5rem;
+      }
+
+    /* Hover Effects */
+    .event-card:hover .event-date {
+      background: var(--color-accent);
+    }
+    
+    .conference-highlight:hover {
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    }
+    
+    .conference-date {
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+    
+    .conference-date:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px);
+    }
+
+    /* Speakers Section Styling */
+    .speakers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .speaker-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .speaker-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .speaker-img-container {
+      position: relative;
+      width: 100%;
+      padding-top: 100%;
+      overflow: hidden;
+    }
+
+    .speaker-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .speaker-card:hover .speaker-img {
+      transform: scale(1.05);
+    }
+
+    .speaker-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+      padding: 1rem;
+      text-align: right;
+    }
+
+    .speaker-tag {
+      display: inline-block;
+      background: var(--color-accent);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .speaker-info {
+      padding: 1.25rem;
+      text-align: center;
+    }
+
+    .speaker-info h3 {
+      margin: 0 0 0.5rem;
+      font-size: 1.1rem;
+      color: #333;
+    }
+
+    .speaker-affiliation {
+      color: var(--color-primary);
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin: 0 0 0.5rem;
+    }
+
+    .speaker-bio {
+      font-size: 0.85rem;
+      color: #666;
+      margin: 0;
+      line-height: 1.4;
+    }
+
+    /* Committee Section Styling */
+    .committee-section {
+      margin: 4rem 0;
+      padding: 2rem;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+    }
+    
+    .committee-section:not(:first-child) {
+      margin-top: 3rem;
+    }
+    
+    .committee-heading {
+      text-align: center;
+      color: white;
+      margin-bottom: 2rem;
+      position: relative;
+      padding-bottom: 1rem;
+    }
+    
+    .committee-heading:after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 3px;
+      background: var(--color-accent);
+      margin: 0.75rem auto 0;
+    }
+  </style>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a class="brand" href="#hero" aria-label="Home">
+        <img src="assets/PLUMEE_logo (1).png" alt="PLUMEE 2026" class="brand-mark" />
+      </a>
+
+      <nav class="site-nav" role="navigation" aria-label="Primary">
+        <button class="nav-toggle" aria-expanded="false" aria-controls="navMenu">
+          <span class="sr-only">Toggle navigation</span>
+          ☰
+        </button>
+        <ul id="navMenu">
+          <li><a href="#about">About</a></li>
+          <li><a href="#themes">Topics</a></li>
+          <li><a href="#speakers">Speakers</a></li>
+          <li><a href="#program">Program</a></li>
+          <li><a href="#committees">Organizers</a></li>
+          <li><a href="registration.html">Registration</a></li>
+          <li><a href="#venue">Venue</a></li>
+        </ul>
+      </nav>
+
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button class="chip" data-lang="en" aria-pressed="true">
+          <img src="assets/flag-en.svg" alt="English" />
+        </button>
+        <button class="chip" data-lang="fr" aria-pressed="false">
+          <img src="assets/flag-fr.svg" alt="Français" />
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <!-- 1) HERO -->
+    <section id="hero" class="section hero">
+      <div class="container hero-inner reveal">
+        <div class="hero-copy">
+          <h1>
+            <span class="eyebrow">Materials · Environment · Electronics</span>
+            <span>7th Multidisciplinary Colloquium – PLUMEE</span>
+          </h1>
+          <p class="lead">
+            <span>21–23 April 2026 · UM6P, Benguerir, Morocco</span>
+          </p>
+          <div class="countdown-container">
+            <div class="countdown" id="countdown">
+              <div class="countdown-item">
+                <span class="countdown-number" id="days">000</span>
+                <span class="countdown-label">Days</span>
+              </div>
+              <div class="countdown-item">
+                <span class="countdown-number" id="hours">00</span>
+                <span class="countdown-label">Hours</span>
+              </div>
+              <div class="countdown-item">
+                <span class="countdown-number" id="minutes">00</span>
+                <span class="countdown-label">Minutes</span>
+              </div>
+              <div class="countdown-item">
+                <span class="countdown-number" id="seconds">00</span>
+                <span class="countdown-label">Seconds</span>
+              </div>
+            </div>
+          </div>
+          <div class="hero-ctas">
+            <a href="#themes" class="btn btn-secondary">View Themes</a>
+            <a href="registration.html" class="btn">Register Now</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2) ABOUT -->
+    <section id="about" class="section primary">
+      <div class="container reveal">
+        <div class="about-content">
+          <div class="about-text">
+            <header class="section-header">
+              <h2>About the Colloquium</h2>
+              <p class="section-kicker">Why PLUMEE 2026</p>
+            </header>
+            <p class="body-lg">
+              PLUMEE 2026 brings together leading researchers, engineers, and industry professionals from around the world to explore the latest advances in materials, environment, and electronics. This 7th Multidisciplinary Colloquium serves as a platform for knowledge exchange, collaboration, and innovation across these interconnected fields.
+            </p>
+          </div>
+          <div class="about-logo">
+            <img src="assets/PLUMEE_logo (1).png" alt="PLUMEE 2026 Logo" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3) MAIN THEMES -->
+    <section id="themes" class="section primary">
+      <div class="container reveal">
+        <header class="section-header">
+          <h2>Topics</h2>
+          <p class="section-kicker">Cross-disciplinary focus</p>
+        </header>
+        <div class="topics-container">
+          <div class="topics-grid">
+            <!-- Valorization & Recycling -->
+            <div class="topic-item">
+              <h3 class="topic-title">Valorization & Recycling</h3>
+              <p class="topic-desc">Natural resources and waste recycling</p>
+            </div>
+            
+            <!-- Depollution Materials -->
+            <div class="topic-item">
+              <h3 class="topic-title">Depollution Materials</h3>
+              <p class="topic-desc">Catalysts, membranes, and adsorbents</p>
+            </div>
+            
+            <!-- Energy Solutions -->
+            <div class="topic-item">
+              <h3 class="topic-title">Energy Solutions</h3>
+              <p class="topic-desc">Storage and renewable energies</p>
+            </div>
+            
+            <!-- Surface Engineering -->
+            <div class="topic-item">
+              <h3 class="topic-title">Surface Engineering</h3>
+              <p class="topic-desc">Treatment and industrial impact</p>
+            </div>
+            
+            <!-- Nanomaterials -->
+            <div class="topic-item">
+              <h3 class="topic-title">Nanomaterials</h3>
+              <p class="topic-desc">Nanotechnologies and applications</p>
+            </div>
+            
+            <!-- Electronic Materials -->
+            <div class="topic-item">
+              <h3 class="topic-title">Electronic Materials</h3>
+              <p class="topic-desc">Advanced materials for electronics</p>
+            </div>
+            
+            <!-- Embedded Systems -->
+            <div class="topic-item">
+              <h3 class="topic-title">Embedded Systems</h3>
+              <p class="topic-desc">For ecological transition</p>
+            </div>
+            
+            <!-- AI & Optimization -->
+            <div class="topic-item">
+              <h3 class="topic-title">AI & Optimization</h3>
+              <p class="topic-desc">For materials and electronic systems</p>
+            </div>
+            
+            <!-- EM Waves -->
+            <div class="topic-item">
+              <h3 class="topic-title">EM Waves</h3>
+              <p class="topic-desc">Interaction with living matter</p>
+            </div>
+            
+            <!-- Romanian Theme -->
+            <div class="topic-item">
+              <h3 class="topic-title">Romanian Theme</h3>
+              <p class="topic-desc">Special focus session</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4) SPEAKERS -->
+    <section id="speakers" class="section primary">
+      <div class="container reveal">
+        <header class="section-header">
+          <h2>Keynote Speakers</h2>
+          <p class="section-kicker">Distinguished Experts in Their Fields</p>
+        </header>
+
+        <div class="speakers-grid">
+          <!-- Speaker 1 - Keynote -->
+          <article class="speaker-card">
+            <div class="speaker-img-container">
+              <img src="assets/committee/Manoun.jpg" alt="Pr. Bouchaib MANOUN" class="speaker-img" />
+              <div class="speaker-overlay">
+                <span class="speaker-tag">Keynote</span>
+              </div>
+            </div>
+            <div class="speaker-info">
+              <h3>Pr. Bouchaib MANOUN</h3>
+              <p class="speaker-title">Professor</p>
+              <p class="speaker-affiliation">Université Hassan 1er, Settat</p>
+              <p class="speaker-topic">Topic: Advanced Materials</p>
+            </div>
+          </article>
+
+          <!-- Speaker 2 - Keynote -->
+          <article class="speaker-card">
+            <div class="speaker-img-container">
+              <img src="assets/committee/Fabrice Rossignol.png" alt="Dr. Fabrice ROSSIGNOL" class="speaker-img" />
+              <div class="speaker-overlay">
+                <span class="speaker-tag">Keynote</span>
+              </div>
+            </div>
+            <div class="speaker-info">
+              <h3>Dr. Fabrice ROSSIGNOL</h3>
+              <p class="speaker-title">CNRS Research Director</p>
+              <p class="speaker-affiliation">CNRS, France</p>
+              <p class="speaker-topic">Topic: AI and Materials</p>
+            </div>
+          </article>
+
+          <!-- Speaker 3 - Keynote -->
+          <article class="speaker-card">
+            <div class="speaker-img-container">
+              <img src="assets/committee/tarik chafik.jpg" alt="Tarik CHAFIK" class="speaker-img" />
+              <div class="speaker-overlay">
+                <span class="speaker-tag">Keynote</span>
+              </div>
+            </div>
+            <div class="speaker-info">
+              <h3>Tarik CHAFIK</h3>
+              <p class="speaker-title">Chemical Engineering for Resources Valorisation Team</p>
+              <p class="speaker-affiliation">Faculty of Sciences and Techniques of Tangier, University Abdelmalek Essâadi</p>
+              <p class="speaker-topic">Topic: From waste water sludge to valuable chemicals and cleaner fuels using extruded local clay as honeycomb monolith</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5) PROGRAM -->
+    <section id="program" class="section">
+      <div class="container reveal">
+        <header class="section-header">
+          <h2 class="section-title" data-i18n="program.title" style="color: #2E8B57;">Program</h2>
+          <p class="section-kicker" data-i18n="program.kicker">Conference Schedule</p>
+        </header>
+        
+        <div class="program-tabs">
+          <!-- Tab Buttons -->
+          <div class="tab-buttons" role="tablist" aria-label="Program Days">
+            <button class="tab-button active" data-tab="day1" role="tab" aria-selected="true" aria-controls="day1-content">Day 1 · Apr 21</button>
+            <button class="tab-button" data-tab="day2" role="tab" aria-selected="false" aria-controls="day2-content">Day 2 · Apr 22</button>
+            <button class="tab-button" data-tab="day3" role="tab" aria-selected="false" aria-controls="day3-content">Day 3 · Apr 23</button>
+          </div>
+          
+          <!-- Day 1 Content -->
+          <div id="day1-content" class="tab-content active" role="tabpanel" aria-labelledby="day1">
+            <div class="program-schedule">
+              <div class="schedule-item">
+                <div class="schedule-time">08:30 - 09:30</div>
+                <div class="schedule-details">
+                  <h4>Registration & Welcome Coffee</h4>
+                  <p class="schedule-location">Main Hall, UM6P</p>
+                </div>
+              </div>
+              
+              <div class="schedule-item">
+                <div class="schedule-time">09:30 - 10:00</div>
+                <div class="schedule-details">
+                  <h4>Opening Ceremony</h4>
+                  <div class="schedule-speaker">
+                    <img src="assets/tamraoui.png" alt="Prof. Youssef Tamraoui" class="speaker-avatar">
+                    <div class="speaker-info-inline">
+                      <span class="speaker-name">Prof. Youssef Tamraoui</span>
+                      <span class="speaker-role">Chair of PLUMEE 2026, MSN - UM6P, Morocco</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="schedule-item">
+                <div class="schedule-time">10:00 - 11:00</div>
+                <div class="schedule-details">
+                  <h4>Plenary Session 1: Advanced Materials for Sustainable Development</h4>
+                  <div class="schedule-speaker">
+                    <img src="assets/tamraoui.png" alt="Prof. Jean-Marie Tarascon" class="speaker-avatar">
+                    <div class="speaker-info-inline">
+                      <span class="speaker-name">Prof. Jean-Marie Tarascon</span>
+                      <span class="speaker-role">Collège de France, France</span>
+                      <p class="schedule-title">"Innovative Materials for Next-Generation Batteries"</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="schedule-item">
+                <div class="schedule-time">11:30 - 13:00</div>
+                <div class="schedule-details">
+                  <h4>Parallel Sessions A: Materials Science</h4>
+                  <p class="schedule-location">Track A: Room 101</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Day 2 Content -->
+          <div id="day2-content" class="tab-content" role="tabpanel" aria-labelledby="day2" hidden>
+            <div class="program-schedule">
+              <div class="schedule-item">
+                <div class="schedule-time">09:00 - 10:30</div>
+                <div class="schedule-details">
+                  <h4>Plenary Session 2: Electronic and Photonic Materials</h4>
+                  <div class="schedule-speaker">
+                    <img src="assets/tamraoui.png" alt="Prof. Elham Ghadiri" class="speaker-avatar">
+                    <div class="speaker-info-inline">
+                      <span class="speaker-name">Prof. Elham Ghadiri</span>
+                      <span class="speaker-role">KAUST, Saudi Arabia</span>
+                      <p class="schedule-title">"Advances in 2D Materials for Optoelectronics"</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="schedule-item">
+                <div class="schedule-time">11:00 - 12:30</div>
+                <div class="schedule-details">
+                  <h4>Panel Discussion: Future of Materials Science in Africa</h4>
+                  <p class="schedule-speaker">Moderated by Dr. Fatima Ezzahra Achouri</p>
+                </div>
+              </div>
+              
+              <div class="schedule-item">
+                <div class="schedule-time">14:00 - 15:30</div>
+                <div class="schedule-details">
+                  <h4>Poster Session & Coffee Break</h4>
+                  <p class="schedule-location">Exhibition Hall</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Day 3 Content -->
+          <div id="day3-content" class="tab-content" role="tabpanel" aria-labelledby="day3" hidden>
+            <div class="program-schedule">
+              <div class="schedule-item">
+                <div class="schedule-time">09:00 - 10:30</div>
+                <div class="schedule-details">
+                  <h4>Plenary Session 3: Nanomaterials and Applications</h4>
+                  <div class="schedule-speaker">
+                    <img src="assets/tamraoui.png" alt="Prof. Mohamed Eddaoudi" class="speaker-avatar">
+                    <div class="speaker-info-inline">
+                      <span class="speaker-name">Prof. Mohamed Eddaoudi</span>
+                      <span class="speaker-role">KAUST, Saudi Arabia</span>
+                      <p class="schedule-title">"Metal-Organic Frameworks for Energy Applications"</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="schedule-item">
+                <div class="schedule-time">11:00 - 12:00</div>
+                <div class="schedule-details">
+                  <h4>Closing Ceremony & Awards</h4>
+                  <p class="schedule-speaker">Prof. Ahmed El Abbassi</p>
+                  <p class="schedule-affiliation">FSTG, Cadi Ayyad University, Morocco</p>
+                </div>
+              </div>
+            </div>
+          </div>
+    <!-- 6) IMPORTANT DATES -->
+    <section id="important-dates" class="section" style="background-color: #F4E6B7; position: relative; overflow: hidden; padding: 3rem 0;">
+      <div class="container">
+        <div class="section-header" style="text-align: center; margin-bottom: 2.5rem;">
+          <h2 class="section-title" style="color: #2E8B57; font-size: 2.2rem; margin-bottom: 0.8rem; position: relative; display: inline-block; font-weight: 700;">
+            Important Dates
+            <span style="position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%); width: 80px; height: 3px; background: #2E8B57; border-radius: 2px;"></span>
+          </h2>
+          <p class="section-subtitle" style="color: #4a7c59; font-size: 1.1rem; max-width: 700px; margin: 0.8rem auto 0; line-height: 1.5;">
+            Mark your calendar for these key milestones of PLUMEE 2026
+          </p>
+        </div>
+
+        <!-- Main Conference Card -->
+        <div style="background: linear-gradient(135deg, #2E8B57, #3aa76d); border-radius: 12px; padding: 2rem; margin: 0 auto 3rem; color: white; text-align: center; position: relative; overflow: hidden; max-width: 800px; box-shadow: 0 10px 30px rgba(46, 139, 87, 0.2);">
+          <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at top right, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 50%); z-index: 1;"></div>
+          <div style="position: relative; z-index: 2;">
+            <div style="font-size: 1.1rem; margin-bottom: 0.5rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; opacity: 0.9;">Main Conference</div>
+            <div style="font-size: 3.5rem; font-weight: 800; line-height: 1; margin: 0.5rem 0 0.3rem; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">21-23 <span style="font-size: 2rem; font-weight: 600; opacity: 0.9;">April 2026</span></div>
+            <h3 style="font-size: 1.8rem; margin: 0.3rem 0 1rem; color: white; font-weight: 700; text-shadow: 0 1px 2px rgba(0,0,0,0.1);">PLUMEE 2026 Conference</h3>
+            <p style="max-width: 700px; margin: 0 auto; opacity: 0.95; font-size: 1.05rem; line-height: 1.6;">Join us in Benguerir for three days of innovation and collaboration in Materials, Environment, and Electronics.</p>
+            
+            <!-- Conference Days -->
+            <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 1.5rem;">
+              <div style="background: rgba(255,255,255,0.15); border-radius: 8px; padding: 0.8rem 1rem; text-align: center; min-width: 80px; backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.2);">
+                <div style="font-size: 1.5rem; font-weight: 700; line-height: 1;">21</div>
+                <div style="font-size: 0.9rem; font-weight: 600; opacity: 0.9; margin-top: 0.2rem;">APR</div>
+                <div style="font-size: 0.75rem; opacity: 0.9; margin-top: 0.3rem;">Day 1</div>
+              </div>
+              <div style="background: rgba(255,255,255,0.15); border-radius: 8px; padding: 0.8rem 1rem; text-align: center; min-width: 80px; backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.2);">
+                <div style="font-size: 1.5rem; font-weight: 700; line-height: 1;">22</div>
+                <div style="font-size: 0.9rem; font-weight: 600; opacity: 0.9; margin-top: 0.2rem;">APR</div>
+                <div style="font-size: 0.75rem; opacity: 0.9; margin-top: 0.3rem;">Day 2</div>
+              </div>
+              <div style="background: rgba(255,255,255,0.15); border-radius: 8px; padding: 0.8rem 1rem; text-align: center; min-width: 80px; backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.2);">
+                <div style="font-size: 1.5rem; font-weight: 700; line-height: 1;">23</div>
+                <div style="font-size: 0.9rem; font-weight: 600; opacity: 0.9; margin-top: 0.2rem;">APR</div>
+                <div style="font-size: 0.75rem; opacity: 0.9; margin-top: 0.3rem;">Day 3</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Timeline -->
+        <div style="position: relative; max-width: 900px; margin: 0 auto;">
+          <!-- Timeline Line -->
+          <div style="position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, #2E8B57, #1e5c3a); transform: translateX(-50%); border-radius: 2px; z-index: 1;"></div>
+          
+          <!-- Timeline Items -->
+          <div style="display: flex; flex-direction: column; gap: 1.5rem; position: relative; z-index: 2;">
+            <!-- Item 1 -->
+            <div style="display: flex; width: 100%; justify-content: flex-start; padding-right: 50%; position: relative; opacity: 0; animation: fadeInUp 0.6s ease-out 0.1s forwards;">
+              <div style="width: 100%; max-width: 380px; background: white; border-radius: 8px; padding: 1.2rem; box-shadow: 0 3px 15px rgba(0,0,0,0.03); border-left: 3px solid #2E8B57; position: relative; transition: all 0.3s ease;">
+                <div style="display: flex; align-items: center; margin-bottom: 0.5rem;">
+                  <div style="width: 12px; height: 12px; background: #2E8B57; border-radius: 50%; position: absolute; left: -6px; top: 24px; border: 3px solid white; box-shadow: 0 0 0 2px #2E8B57; z-index: 3;"></div>
+                  <span style="font-size: 0.9rem; font-weight: 600; color: #2E8B57; display: flex; align-items: center;">
+                    <svg style="width: 16px; height: 16px; margin-right: 6px;" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+                    January 16, 2026
+                  </span>
+                </div>
+                <h3 style="font-size: 1.2rem; color: #1a365d; margin: 0 0 0.5rem 0; font-weight: 700;">Paper Submission Deadline</h3>
+                <p style="color: #4a5568; margin: 0; line-height: 1.5; font-size: 0.95rem;">Last day to submit your research papers for consideration.</p>
+              </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div style="display: flex; width: 100%; justify-content: flex-end; padding-left: 50%; position: relative; opacity: 0; animation: fadeInUp 0.6s ease-out 0.2s forwards;">
+              <div style="width: 100%; max-width: 380px; background: white; border-radius: 8px; padding: 1.2rem; box-shadow: 0 3px 15px rgba(0,0,0,0.03); border-right: 3px solid #2E8B57; position: relative; transition: all 0.3s ease;">
+                <div style="display: flex; align-items: center; margin-bottom: 0.5rem; justify-content: flex-end;">
+                  <span style="font-size: 0.9rem; font-weight: 600; color: #2E8B57; display: flex; align-items: center;">
+                    February 16, 2026
+                    <svg style="width: 16px; height: 16px; margin-left: 6px;" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+                  </span>
+                  <div style="width: 12px; height: 12px; background: #2E8B57; border-radius: 50%; position: absolute; right: -6px; top: 24px; border: 3px solid white; box-shadow: 0 0 0 2px #2E8B57; z-index: 3;"></div>
+                </div>
+                <h3 style="font-size: 1.2rem; color: #1a365d; margin: 0 0 0.5rem 0; font-weight: 700; text-align: right;">Notification of Acceptance</h3>
+                <p style="color: #4a5568; margin: 0; line-height: 1.5; font-size: 0.95rem; text-align: right;">Authors will be notified about the status of their submissions.</p>
+              </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div style="display: flex; width: 100%; justify-content: flex-start; padding-right: 50%; position: relative; opacity: 0; animation: fadeInUp 0.6s ease-out 0.3s forwards;">
+              <div style="width: 100%; max-width: 380px; background: white; border-radius: 8px; padding: 1.2rem; box-shadow: 0 3px 15px rgba(0,0,0,0.03); border-left: 3px solid #2E8B57; position: relative; transition: all 0.3s ease;">
+                <div style="display: flex; align-items: center; margin-bottom: 0.5rem;">
+                  <div style="width: 12px; height: 12px; background: #2E8B57; border-radius: 50%; position: absolute; left: -6px; top: 24px; border: 3px solid white; box-shadow: 0 0 0 2px #2E8B57; z-index: 3;"></div>
+                  <span style="font-size: 0.9rem; font-weight: 600; color: #2E8B57; display: flex; align-items: center;">
+                    <svg style="width: 16px; height: 16px; margin-right: 6px;" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+                    February 02 - March 31, 2026
+                  </span>
+                </div>
+                <h3 style="font-size: 1.2rem; color: #1a365d; margin: 0 0 0.5rem 0; font-weight: 700;">Registration Period</h3>
+                <p style="color: #4a5568; margin: 0; line-height: 1.5; font-size: 0.95rem;">Register during this period to secure your participation in PLUMEE 2026.</p>
+              </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div style="display: flex; width: 100%; justify-content: flex-end; padding-left: 50%; position: relative; opacity: 0; animation: fadeInUp 0.6s ease-out 0.4s forwards;">
+              <div style="width: 100%; max-width: 380px; background: white; border-radius: 8px; padding: 1.2rem; box-shadow: 0 3px 15px rgba(0,0,0,0.03); border-right: 3px solid #2E8B57; position: relative; transition: all 0.3s ease;">
+                <div style="display: flex; align-items: center; margin-bottom: 0.5rem; justify-content: flex-end;">
+                  <span style="font-size: 0.9rem; font-weight: 600; color: #2E8B57; display: flex; align-items: center;">
+                    April 21-23, 2026
+                    <svg style="width: 16px; height: 16px; margin-left: 6px;" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+                  </span>
+                  <div style="width: 12px; height: 12px; background: #2E8B57; border-radius: 50%; position: absolute; right: -6px; top: 24px; border: 3px solid white; box-shadow: 0 0 0 2px #2E8B57; z-index: 3;"></div>
+                </div>
+                <h3 style="font-size: 1.2rem; color: #1a365d; margin: 0 0 0.5rem 0; font-weight: 700; text-align: right;">PLUMEE 2026 Conference</h3>
+                <p style="color: #4a5568; margin: 0; line-height: 1.5; font-size: 0.95rem; text-align: right;">Join us for three days of scientific presentations and networking.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <style>
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        @media (max-width: 992px) {
+          .timeline-container > div:last-child > div > div {
+            padding-right: 2rem !important;
+            padding-left: 2rem !important;
+          }
+          
+          .timeline-container > div:last-child > div > div > div {
+            max-width: 100% !important;
+          }
+          
+          .timeline-container > div:last-child > div > div[style*="justify-content: flex-end"] {
+            justify-content: flex-start !important;
+            padding-left: 2rem !important;
+            padding-right: 0 !important;
+          }
+          
+          .timeline-container > div:last-child > div > div[style*="justify-content: flex-start"] {
+            padding-right: 2rem !important;
+          }
+          
+          .timeline-container > div:last-child > div > div > div > div:first-child {
+            text-align: left !important;
+            justify-content: flex-start !important;
+          }
+          
+          .timeline-container > div:last-child > div > div > div > h3,
+          .timeline-container > div:last-child > div > div > div > p {
+            text-align: left !important;
+          }
+          
+          .timeline-container > div:last-child > div > div > div > div:last-child {
+            text-align: left !important;
+          }
+          
+          .timeline-container > div:last-child > div > div > div > div:first-child > div {
+            left: -10px !important;
+            right: auto !important;
+          }
+        }
+        
+        @media (max-width: 768px) {
+          #important-dates {
+            padding: 3rem 0 !important;
+          }
+          
+          .section-header h2 {
+            font-size: 2.2rem !important;
+          }
+          
+          .section-subtitle {
+            font-size: 1.1rem !important;
+            padding: 0 1rem;
+          }
+          
+          .timeline-container > div:last-child > div > div {
+            padding-right: 2rem !important;
+            padding-left: 2rem !important;
+          }
+          
+          .timeline-container > div:last-child > div > div > div {
+            max-width: 100% !important;
+            padding: 1.5rem !important;
+          }
+          
+          .timeline-container > div:last-child > div > div[style*="justify-content: flex-end"] {
+            justify-content: flex-start !important;
+            padding-left: 2rem !important;
+            padding-right: 0 !important;
+          }
+          
+          .timeline-container > div:last-child > div > div[style*="justify-content: flex-start"] {
+            padding-right: 2rem !important;
+          }
+          
+          .timeline-container > div:last-child > div > div > div > div:first-child {
+            text-align: left !important;
+            justify-content: flex-start !important;
+          }
+          
+          .timeline-container > div:last-child > div > div > div > h3,
+          .timeline-container > div:last-child > div > div > div > p {
+            text-align: left !important;
+          }
+          
+          .timeline-container > div:last-child > div > div > div > div:last-child {
+            text-align: left !important;
+          }
+          
+          .timeline-container > div:last-child > div > div > div > div:first-child > div {
+            left: -10px !important;
+            right: auto !important;
+          }
+        }
+      </style>
+    </section>
+
+    <!-- 7 COMMITTEES -->
+    <section id="committees" class="section primary" style="margin-top: -3rem; padding-top: 0;">
+      <div class="container reveal">
+        <header class="section-header">
+          <h2>Committees</h2>
+          <p class="section-kicker">Dedicated Teams Behind PLUMEE 2026</p>
+        </header>
+
+        <!-- Organizing Committee -->
+        <div class="committee-section">
+          <h3 class="committee-heading" style="color: #2E8B57;">Organizing Committee</h3>
+          <div class="speakers-grid">
+            <!-- Université de Limoges, XLIM -->
+            <article class="speaker-card">
+              <div class="speaker-img-container">
+                <img src="assets/committee/Delia ARNAUD-CORMOS.jpg" alt="Delia ARNAUD-CORMOS" class="speaker-img" onerror="this.src='assets/og-placeholder.png'" />
+                <div class="speaker-overlay">
+                  <span class="speaker-tag">Member</span>
+                </div>
+              </div>
+              <div class="speaker-info">
+                <h3>Delia ARNAUD-CORMOS</h3>
+                <p class="speaker-title">Université de Limoges, XLIM</p>
+              </div>
+            </article>
+
+            <article class="speaker-card">
+              <div class="speaker-img-container">
+                <img src="assets/committee/Elsa_Thune.jpg" alt="Elsa THUNE" class="speaker-img" />
+                <div class="speaker-overlay">
+                  <span class="speaker-tag">Member</span>
+                </div>
+              </div>
+              <div class="speaker-info">
+                <h3>Elsa THUNE</h3>
+                <p class="speaker-title">Université de Limoges, IRCER</p>
+              </div>
+            </article>
+
+            <article class="speaker-card">
+              <div class="speaker-img-container">
+                <img src="assets/committee/Youssef EL HAFIANE.jpg" alt="Youssef EL HAFIANE" class="speaker-img" onerror="this.src='assets/og-placeholder.png'" />
+                <div class="speaker-overlay">
+                  <span class="speaker-tag">Member</span>
+                </div>
+              </div>
+              <div class="speaker-info">
+                <h3>Youssef EL HAFIANE</h3>
+                <p class="speaker-title">Université de Limoges, IRCER</p>
+              </div>
+            </article>
+
+            <article class="speaker-card">
+              <div class="speaker-img-container">
+                <img src="assets/committee/Photo Claire_DALMAY.jpg" alt="Claire DALMAY" class="speaker-img" />
+                <div class="speaker-overlay">
+                  <span class="speaker-tag">Member</span>
+                </div>
+              </div>
+              <div class="speaker-info">
+                <h3>Claire DALMAY</h3>
+                <p class="speaker-title">Université de Limoges, XLIM</p>
+              </div>
+            </article>
+
+            <article class="speaker-card">
+              <div class="speaker-img-container">
+                <img src="assets/committee/Philippe LEVEQUE.jpg" alt="Philippe LEVEQUE" class="speaker-img" onerror="this.src='assets/og-placeholder.png'" />
+                <div class="speaker-overlay">
+                  <span class="speaker-tag">Member</span>
+                </div>
+              </div>
+              <div class="speaker-info">
+                <h3>Philippe LEVEQUE</h3>
+                <p class="speaker-title">CNRS, Université de Limoges, XLIM</p>
+              </div>
+            </article>
+
+            <article class="speaker-card">
+              <div class="speaker-img-container">
+                <img src="assets/committee/Photo Patrick LEPRAT.jpg" alt="Patrick LEPRAT" class="speaker-img" />
+                <div class="speaker-overlay">
+                  <span class="speaker-tag">Member</span>
+                </div>
+              </div>
+              <div class="speaker-info">
+                <h3>Patrick LEPRAT</h3>
+                <p class="speaker-title">Université de Limoges, E2LIM</p>
+              </div>
+            </article>
+
+            <article class="speaker-card">
+              <div class="speaker-img-container">
+                <img src="assets/committee/Photo_Audrey_Prorot.jpeg" alt="Audrey PROROT" class="speaker-img" />
+                <div class="speaker-overlay">
+                  <span class="speaker-tag">Member</span>
+                </div>
+              </div>
+              <div class="speaker-info">
+                <h3>Audrey PROROT</h3>
+                <p class="speaker-title">Université de Limoges, E2LIM</p>
+              </div>
+            </article>
+
+            <article class="speaker-card">
+              <div class="speaker-img-container">
+                <img src="assets/og-placeholder.png" alt="Joanna DOS ANJOS" class="speaker-img" />
+                <div class="speaker-overlay">
+                  <span class="speaker-tag">Member</span>
+                </div>
+              </div>
+              <div class="speaker-info">
+                <h3>Joanna DOS ANJOS</h3>
+                <p class="speaker-title">Université de Limoges, Service communication ENSIL-ENSCI</p>
+              </div>
+            </article>
+
+            <article class="speaker-card">
+              <div class="speaker-img-container">
+                <img src="assets/og-placeholder.png" alt="Karine MOUNIER" class="speaker-img" />
+                <div class="speaker-overlay">
+                  <span class="speaker-tag">Member</span>
+                </div>
+              </div>
+              <div class="speaker-info">
+                <h3>Karine MOUNIER</h3>
+                <p class="speaker-title">Université de Limoges, Service communication ENSIL-ENSCI</p>
+              </div>
+            </article>
+
+            <!-- Université Vasile Alecsandri de Bacau -->
+            <article class="speaker-card">
+              <div class="speaker-img-container">
+                <img src="assets/committee/George CULEA.jpg" alt="George CULEA" class="speaker-img" onerror="this.src='assets/og-placeholder.png'" />
+                <div class="speaker-overlay">
+                  <span class="speaker-tag">Member</span>
+                </div>
+              </div>
+              <div class="speaker-info">
+                <h3>George CULEA</h3>
+                <p class="speaker-title">Université « Vasile Alecsandri » de Bacau</p>
+              </div>
+            </article>
+
+            <article class="speaker-card">
+              <div class="speaker-img-container">
+                <img src="assets/committee/Cătălina Mihaela CULEA.jpg" alt="Cătălina Mihaela CULEA" class="speaker-img" onerror="this.src='assets/og-placeholder.png'" />
+                <div class="speaker-overlay">
+                  <span class="speaker-tag">Member</span>
+                </div>
+              </div>
+              <div class="speaker-info">
+                <h3>Cătălina Mihaela CULEA</h3>
+                <p class="speaker-title">Université « Vasile Alecsandri » de Bacau</p>
+              </div>
+            </article>
+
+            <article class="speaker-card">
+              <div class="speaker-img-container">
+                <img src="assets/og-placeholder.png" alt="Mirela PANAINTE-LEHĂDUȘ" class="speaker-img" />
+                <div class="speaker-overlay">
+                  <span class="speaker-tag">Member</span>
+                </div>
+              </div>
+              <div class="speaker-info">
+                <h3>Mirela PANAINTE-LEHĂDUȘ</h3>
+                <p class="speaker-title">Université « Vasile Alecsandri » de Bacau</p>
+              </div>
+            </article>
+
+            <!-- UM6P and other institutions -->
+            <article class="speaker-card">
+              <div class="speaker-img-container">
+                <img src="assets/tamraoui.png" alt="Youssef TAMRAOUI" class="speaker-img" onerror="this.src='assets/og-placeholder.png'" />
+                <div class="speaker-overlay">
+                  <span class="speaker-tag">Chair</span>
+                </div>
+              </div>
+              <div class="speaker-info">
+                <h3>Youssef TAMRAOUI</h3>
+                <p class="speaker-title">UM6P, MSN</p>
+              </div>
+            </article>
+
+            <article class="speaker-card">
+              <div class="speaker-img-container">
+                <img src="assets/committee/mansouri.jpg" alt="Said MANSOURI" class="speaker-img" />
+                <div class="speaker-overlay">
+                  <span class="speaker-tag">Member</span>
+                </div>
+              </div>
+              <div class="speaker-info">
+                <h3>Said MANSOURI</h3>
+                <p class="speaker-title">UM6P, MSN</p>
+              </div>
+            </article>
+
+            <article class="speaker-card">
+              <div class="speaker-img-container">
+                <img src="assets/committee/oussama.jpg" alt="Oussama KHARROUFI" class="speaker-img" />
+                <div class="speaker-overlay">
+                  <span class="speaker-tag">Member</span>
+                </div>
+              </div>
+              <div class="speaker-info">
+                <h3>Oussama KHARROUFI</h3>
+                <p class="speaker-title">UM6P, MSN</p>
+              </div>
+            </article>
+
+            <article class="speaker-card">
+              <div class="speaker-img-container">
+                <img src="assets/og-placeholder.png" alt="Youssef MEJDOUB" class="speaker-img" />
+                <div class="speaker-overlay">
+                  <span class="speaker-tag">Member</span>
+                </div>
+              </div>
+              <div class="speaker-info">
+                <h3>Youssef MEJDOUB</h3>
+                <p class="speaker-title">Université Hassan II de Casablanca, ESTC</p>
+              </div>
+            </article>
+
+            <article class="speaker-card">
+              <div class="speaker-img-container">
+                <img src="assets/og-placeholder.png" alt="Ali CHOUKRI" class="speaker-img" />
+                <div class="speaker-overlay">
+                  <span class="speaker-tag">Member</span>
+                </div>
+              </div>
+              <div class="speaker-info">
+                <h3>Ali CHOUKRI</h3>
+                <p class="speaker-title">FSK Université Ibn Tofail de Kénitra</p>
+              </div>
+            </article>
+
+            <article class="speaker-card">
+              <div class="speaker-img-container">
+                <img src="assets/og-placeholder.png" alt="Abdelaziz BENHAMMOU" class="speaker-img" />
+                <div class="speaker-overlay">
+                  <span class="speaker-tag">Member</span>
+                </div>
+              </div>
+              <div class="speaker-info">
+                <h3>Abdelaziz BENHAMMOU</h3>
+                <p class="speaker-title">Université Cadi Ayyad, ENSA-Safi</p>
+              </div>
+            </article>
+
+            <article class="speaker-card">
+              <div class="speaker-img-container">
+                <img src="assets/committee/abourriche.jpg" alt="Abdelkrim ABOURRICHE" class="speaker-img" onerror="this.src='assets/og-placeholder.png'" />
+                <div class="speaker-overlay">
+                  <span class="speaker-tag">Member</span>
+                </div>
+              </div>
+              <div class="speaker-info">
+                <h3>Abdelkrim ABOURRICHE</h3>
+                <p class="speaker-title">Université Cadi Ayyad, ENSA-Safi</p>
+              </div>
+            </article>
+
+            <article class="speaker-card">
+              <div class="speaker-img-container">
+                <img src="assets/committee/El Assimi Taha.jpg" alt="Taha ELASSIMI" class="speaker-img" />
+                <div class="speaker-overlay">
+                  <span class="speaker-tag">Member</span>
+                </div>
+              </div>
+              <div class="speaker-info">
+                <h3>Taha ELASSIMI</h3>
+                <p class="speaker-title">Université Cadi Ayyad, ENSA-Safi</p>
+              </div>
+            </article>
+
+            <article class="speaker-card">
+              <div class="speaker-img-container">
+                <img src="assets/og-placeholder.png" alt="Brahim MESSNAOUI" class="speaker-img" />
+                <div class="speaker-overlay">
+                  <span class="speaker-tag">Member</span>
+                </div>
+              </div>
+              <div class="speaker-info">
+                <h3>Brahim MESSNAOUI</h3>
+                <p class="speaker-title">Université Cadi Ayyad, ENSA-Safi</p>
+              </div>
+            </article>
+
+            <article class="speaker-card">
+              <div class="speaker-img-container">
+                <img src="assets/committee/Sanaa Kouzbour.jpg" alt="Sanaa KOUZBOUR" class="speaker-img" />
+                <div class="speaker-overlay">
+                  <span class="speaker-tag">Member</span>
+                </div>
+              </div>
+              <div class="speaker-info">
+                <h3>Sanaa KOUZBOUR</h3>
+                <p class="speaker-title">Université Hassan II de Casablanca, ESTC</p>
+              </div>
+            </article>
+
+            <article class="speaker-card">
+              <div class="speaker-img-container">
+                <img src="assets/committee/Younes Abouliatim.jpg" alt="Younes ABOULIATIM" class="speaker-img" />
+                <div class="speaker-overlay">
+                  <span class="speaker-tag">Member</span>
+                </div>
+              </div>
+              <div class="speaker-info">
+                <h3>Younes ABOULIATIM</h3>
+                <p class="speaker-title">Université Hassan II de Casablanca, ESTC</p>
+              </div>
+            </article>
+
+            <article class="speaker-card">
+              <div class="speaker-img-container">
+                <img src="assets/og-placeholder.png" alt="Hicham Ait Ali Ouydir" class="speaker-img" />
+                <div class="speaker-overlay">
+                  <span class="speaker-tag">Member</span>
+                </div>
+              </div>
+              <div class="speaker-info">
+                <h3>Hicham Ait Ali Ouydir</h3>
+                <p class="speaker-title">Université Hassan II de Casablanca, ESTC</p>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- Scientific Committee -->
+        <div class="committee-section">
+          <h3 class="committee-heading" data-i18n="committees.scientific" style="color: #2E8B57;">Scientific Committee</h3>
+          
+          <div class="committee-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
+            
+            <!-- Committee Member 1 -->
+            <div class="committee-member" style="background: #f0f7f4; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-left: 4px solid #2E8B57; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+              <div class="member-header" style="display: flex; align-items: center; margin-bottom: 1rem;">
+                <div class="member-avatar" style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #2E8B57, #1e5c3a); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem; margin-right: 1rem;">
+                </div>
+                <div class="member-info">
+                  <h4 style="margin: 0; color: #1a365d; font-size: 1.1rem; font-weight: 600;">Delia ARNAUD-CORMOS</h4>
+                  <p style="margin: 0.25rem 0 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">Université de Limoges, XLIM</p>
+                </div>
+              </div>
+              <div class="member-details" style="color: #4a5568; font-size: 0.9rem; line-height: 1.5;">
+              </div>
+            </div>
+
+            <!-- Committee Member 2 -->
+            <div class="committee-member" style="background: #f0f7f4; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-left: 4px solid #2E8B57; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+              <div class="member-header" style="display: flex; align-items: center; margin-bottom: 1rem;">
+                <div class="member-avatar" style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #2E8B57, #1e5c3a); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem; margin-right: 1rem;">
+                </div>
+                <div class="member-info">
+                  <h4 style="margin: 0; color: #1a365d; font-size: 1.1rem; font-weight: 600;">Elsa THUNE</h4>
+                  <p style="margin: 0.25rem 0 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">Université de Limoges, IRCER</p>
+                </div>
+              </div>
+              <div class="member-details" style="color: #4a5568; font-size: 0.9rem; line-height: 1.5;">
+              </div>
+            </div>
+
+            <!-- Committee Member 3 -->
+            <div class="committee-member" style="background: #f0f7f4; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-left: 4px solid #2E8B57; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+              <div class="member-header" style="display: flex; align-items: center; margin-bottom: 1rem;">
+                <div class="member-avatar" style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #2E8B57, #1e5c3a); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem; margin-right: 1rem;">
+                </div>
+                <div class="member-info">
+                  <h4 style="margin: 0; color: #1a365d; font-size: 1.1rem; font-weight: 600;">Youssef EL HAFIANE</h4>
+                  <p style="margin: 0.25rem 0 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">Université de Limoges, IRCER</p>
+                </div>
+              </div>
+              <div class="member-details" style="color: #4a5568; font-size: 0.9rem; line-height: 1.5;">
+              </div>
+            </div>
+
+            <!-- Committee Member 4 -->
+            <div class="committee-member" style="background: #f0f7f4; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-left: 4px solid #2E8B57; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+              <div class="member-header" style="display: flex; align-items: center; margin-bottom: 1rem;">
+                <div class="member-avatar" style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #2E8B57, #1e5c3a); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem; margin-right: 1rem;">
+                </div>
+                <div class="member-info">
+                  <h4 style="margin: 0; color: #1a365d; font-size: 1.1rem; font-weight: 600;">Claire DALMAY</h4>
+                  <p style="margin: 0.25rem 0 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">Université de Limoges, XLIM</p>
+                </div>
+              </div>
+              <div class="member-details" style="color: #4a5568; font-size: 0.9rem; line-height: 1.5;">
+              </div>
+            </div>
+
+            <!-- Committee Member 5 -->
+            <div class="committee-member" style="background: #f0f7f4; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-left: 4px solid #2E8B57; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+              <div class="member-header" style="display: flex; align-items: center; margin-bottom: 1rem;">
+                <div class="member-avatar" style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #2E8B57, #1e5c3a); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem; margin-right: 1rem;">
+                </div>
+                <div class="member-info">
+                  <h4 style="margin: 0; color: #1a365d; font-size: 1.1rem; font-weight: 600;">Philippe LEVEQUE</h4>
+                  <p style="margin: 0.25rem 0 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">CNRS, Université de Limoges, XLIM</p>
+                </div>
+              </div>
+              <div class="member-details" style="color: #4a5568; font-size: 0.9rem; line-height: 1.5;">
+              </div>
+            </div>
+
+            <!-- Committee Member 6 -->
+            <div class="committee-member" style="background: #f0f7f4; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-left: 4px solid #2E8B57; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+              <div class="member-header" style="display: flex; align-items: center; margin-bottom: 1rem;">
+                <div class="member-avatar" style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #2E8B57, #1e5c3a); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem; margin-right: 1rem;">
+                </div>
+                <div class="member-info">
+                  <h4 style="margin: 0; color: #1a365d; font-size: 1.1rem; font-weight: 600;">George CULEA</h4>
+                  <p style="margin: 0.25rem 0 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">Université « Vasile Alecsandri » de Bacau</p>
+                </div>
+              </div>
+              <div class="member-details" style="color: #4a5568; font-size: 0.9rem; line-height: 1.5;">
+              </div>
+            </div>
+
+            <!-- Committee Member 7 -->
+            <div class="committee-member" style="background: #f0f7f4; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-left: 4px solid #2E8B57; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+              <div class="member-header" style="display: flex; align-items: center; margin-bottom: 1rem;">
+                <div class="member-avatar" style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #2E8B57, #1e5c3a); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem; margin-right: 1rem;">
+                </div>
+                <div class="member-info">
+                  <h4 style="margin: 0; color: #1a365d; font-size: 1.1rem; font-weight: 600;">Cătălina Mihaela CULEA</h4>
+                  <p style="margin: 0.25rem 0 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">Université « Vasile Alecsandri » de Bacau</p>
+                </div>
+              </div>
+              <div class="member-details" style="color: #4a5568; font-size: 0.9rem; line-height: 1.5;">
+              </div>
+            </div>
+
+            <!-- Committee Member 8 -->
+            <div class="committee-member" style="background: #f0f7f4; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-left: 4px solid #2E8B57; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+              <div class="member-header" style="display: flex; align-items: center; margin-bottom: 1rem;">
+                <div class="member-avatar" style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #2E8B57, #1e5c3a); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem; margin-right: 1rem;">
+                </div>
+                <div class="member-info">
+                  <h4 style="margin: 0; color: #1a365d; font-size: 1.1rem; font-weight: 600;">Vincent COUDERC</h4>
+                  <p style="margin: 0.25rem 0 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">CNRS, Université de Limoges, XLIM</p>
+                </div>
+              </div>
+              <div class="member-details" style="color: #4a5568; font-size: 0.9rem; line-height: 1.5;">
+              </div>
+            </div>
+
+            <!-- Committee Member 9 -->
+            <div class="committee-member" style="background: #f0f7f4; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-left: 4px solid #2E8B57; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+              <div class="member-header" style="display: flex; align-items: center; margin-bottom: 1rem;">
+                <div class="member-avatar" style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #2E8B57, #1e5c3a); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem; margin-right: 1rem;">
+                </div>
+                <div class="member-info">
+                  <h4 style="margin: 0; color: #1a365d; font-size: 1.1rem; font-weight: 600;">Stéphanie SAHUGUEDE</h4>
+                  <p style="margin: 0.25rem 0 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">Université de Limoges, XLIM</p>
+                </div>
+              </div>
+              <div class="member-details" style="color: #4a5568; font-size: 0.9rem; line-height: 1.5;">
+              </div>
+            </div>
+
+            <!-- Committee Member 10 -->
+            <div class="committee-member" style="background: #f0f7f4; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-left: 4px solid #2E8B57; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+              <div class="member-header" style="display: flex; align-items: center; margin-bottom: 1rem;">
+                <div class="member-avatar" style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #2E8B57, #1e5c3a); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem; margin-right: 1rem;">
+                </div>
+                <div class="member-info">
+                  <h4 style="margin: 0; color: #1a365d; font-size: 1.1rem; font-weight: 600;">Patrick LEPRAT</h4>
+                  <p style="margin: 0.25rem 0 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">Université de Limoges, E2LIM</p>
+                </div>
+              </div>
+              <div class="member-details" style="color: #4a5568; font-size: 0.9rem; line-height: 1.5;">
+              </div>
+            </div>
+
+            <!-- Committee Member 11 -->
+            <div class="committee-member" style="background: #f0f7f4; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-left: 4px solid #2E8B57; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+              <div class="member-header" style="display: flex; align-items: center; margin-bottom: 1rem;">
+                <div class="member-avatar" style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #2E8B57, #1e5c3a); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem; margin-right: 1rem;">
+                </div>
+                <div class="member-info">
+                  <h4 style="margin: 0; color: #1a365d; font-size: 1.1rem; font-weight: 600;">Audrey PROROT</h4>
+                  <p style="margin: 0.25rem 0 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">Université de Limoges, E2LIM</p>
+                </div>
+              </div>
+              <div class="member-details" style="color: #4a5568; font-size: 0.9rem; line-height: 1.5;">
+              </div>
+            </div>
+
+            <!-- Committee Member 12 -->
+            <div class="committee-member" style="background: #f0f7f4; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-left: 4px solid #2E8B57; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+              <div class="member-header" style="display: flex; align-items: center; margin-bottom: 1rem;">
+                <div class="member-avatar" style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #2E8B57, #1e5c3a); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem; margin-right: 1rem;">
+                </div>
+                <div class="member-info">
+                  <h4 style="margin: 0; color: #1a365d; font-size: 1.1rem; font-weight: 600;">Nicolas TESSIER-DOYEN</h4>
+                  <p style="margin: 0.25rem 0 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">Université de Limoges, IRCER</p>
+                </div>
+              </div>
+              <div class="member-details" style="color: #4a5568; font-size: 0.9rem; line-height: 1.5;">
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Organizing Institutions -->
+
+        <div class="committee-section" style="background-color: #f0f7f4; padding: 2rem; border-radius: 12px; margin-top: 2rem;">
+          <h3 class="committee-heading" style="text-align: center; margin-bottom: 2rem; color: #2E7D32;">Organized By</h3>
+          <div class="logo-grid">
+            <div class="logo-item" style="background: white; border-radius: 8px; padding: 1rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
+              <img src="assets/logos/LOGO UM6P-MSN .png" alt="UM6P-MSN" style="max-height: 80px;" />
+            </div>
+            <div class="logo-item" style="background: white; border-radius: 8px; padding: 1rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
+              <img src="assets/logos/bacau.png" alt="University of Bacau" style="max-height: 80px;" />
+            </div>
+            <div class="logo-item" style="background: white; border-radius: 8px; padding: 1rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
+              <img src="assets/logos/limoges.png" alt="University of Limoges" style="max-height: 80px;" />
+            </div>
+            <div class="logo-item" style="background: white; border-radius: 8px; padding: 1rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
+              <img src="assets/logos/uca.png" alt="Cadi Ayyad University" style="max-height: 80px;" />
+            </div>
+            <div class="logo-item" style="background: white; border-radius: 8px; padding: 1rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
+              <img src="assets/logos/uh2.png" alt="University Hassan II Casablanca" style="max-height: 80px;" />
+            </div>
+            <div class="logo-item" style="background: white; border-radius: 8px; padding: 1rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
+              <img src="assets/logos/ensil.png" alt="ENSIL" style="max-height: 80px;" />
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8) VENUE -->
+    <section id="venue" class="section">
+      <div class="container reveal">
+        <header class="section-header">
+          <h2 data-i18n="venue.heading">Venue & Location</h2>
+          <p class="section-kicker" data-i18n="venue.kicker">Where PLUMEE 2026 Takes Place</p>
+        </header>
+
+        <div class="venue-card">
+          <div class="venue-content">
+            <h2>Mohammed VI Polytechnic University</h2>
+            <p class="venue-subtitle">Benguerir, Morocco • April 21-23, 2026</p>
+            
+            <div class="venue-details">
+              <div class="venue-detail-item">
+                <i class="fas fa-map-marker-alt"></i>
+                
+              </div>
+
+              <div class="venue-detail-item">
+                <i class="fas fa-building"></i>
+                <div>
+                  <h4>Conference Facilities</h4>
+                  <ul>
+                    <li>Modern conference halls with state-of-the-art audiovisual equipment</li>
+                    <li>Spacious exhibition areas for poster presentations</li>
+                    <li>Networking lounges and refreshment areas</li>
+                    <li>High-speed WiFi throughout the campus</li>
+                    <li>Ample parking facilities</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="venue-detail-item">
+                <i class="fas fa-plane"></i>
+                <div>
+                  <h4>Getting There</h4>
+                  <ul>
+                    <li><strong>By Air:</strong> 45 minutes from Marrakech-Menara Airport</li>
+                    <li><strong>By Train:</strong> High-speed rail connection to Benguerir</li>
+                    <li><strong>By Car:</strong> Easy access from Casablanca (1 hour) and Marrakech (45 minutes)</li>
+                    <li>Shuttle service available from major hotels</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="venue-detail-item">
+                <i class="fas fa-bed"></i>
+                <div>
+                  <h4>Accommodation</h4>
+                  <ul>
+                    <li><strong>UM6P Guest House:</strong> On-campus accommodation (walking distance)</li>
+                    <li><strong>Partner Hotels:</strong> Special rates in Benguerir (10-15 minutes)</li>
+                    <li><strong>Marrakech Hotels:</strong> Wide range of options (45 minutes from campus)</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="venue-map">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3404.837543617!2d-7.6086!3d32.2334!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzLCsDEzJzAwLjAiTiA3wrAzNjQzJzAwLjAiRQ!5e0!3m2!1sen!2sma!4v1234567890"
+              width="100%" 
+              height="100%" 
+              style="border:0;" 
+              allowfullscreen="" 
+              loading="lazy">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 10) FOOTER -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="assets/PLUMEE_logo (1).png" alt="" />
+        <p class="tiny muted" data-i18n="footer.tag">Built for PLUMEE 2026</p>
+      </div>
+
+      <nav aria-label="Footer">
+        <ul class="footer-nav">
+          <li><a href="#about" data-i18n="nav.about">About</a></li>
+          <li><a href="registration.html" data-i18n="nav.registration">Registration</a></li>
+          <li><a href="#venue" data-i18n="nav.venue">Venue</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer-actions">
+        <div class="lang-switch small" role="group" aria-label="Language">
+          <button class="chip" data-lang="en" aria-pressed="true">
+            <img src="assets/flag-en.svg" alt="English" />
+          </button>
+          <button class="chip" data-lang="fr" aria-pressed="false">
+            <img src="assets/flag-fr.svg" alt="Français" />
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="container tiny muted copyright">
+      <span> 2026 PLUMEE</span>
+      <a href="#hero" class="back-to-top" data-i18n="footer.top">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <script src="js/init.js"></script>
+  <script src="js/tabs.js"></script>
+  <script src="js/registration-handler.js"></script>
+  <script src="js/form.js"></script>
+  
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+      const form = document.getElementById('regForm');
+      if (!form) return;
+
+      // Form submission handler
+      form.addEventListener('submit', async function(e) {
+          e.preventDefault();
+          
+          const submitBtn = form.querySelector('button[type="submit"]');
+          if (!submitBtn) return;
+          
+          const originalBtnText = submitBtn.innerHTML;
+          const formMessages = document.getElementById('form-messages');
+          
+          // Show loading state
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+          
+          try {
+              const formData = new FormData(form);
+              
+              const response = await fetch('process_registration.php', {
+                  method: 'POST',
+                  body: formData
+              });
+              
+              const result = await response.json();
+              
+              if (result.status === 'success') {
+                  // Show success message
+                  formMessages.innerHTML = `
+                      <div class="alert alert-success">
+                          <i class="fas fa-check-circle"></i>
+                          ${result.message} Your registration ID: <strong>${result.registration_id}</strong>
+                      </div>
+                  `;
+                  
+                  // Reset form
+                  form.reset();
+                  
+                  // Clear file input
+                  const fileInput = form.querySelector('input[type="file"]');
+                  if (fileInput) {
+                      fileInput.value = '';
+                      const fileInfo = document.querySelector('.file-info');
+                      if (fileInfo) fileInfo.textContent = 'No file chosen';
+                  }
+                  
+                  // Scroll to top to show success message
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+              } else {
+                  throw new Error(result.message || 'Failed to submit registration');
+              }
+          } catch (error) {
+              console.error('Error:', error);
+              formMessages.innerHTML = `
+                  <div class="alert alert-error">
+                      <i class="fas fa-exclamation-circle"></i>
+                      ${error.message || 'An error occurred. Please try again.'}
+                  </div>
+              `;
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+          } finally {
+              submitBtn.disabled = false;
+              submitBtn.innerHTML = originalBtnText;
+          }
+      });
+  });
+  </script>
+  
+  <style>
+  .form-messages {
+      margin: 20px 0;
+  }
+
+  .alert {
+      padding: 12px 15px;
+      border-radius: 4px;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      animation: fadeIn 0.3s ease;
+  }
+
+  .alert i {
+      font-size: 1.2em;
+  }
+
+  .alert-success {
+      background-color: #f0fdf4;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+  }
+
+  .alert-error {
+      background-color: #fef2f2;
+      color: #991b1b;
+      border: 1px solid #fecaca;
+  }
+
+  @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+  }
+  </style>
+  <script src="js/countdown.js"></script>
+  <script src="js/form-handler.js"></script>
+  <script src="js/reveal.js"></script>
+  <script src="app.js" defer></script>
+</body>
+</html>
