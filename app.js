@@ -128,7 +128,7 @@ const STRINGS = {
       },
     },
     org: {
-      heading: "Organizers & Partners",
+      heading: "Scientific Committee",
       kicker: "International collaboration",
       body:
         "PLUMEE 2026 is organized by UM6P (Benguerir), Université de Limoges, Université de Bacau, MSN, ENSIL-ENSCI, and Université Cadi Ayyad (Marrakech).",
@@ -302,7 +302,7 @@ const STRINGS = {
       },
     },
     org: {
-      heading: "Organisateurs & Partenaires",
+      heading: "Comité scientifique",
       kicker: "Collaboration internationale",
       body:
         "PLUMEE 2026 est organisé par l’UM6P (Benguerir), l’Université de Limoges, l’Université de Bacau, MSN, ENSIL-ENSCI, et l’Université Cadi Ayyad (Marrakech).",
@@ -388,24 +388,6 @@ function applyI18n() {
     const value = key.split(".").reduce((acc, k) => acc && acc[k], dict);
     if (typeof value === "string") el.setAttribute("aria-label", value);
   });
-
-  // Rebuild topics section when language changes - DISABLED to preserve static content
-  // const topicsContainer = $("#themes .topics-grid");
-  // if (topicsContainer) {
-  //   // Clear existing content
-  //   topicsContainer.innerHTML = '';
-  //   
-  //   // Rebuild topics with current language
-  //   dict.themes.items.forEach((item) => {
-  //     const topicItem = document.createElement("div");
-  //     topicItem.className = "topic-item";
-  //     topicItem.innerHTML = `
-  //       <h3 class="topic-title">${item.title}</h3>
-  //       <p class="topic-desc">${item.desc}</p>
-  //     `;
-  //     topicsContainer.appendChild(topicItem);
-  //   });
-  // }
 
   // Update aria-pressed on language chips
   $$(".lang-switch .chip").forEach(btn => btn.setAttribute("aria-pressed", String(btn.dataset.lang === state.lang)));
@@ -557,6 +539,9 @@ function setupCountdown() {
 document.addEventListener("DOMContentLoaded", () => {
   // Apply saved lang to <html>
   document.documentElement.setAttribute("lang", state.lang === "fr" ? "fr" : "en");
+
+  // Initialize language button states
+  $$(".lang-switch .chip").forEach(btn => btn.setAttribute("aria-pressed", String(btn.dataset.lang === state.lang)));
 
   setupNav();
   setupReveal();
