@@ -21,12 +21,12 @@
         <img src="assets/PLUMEE_logo (1).png" alt="PLUMEE 2026" class="brand-mark" />
       </a>
 
-      <div class="lang-switch" role="group" aria-label="Language">
-        <button class="chip" data-lang="en" aria-pressed="true">
-          <img src="assets/flag-en.svg" alt="English" />
+      <div class="lang-switch" role="group" aria-label="Language Selector">
+        <button class="lang-btn" data-lang="en" aria-pressed="true" aria-label="English">
+          <img src="assets/flag-en.svg" alt="English" width="24" height="16" />
         </button>
-        <button class="chip" data-lang="fr" aria-pressed="false">
-          <img src="assets/flag-fr.svg" alt="Français" />
+        <button class="lang-btn" data-lang="fr" aria-pressed="false" aria-label="Français">
+          <img src="assets/flag-fr.svg" alt="Français" width="24" height="16" />
         </button>
       </div>
     </div>
@@ -54,7 +54,7 @@
         <div class="pricing-cards" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; justify-content: center; align-items: stretch;">
           <div class="pricing-card" style="flex: 1; min-width: 200px; max-width: 250px; padding: 1rem; border-radius: 8px; border: 1px solid #e5e7eb; background: white; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
             <div class="pricing-header" style="text-align: center; margin-bottom: 0.75rem;">
-              <h3 class="pricing-title" style="font-size: 1rem; margin: 0; color: #333;">Student</h3>
+              <h3 class="pricing-title" style="font-size: 1rem; margin: 0; color: #333;">Participation</h3>
               <div class="pricing-price" style="font-size: 1.5rem; font-weight: bold; color: #2E8B57;">€100</div>
               <p class="pricing-period" style="font-size: 0.8rem; color: #666; margin: 0;">per person</p>
             </div>
@@ -268,13 +268,16 @@
                   <i class="fas fa-tag"></i>
                   <select id="topic" name="topic" >
                     <option value="">Select a topic (optional)</option>
-                    <option value="plasma_medicine">Plasma Medicine</option>
-                    <option value="plasma_agriculture">Plasma in Agriculture</option>
-                    <option value="plasma_environment">Environmental Applications</option>
-                    <option value="plasma_energy">Energy Applications</option>
-                    <option value="plasma_nanotechnology">Nanotechnology & Materials</option>
-                    <option value="plasma_fundamentals">Fundamental Plasma Science</option>
-                    <option value="plasma_biomedical">Biomedical Applications</option>
+                    <option value="natural_resources">Natural Resources and Waste Recycling</option>
+                    <option value="materials_depollution">Materials for Depollution</option>
+                    <option value="energy_storage">Energy Storage and Renewable Energy</option>
+                    <option value="surface_treatment">Surface Treatment</option>
+                    <option value="nanotechnologies">Nanomaterials and Nanotechnologies</option>
+                    <option value="advanced_materials">Advanced Materials for Electronics</option>
+                    <option value="embedded_systems">Embedded Systems for Ecological Transition</option>
+                    <option value="ai_materials">AI for Materials and Electronic Systems</option>
+                    <option value="em_waves">EM Waves and Living Matter</option>
+                    <option value="embedded_security">Embedded Systems and Cybersecurity</option>
                     <option value="other">Other (please specify in abstract)</option>
                   </select>
                 </div>

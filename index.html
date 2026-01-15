@@ -850,18 +850,19 @@
           <li><a href="#themes" data-i18n="nav.themes">Topics</a></li>
           <li><a href="#speakers" data-i18n="nav.speakers">Speakers</a></li>
           <li><a href="#program" data-i18n="nav.program">Program</a></li>
+          <li><a href="#important-dates" data-i18n="nav.importantDates">Important Dates</a></li>
           <li><a href="#committees" data-i18n="nav.org">Organizers</a></li>
           <li><a href="#venue" data-i18n="nav.venue">Venue</a></li>
           <li><a href="registration.html" data-i18n="nav.registration">Registration</a></li>
         </ul>
       </nav>
 
-      <div class="lang-switch" role="group" aria-label="Language">
-        <button class="chip" data-lang="en" aria-pressed="true">
-          <img src="assets/flag-en.svg" alt="English" />
+      <div class="lang-switch" role="group" aria-label="Language Selector">
+        <button class="lang-btn" data-lang="en" aria-pressed="true" aria-label="English">
+          <img src="assets/flag-en.svg" alt="English" width="24" height="16" />
         </button>
-        <button class="chip" data-lang="fr" aria-pressed="false">
-          <img src="assets/flag-fr.svg" alt="Français" />
+        <button class="lang-btn" data-lang="fr" aria-pressed="false" aria-label="Français">
+          <img src="assets/flag-fr.svg" alt="Français" width="24" height="16" />
         </button>
       </div>
     </div>
@@ -916,7 +917,7 @@
               <h2 data-i18n="about.heading">About the Colloquium</h2>
               <p class="section-kicker" data-i18n="about.kicker">Why PLUMEE 2026</p>
             </header>
-            <p class="body-lg">
+            <p class="body-lg" data-i18n="about.body">
               PLUMEE 2026 brings together leading researchers, engineers, and industry professionals from around the world to explore the latest advances in materials, environment, and electronics. This 7th Multidisciplinary Colloquium serves as a platform for knowledge exchange, collaboration, and innovation across these interconnected fields.
             </p>
           </div>
@@ -936,64 +937,70 @@
         </header>
         <div class="topics-container">
           <div class="topics-grid">
-            <!-- Valorization & Recycling -->
+            <!-- Natural Resources and Waste Recycling -->
             <div class="topic-item">
-              <h3 class="topic-title" data-i18n="themes.items.0.title">Valorization & Recycling</h3>
-              <p class="topic-desc" data-i18n="themes.items.0.desc">Natural resources and waste recycling</p>
+              <h3 class="topic-title" data-i18n="themes.items.0.title">Natural Resources and Waste Recycling</h3>
+              <p class="topic-desc" data-i18n="themes.items.0.desc">Valorization of natural resources and waste recycling</p>
             </div>
             
-            <!-- Depollution Materials -->
+            <!-- Materials for Depollution -->
             <div class="topic-item">
-              <h3 class="topic-title" data-i18n="themes.items.1.title">Depollution Materials</h3>
+              <h3 class="topic-title" data-i18n="themes.items.1.title">Materials for Depollution</h3>
               <p class="topic-desc" data-i18n="themes.items.1.desc">Catalysts, membranes, and adsorbents</p>
             </div>
             
-            <!-- Energy Solutions -->
+            <!-- Energy Storage and Renewable Energy -->
             <div class="topic-item">
-              <h3 class="topic-title" data-i18n="themes.items.2.title">Energy Solutions</h3>
-              <p class="topic-desc" data-i18n="themes.items.2.desc">Storage and renewable energies</p>
+              <h3 class="topic-title" data-i18n="themes.items.2.title">Energy Storage and Renewable Energy</h3>
+              <p class="topic-desc" data-i18n="themes.items.2.desc">Advanced solutions for energy storage and renewable sources</p>
             </div>
             
-            <!-- Surface Engineering -->
+            <!-- Surface Treatment -->
             <div class="topic-item">
-              <h3 class="topic-title" data-i18n="themes.items.3.title">Surface Engineering</h3>
-              <p class="topic-desc" data-i18n="themes.items.3.desc">Treatment and industrial impact</p>
+              <h3 class="topic-title" data-i18n="themes.items.3.title">Surface Treatment</h3>
+              <p class="topic-desc" data-i18n="themes.items.3.desc">Industrial surface treatment and environmental impact</p>
             </div>
             
-            <!-- Nanomaterials -->
+            <!-- Nanomaterials and Nanotechnologies -->
             <div class="topic-item">
-              <h3 class="topic-title" data-i18n="themes.items.4.title">Nanomaterials</h3>
-              <p class="topic-desc" data-i18n="themes.items.4.desc">Nanotechnologies and applications</p>
+              <h3 class="topic-title" data-i18n="themes.items.4.title">Nanomaterials and Nanotechnologies</h3>
+              <p class="topic-desc" data-i18n="themes.items.4.desc">Advanced nanomaterials and their applications</p>
             </div>
             
-            <!-- Electronic Materials -->
+            <!-- Advanced Materials for Electronics -->
             <div class="topic-item">
-              <h3 class="topic-title" data-i18n="themes.items.5.title">Electronic Materials</h3>
-              <p class="topic-desc" data-i18n="themes.items.5.desc">Advanced materials for electronics</p>
+              <h3 class="topic-title" data-i18n="themes.items.5.title">Advanced Materials for Electronics</h3>
+              <p class="topic-desc" data-i18n="themes.items.5.desc">Innovative materials for electronic applications</p>
             </div>
             
-            <!-- Embedded Systems -->
+            <!-- Embedded Systems for Ecological Transition -->
             <div class="topic-item">
-              <h3 class="topic-title" data-i18n="themes.items.6.title">Embedded Systems</h3>
-              <p class="topic-desc" data-i18n="themes.items.6.desc">For ecological transition</p>
+              <h3 class="topic-title" data-i18n="themes.items.6.title">Embedded Systems for Ecological Transition</h3>
+              <p class="topic-desc" data-i18n="themes.items.6.desc">Embedded solutions for sustainable development</p>
             </div>
             
-            <!-- AI & Optimization -->
+            <!-- AI for Materials and Electronic Systems -->
             <div class="topic-item">
-              <h3 class="topic-title" data-i18n="themes.items.7.title">AI & Optimization</h3>
-              <p class="topic-desc" data-i18n="themes.items.7.desc">For materials and electronic systems</p>
+              <h3 class="topic-title" data-i18n="themes.items.7.title">AI for Materials and Electronic Systems</h3>
+              <p class="topic-desc" data-i18n="themes.items.7.desc">Artificial intelligence applications in materials optimization</p>
             </div>
             
-            <!-- EM Waves -->
+            <!-- EM Waves and Living Matter -->
             <div class="topic-item">
-              <h3 class="topic-title" data-i18n="themes.items.8.title">EM Waves</h3>
-              <p class="topic-desc" data-i18n="themes.items.8.desc">Interaction with living matter</p>
+              <h3 class="topic-title" data-i18n="themes.items.8.title">EM Waves and Living Matter</h3>
+              <p class="topic-desc" data-i18n="themes.items.8.desc">Interaction between electromagnetic waves and biological systems</p>
             </div>
             
-            <!-- Romanian Theme -->
+            <!-- Embedded Systems and Cybersecurity -->
             <div class="topic-item">
-              <h3 class="topic-title" data-i18n="themes.items.9.title">Romanian Theme</h3>
-              <p class="topic-desc" data-i18n="themes.items.9.desc">Special focus session</p>
+              <h3 class="topic-title" data-i18n="themes.items.9.title">Embedded Systems and Cybersecurity</h3>
+              <p class="topic-desc" data-i18n="themes.items.9.desc">Applications based on embedded systems, cybersecurity, and AI integration</p>
+            </div>
+            
+            <!-- Other Topics -->
+            <div class="topic-item">
+              <h3 class="topic-title" data-i18n="themes.items.10.title">Other Topics</h3>
+              <p class="topic-desc" data-i18n="themes.items.10.desc">Emerging and interdisciplinary applications</p>
             </div>
           </div>
         </div>
@@ -1095,7 +1102,7 @@
                     <img src="assets/tamraoui.png" alt="Prof. Youssef Tamraoui" class="speaker-avatar">
                     <div class="speaker-info-inline">
                       <span class="speaker-name">Prof. Youssef Tamraoui</span>
-                      <span class="speaker-role">Chair of PLUMEE 2026, University Mohammed VI Polytechnic - MSN, Morocco</span>
+                      <span class="speaker-role">Chair of PLUMEE 2026, MSN - UM6P, Morocco</span>
                     </div>
                   </div>
                 </div>
@@ -1402,40 +1409,46 @@
     <section id="important-dates" class="section" style="position: relative; overflow: hidden; padding: 3rem 0;">
       <div class="container">
         <div class="section-header" style="text-align: center; margin-bottom: 2.5rem;">
-          <h2 class="section-title" style="color: #2E8B57; font-size: 2.2rem; margin-bottom: 0.8rem; position: relative; display: inline-block; font-weight: 700;">
+          <h2 class="section-title" style="color: #2E8B57; font-size: 2.2rem; margin-bottom: 0.8rem; position: relative; display: inline-block; font-weight: 700;" data-i18n="importantDates.heading">
             Important Dates
             <span style="position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%); width: 80px; height: 3px; background: #2E8B57; border-radius: 2px;"></span>
           </h2>
-          <p class="section-subtitle" style="color: #4a7c59; font-size: 1.1rem; max-width: 700px; margin: 0.8rem auto 0; line-height: 1.5;">
-            Mark your calendar for these key milestones of PLUMEE 2026
-          </p>
+          <p class="section-subtitle" style="color: #4a7c59; font-size: 1.1rem; max-width: 700px; margin: 0.8rem auto 0; line-height: 1.5;" data-i18n="importantDates.kicker">Mark your calendar for these key milestones of PLUMEE 2026</p>
         </div>
 
-        <!-- Main Conference Card -->
+          <!-- Main Conference Card -->
         <div style="background: linear-gradient(135deg, #2E8B57, #3aa76d); border-radius: 12px; padding: 2rem; margin: 0 auto 3rem; color: white; text-align: center; position: relative; overflow: hidden; max-width: 800px; box-shadow: 0 10px 30px rgba(46, 139, 87, 0.2);">
           <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at top right, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 50%); z-index: 1;"></div>
           <div style="position: relative; z-index: 2;">
-            <div style="font-size: 1.1rem; margin-bottom: 0.5rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; opacity: 0.9;">Main Conference</div>
-            <div style="font-size: 3.5rem; font-weight: 800; line-height: 1; margin: 0.5rem 0 0.3rem; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">21-23 <span style="font-size: 2rem; font-weight: 600; opacity: 0.9;">April 2026</span></div>
-            <h3 style="font-size: 1.8rem; margin: 0.3rem 0 1rem; color: white; font-weight: 700; text-shadow: 0 1px 2px rgba(0,0,0,0.1);">PLUMEE 2026 Conference</h3>
-            <p style="max-width: 700px; margin: 0 auto; opacity: 0.95; font-size: 1.05rem; line-height: 1.6;">Join us in Benguerir for three days of innovation and collaboration in Materials, Environment, and Electronics.</p>
+            <div style="font-size: 1.1rem; margin-bottom: 0.5rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; opacity: 0.9;" data-i18n="importantDates.mainEvent">
+              {{ 'importantDates.mainEvent' | translate }}
+            </div>
+            <div style="font-size: 3.5rem; font-weight: 800; line-height: 1; margin: 0.5rem 0 0.3rem; text-shadow: 0 2px 4px rgba(0,0,0,0.1);" data-i18n="importantDates.conferenceDate">
+              {{ 'importantDates.conferenceDate' | translate }}
+            </div>
+            <h3 style="font-size: 1.8rem; margin: 0.3rem 0 1rem; color: white; font-weight: 700; text-shadow: 0 1px 2px rgba(0,0,0,0.1);" data-i18n="importantDates.conferenceTitle">
+              {{ 'importantDates.conferenceTitle' | translate }}
+            </h3>
+            <p style="max-width: 700px; margin: 0 auto; opacity: 0.95; font-size: 1.05rem; line-height: 1.6;" data-i18n="importantDates.conferenceDesc">
+              {{ 'importantDates.conferenceDesc' | translate }}
+            </p>
             
             <!-- Conference Days -->
             <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 1.5rem;">
               <div style="background: rgba(255,255,255,0.15); border-radius: 8px; padding: 0.8rem 1rem; text-align: center; min-width: 80px; backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.2);">
                 <div style="font-size: 1.5rem; font-weight: 700; line-height: 1;">21</div>
-                <div style="font-size: 0.9rem; font-weight: 600; opacity: 0.9; margin-top: 0.2rem;">APR</div>
-                <div style="font-size: 0.75rem; opacity: 0.9; margin-top: 0.3rem;">Day 1</div>
+                <div style="font-size: 0.9rem; font-weight: 600; opacity: 0.9; margin-top: 0.2rem;">AVR</div>
+                <div style="font-size: 0.75rem; opacity: 0.9; margin-top: 0.3rem;" data-i18n="importantDates.day1">Day 1</div>
               </div>
               <div style="background: rgba(255,255,255,0.15); border-radius: 8px; padding: 0.8rem 1rem; text-align: center; min-width: 80px; backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.2);">
                 <div style="font-size: 1.5rem; font-weight: 700; line-height: 1;">22</div>
-                <div style="font-size: 0.9rem; font-weight: 600; opacity: 0.9; margin-top: 0.2rem;">APR</div>
-                <div style="font-size: 0.75rem; opacity: 0.9; margin-top: 0.3rem;">Day 2</div>
+                <div style="font-size: 0.9rem; font-weight: 600; opacity: 0.9; margin-top: 0.2rem;">AVR</div>
+                <div style="font-size: 0.75rem; opacity: 0.9; margin-top: 0.3rem;" data-i18n="importantDates.day2">Day 2</div>
               </div>
               <div style="background: rgba(255,255,255,0.15); border-radius: 8px; padding: 0.8rem 1rem; text-align: center; min-width: 80px; backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.2);">
                 <div style="font-size: 1.5rem; font-weight: 700; line-height: 1;">23</div>
-                <div style="font-size: 0.9rem; font-weight: 600; opacity: 0.9; margin-top: 0.2rem;">APR</div>
-                <div style="font-size: 0.75rem; opacity: 0.9; margin-top: 0.3rem;">Day 3</div>
+                <div style="font-size: 0.9rem; font-weight: 600; opacity: 0.9; margin-top: 0.2rem;">AVR</div>
+                <div style="font-size: 0.75rem; opacity: 0.9; margin-top: 0.3rem;" data-i18n="importantDates.day3">Day 3</div>
               </div>
             </div>
           </div>
@@ -1455,11 +1468,11 @@
                   <div style="width: 12px; height: 12px; background: #2E8B57; border-radius: 50%; position: absolute; left: -6px; top: 24px; border: 3px solid white; box-shadow: 0 0 0 2px #2E8B57; z-index: 3;"></div>
                   <span style="font-size: 0.9rem; font-weight: 600; color: #2E8B57; display: flex; align-items: center;">
                     <svg style="width: 16px; height: 16px; margin-right: 6px;" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
-                    January 16, 2026
+                    <span data-i18n="importantDates.timeline.0.date">January 16, 2026</span>
                   </span>
                 </div>
-                <h3 style="font-size: 1.2rem; color: #1a365d; margin: 0 0 0.5rem 0; font-weight: 700;">Paper Submission Deadline</h3>
-                <p style="color: #4a5568; margin: 0; line-height: 1.5; font-size: 0.95rem;">Last day to submit your research papers for consideration.</p>
+                <h3 style="font-size: 1.2rem; color: #1a365d; margin: 0 0 0.5rem 0; font-weight: 700;" data-i18n="importantDates.timeline.0.title">Paper Submission Deadline</h3>
+                <p style="color: #4a5568; margin: 0; line-height: 1.5; font-size: 0.95rem;" data-i18n="importantDates.timeline.0.desc">Last day to submit your research papers for consideration.</p>
               </div>
             </div>
 
@@ -1468,13 +1481,13 @@
               <div style="width: 100%; max-width: 380px; background: white; border-radius: 8px; padding: 1.2rem; box-shadow: 0 3px 15px rgba(0,0,0,0.03); border-right: 3px solid #2E8B57; position: relative; transition: all 0.3s ease;">
                 <div style="display: flex; align-items: center; margin-bottom: 0.5rem; justify-content: flex-end;">
                   <span style="font-size: 0.9rem; font-weight: 600; color: #2E8B57; display: flex; align-items: center;">
-                    February 16, 2026
+                    <span data-i18n="importantDates.timeline.1.date">February 16, 2026</span>
                     <svg style="width: 16px; height: 16px; margin-left: 6px;" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
                   </span>
                   <div style="width: 12px; height: 12px; background: #2E8B57; border-radius: 50%; position: absolute; right: -6px; top: 24px; border: 3px solid white; box-shadow: 0 0 0 2px #2E8B57; z-index: 3;"></div>
                 </div>
-                <h3 style="font-size: 1.2rem; color: #1a365d; margin: 0 0 0.5rem 0; font-weight: 700; text-align: right;">Notification of Acceptance</h3>
-                <p style="color: #4a5568; margin: 0; line-height: 1.5; font-size: 0.95rem; text-align: right;">Authors will be notified about the status of their submissions.</p>
+                <h3 style="font-size: 1.2rem; color: #1a365d; margin: 0 0 0.5rem 0; font-weight: 700; text-align: right;" data-i18n="importantDates.timeline.1.title">Notification of Acceptance</h3>
+                <p style="color: #4a5568; margin: 0; line-height: 1.5; font-size: 0.95rem; text-align: right;" data-i18n="importantDates.timeline.1.desc">Authors will be notified about the status of their submissions.</p>
               </div>
             </div>
 
@@ -1485,11 +1498,11 @@
                   <div style="width: 12px; height: 12px; background: #2E8B57; border-radius: 50%; position: absolute; left: -6px; top: 24px; border: 3px solid white; box-shadow: 0 0 0 2px #2E8B57; z-index: 3;"></div>
                   <span style="font-size: 0.9rem; font-weight: 600; color: #2E8B57; display: flex; align-items: center;">
                     <svg style="width: 16px; height: 16px; margin-right: 6px;" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
-                    February 02 - March 31, 2026
+                    <span data-i18n="importantDates.timeline.2.date">February 02 - March 31, 2026</span>
                   </span>
                 </div>
-                <h3 style="font-size: 1.2rem; color: #1a365d; margin: 0 0 0.5rem 0; font-weight: 700;">Registration Period</h3>
-                <p style="color: #4a5568; margin: 0; line-height: 1.5; font-size: 0.95rem;">Register during this period to secure your participation in PLUMEE 2026.</p>
+                <h3 style="font-size: 1.2rem; color: #1a365d; margin: 0 0 0.5rem 0; font-weight: 700;" data-i18n="importantDates.timeline.2.title">Registration Period</h3>
+                <p style="color: #4a5568; margin: 0; line-height: 1.5; font-size: 0.95rem;" data-i18n="importantDates.timeline.2.desc">Register during this period to secure your participation in PLUMEE 2026.</p>
               </div>
             </div>
 
@@ -1498,13 +1511,13 @@
               <div style="width: 100%; max-width: 380px; background: white; border-radius: 8px; padding: 1.2rem; box-shadow: 0 3px 15px rgba(0,0,0,0.03); border-right: 3px solid #2E8B57; position: relative; transition: all 0.3s ease;">
                 <div style="display: flex; align-items: center; margin-bottom: 0.5rem; justify-content: flex-end;">
                   <span style="font-size: 0.9rem; font-weight: 600; color: #2E8B57; display: flex; align-items: center;">
-                    April 21-23, 2026
+                    <span data-i18n="importantDates.timeline.3.date">April 21-23, 2026</span>
                     <svg style="width: 16px; height: 16px; margin-left: 6px;" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
                   </span>
                   <div style="width: 12px; height: 12px; background: #2E8B57; border-radius: 50%; position: absolute; right: -6px; top: 24px; border: 3px solid white; box-shadow: 0 0 0 2px #2E8B57; z-index: 3;"></div>
                 </div>
-                <h3 style="font-size: 1.2rem; color: #1a365d; margin: 0 0 0.5rem 0; font-weight: 700; text-align: right;">PLUMEE 2026 Conference</h3>
-                <p style="color: #4a5568; margin: 0; line-height: 1.5; font-size: 0.95rem; text-align: right;">Join us for three days of scientific presentations and networking.</p>
+                <h3 style="font-size: 1.2rem; color: #1a365d; margin: 0 0 0.5rem 0; font-weight: 700; text-align: right;" data-i18n="importantDates.timeline.3.title">PLUMEE 2026 Conference</h3>
+                <p style="color: #4a5568; margin: 0; line-height: 1.5; font-size: 0.95rem; text-align: right;" data-i18n="importantDates.timeline.3.desc">Join us for three days of scientific presentations and networking.</p>
               </div>
             </div>
           </div>
@@ -1630,15 +1643,16 @@
       <!-- Organizing Committee - Full Width -->
       <div class="committee-section section primary" style="position: relative !important; width: 100vw !important; left: 50% !important; transform: translateX(-50%) !important; margin: 0 !important; padding: 4rem 0 !important; background: url('./assets/section-bg.jpg') center/cover no-repeat fixed !important; color: white; text-shadow: 0 1px 3px rgba(0,0,0,0.3); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); backdrop-filter: blur(10px);">
         <div class="container">
-          <h3 class="section-heading" data-i18n="org.heading" style="color: #2E8B57; text-align: center; margin-bottom: 2.5rem; font-size: 1.8rem; font-weight: 600;">Organizing Committee</h3>
-          
+
           <!-- Institutions Section - First -->
           <div style="text-align: center; margin-bottom: 3rem;">
             <h4 style="color: white; font-size: 1.4rem; font-weight: 600; margin-bottom: 2rem;">Organized By</h4>
-            <div class="institutions-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; width: 100%;">
+            <div class="institutions-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; width: 100%; max-width: 1200px; margin: 0 auto;">
               <!-- UM6P -->
-              <div class="institution-card" style="background: rgba(255, 255, 255, 0.95); border-radius: 8px; padding: 2rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); border: 1px solid rgba(255, 255, 255, 0.8); transition: all 0.3s ease; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                  <img src="assets/logos/LOGO UM6P-MSN .png" alt="UM6P-MSN" style="max-width: 100%; max-height: 180px; object-fit: contain; filter: none; transition: transform 0.3s ease; margin-bottom: 1.5rem; display: block;" />
+              <div class="institution-card" style="background: rgba(255, 255, 255, 0.98); border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); border: 1px solid rgba(255, 255, 255, 0.4); transition: all 0.3s ease; text-align: center;">
+                <div class="institution-logo" style="margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; min-height: 200px;">
+                  <img src="assets/logos/LOGO UM6P-MSN .png" alt="UM6P-MSN" style="height: 140px; width: auto; max-height: 140px; max-width: 100%; object-fit: contain; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));" />
+                </div>
                 <div class="institution-info">
                   <h4 style="margin: 0; color: #1a365d; font-size: 0.9rem; font-weight: 600;"></h4>
                   <p style="margin: 0.25rem 0 0; color: #4a5568; font-size: 0.8rem; line-height: 1.4;"></p>
@@ -1646,8 +1660,10 @@
               </div>
               
               <!-- University of Bacau -->
-              <div class="institution-card" style="background: rgba(255, 255, 255, 0.95); border-radius: 8px; padding: 2rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); border: 1px solid rgba(255, 255, 255, 0.8); transition: all 0.3s ease; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                  <img src="assets/logos/bacau.png" alt="University of Bacau" style="max-width: 100%; max-height: 140px; object-fit: contain; filter: none; transition: transform 0.3s ease; margin-bottom: 1.5rem; display: block;" />
+              <div class="institution-card" style="background: rgba(255, 255, 255, 0.98); border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); border: 1px solid rgba(255, 255, 255, 0.4); transition: all 0.3s ease; text-align: center;">
+                <div class="institution-logo" style="margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; min-height: 150px;">
+                  <img src="assets/logos/bacau.png" alt="University of Bacau" style="height: 130px; width: auto; max-height: 130px; max-width: 100%; object-fit: contain; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));" />
+                </div>
                 <div class="institution-info">
                   <h4 style="margin: 0; color: #1a365d; font-size: 0.9rem; font-weight: 600;"></h4>
                   <p style="margin: 0.25rem 0 0; color: #4a5568; font-size: 0.8rem; line-height: 1.4;"></p>
@@ -1655,8 +1671,10 @@
               </div>
               
               <!-- University of Limoges -->
-              <div class="institution-card" style="background: rgba(255, 255, 255, 0.95); border-radius: 8px; padding: 2rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); border: 1px solid rgba(255, 255, 255, 0.8); transition: all 0.3s ease; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                  <img src="assets/logos/limoges.png" alt="University of Limoges" style="max-width: 100%; max-height: 140px; object-fit: contain; filter: none; transition: transform 0.3s ease; margin-bottom: 1.5rem; display: block;" />
+              <div class="institution-card" style="background: rgba(255, 255, 255, 0.98); border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); border: 1px solid rgba(255, 255, 255, 0.4); transition: all 0.3s ease; text-align: center;">
+                <div class="institution-logo" style="margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; min-height: 150px;">
+                  <img src="assets/logos/limoges.png" alt="University of Limoges" style="height: 130px; width: auto; max-height: 130px; max-width: 100%; object-fit: contain; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));" />
+                </div>
                 <div class="institution-info">
                   <h4 style="margin: 0; color: #1a365d; font-size: 0.9rem; font-weight: 600;"></h4>
                   <p style="margin: 0.25rem 0 0; color: #4a5568; font-size: 0.8rem; line-height: 1.4;"></p>
@@ -1664,8 +1682,10 @@
               </div>
               
               <!-- Cadi Ayyad University -->
-              <div class="institution-card" style="background: rgba(255, 255, 255, 0.95); border-radius: 8px; padding: 2rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); border: 1px solid rgba(255, 255, 255, 0.8); transition: all 0.3s ease; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                  <img src="assets/logos/uca.png" alt="Cadi Ayyad University" style="max-width: 100%; max-height: 140px; object-fit: contain; filter: none; transition: transform 0.3s ease; margin-bottom: 1.5rem; display: block;" />
+              <div class="institution-card" style="background: rgba(255, 255, 255, 0.98); border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); border: 1px solid rgba(255, 255, 255, 0.4); transition: all 0.3s ease; text-align: center;">
+                <div class="institution-logo" style="margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; min-height: 150px;">
+                  <img src="assets/logos/uca.png" alt="Cadi Ayyad University" style="height: 130px; width: auto; max-height: 130px; max-width: 100%; object-fit: contain; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));" />
+                </div>
                 <div class="institution-info">
                   <h4 style="margin: 0; color: #1a365d; font-size: 0.9rem; font-weight: 600;"></h4>
                   <p style="margin: 0.25rem 0 0; color: #4a5568; font-size: 0.8rem; line-height: 1.4;"></p>
@@ -1673,8 +1693,10 @@
               </div>
               
               <!-- University Hassan II Casablanca -->
-              <div class="institution-card" style="background: rgba(255, 255, 255, 0.95); border-radius: 8px; padding: 2rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); border: 1px solid rgba(255, 255, 255, 0.8); transition: all 0.3s ease; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                  <img src="assets/logos/uh2.png" alt="University Hassan II Casablanca" style="max-width: 100%; max-height: 140px; object-fit: contain; filter: none; transition: transform 0.3s ease; margin-bottom: 1.5rem; display: block;" />
+              <div class="institution-card" style="background: rgba(255, 255, 255, 0.98); border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); border: 1px solid rgba(255, 255, 255, 0.4); transition: all 0.3s ease; text-align: center;">
+                <div class="institution-logo" style="margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; min-height: 150px;">
+                  <img src="assets/logos/uh2.png" alt="University Hassan II Casablanca" style="height: 130px; width: auto; max-height: 130px; max-width: 100%; object-fit: contain; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));" />
+                </div>
                 <div class="institution-info">
                   <h4 style="margin: 0; color: #1a365d; font-size: 0.9rem; font-weight: 600;"></h4>
                   <p style="margin: 0.25rem 0 0; color: #4a5568; font-size: 0.8rem; line-height: 1.4;"></p>
@@ -1682,8 +1704,10 @@
               </div>
               
               <!-- ENSIL -->
-              <div class="institution-card" style="background: rgba(255, 255, 255, 0.95); border-radius: 8px; padding: 2rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); border: 1px solid rgba(255, 255, 255, 0.8); transition: all 0.3s ease; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                  <img src="assets/logos/ensil.png" alt="ENSIL" style="max-width: 100%; max-height: 140px; object-fit: contain; filter: none; transition: transform 0.3s ease; margin-bottom: 1.5rem; display: block;" />
+              <div class="institution-card" style="background: rgba(255, 255, 255, 0.98); border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); border: 1px solid rgba(255, 255, 255, 0.4); transition: all 0.3s ease; text-align: center;">
+                <div class="institution-logo" style="margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; min-height: 160px;">
+                  <img src="assets/logos/ensil.png" alt="ENSIL" style="height: 140px; width: auto; max-height: 140px; max-width: 100%; object-fit: contain; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));" />
+                </div>
                 <div class="institution-info">
                   <h4 style="margin: 0; color: #1a365d; font-size: 0.9rem; font-weight: 600;"></h4>
                   <p style="margin: 0.25rem 0 0; color: #4a5568; font-size: 0.8rem; line-height: 1.4;"></p>
@@ -1691,8 +1715,10 @@
               </div>
               
               <!-- XLIM -->
-              <div class="institution-card" style="background: rgba(255, 255, 255, 0.95); border-radius: 8px; padding: 2rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); border: 1px solid rgba(255, 255, 255, 0.8); transition: all 0.3s ease; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                  <img src="assets/logos/Logo-xlim-2.png" alt="XLIM" style="max-width: 100%; max-height: 140px; object-fit: contain; filter: none; transition: transform 0.3s ease; margin-bottom: 1.5rem; display: block;" />
+              <div class="institution-card" style="background: rgba(255, 255, 255, 0.98); border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); border: 1px solid rgba(255, 255, 255, 0.4); transition: all 0.3s ease; text-align: center;">
+                <div class="institution-logo" style="margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; min-height: 160px;">
+                  <img src="assets/logos/Logo-xlim-2.png" alt="XLIM" style="height: 140px; width: auto; max-height: 140px; max-width: 100%; object-fit: contain; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));" />
+                </div>
                 <div class="institution-info">
                   <h4 style="margin: 0; color: #1a365d; font-size: 0.9rem; font-weight: 600;"></h4>
                   <p style="margin: 0.25rem 0 0; color: #4a5568; font-size: 0.8rem; line-height: 1.4;"></p>
@@ -1700,8 +1726,10 @@
               </div>
               
               <!-- GMCéram -->
-              <div class="institution-card" style="background: rgba(255, 255, 255, 0.95); border-radius: 8px; padding: 2rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); border: 1px solid rgba(255, 255, 255, 0.8); transition: all 0.3s ease; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                  <img src="assets/GMCéram.png" alt="GMCéram" style="max-width: 100%; max-height: 140px; object-fit: contain; filter: none; transition: transform 0.3s ease; margin-bottom: 1.5rem; display: block;" />
+              <div class="institution-card" style="background: rgba(255, 255, 255, 0.98); border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); border: 1px solid rgba(255, 255, 255, 0.4); transition: all 0.3s ease; text-align: center;">
+                <div class="institution-logo" style="margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; min-height: 150px;">
+                  <img src="assets/GMCéram.png" alt="GMCéram" style="height: 130px; width: auto; max-height: 130px; max-width: 100%; object-fit: contain; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));" />
+                </div>
                 <div class="institution-info">
                   <h4 style="margin: 0; color: #1a365d; font-size: 0.9rem; font-weight: 600;"></h4>
                   <p style="margin: 0.25rem 0 0; color: #4a5568; font-size: 0.8rem; line-height: 1.4;"></p>
@@ -1709,8 +1737,10 @@
               </div>
               
               <!-- IRCER -->
-              <div class="institution-card" style="background: rgba(255, 255, 255, 0.95); border-radius: 8px; padding: 2rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); border: 1px solid rgba(255, 255, 255, 0.8); transition: all 0.3s ease; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                  <img src="assets/logos/IRCER-1-rouge.png" alt="IRCER" style="max-width: 100%; max-height: 140px; object-fit: contain; filter: none; transition: transform 0.3s ease; margin-bottom: 1.5rem; display: block;" />
+              <div class="institution-card" style="background: rgba(255, 255, 255, 0.98); border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); border: 1px solid rgba(255, 255, 255, 0.4); transition: all 0.3s ease; text-align: center;">
+                <div class="institution-logo" style="margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; min-height: 150px;">
+                  <img src="assets/logos/IRCER-1-rouge.png" alt="IRCER" style="height: 130px; width: auto; max-height: 130px; max-width: 100%; object-fit: contain; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));" />
+                </div>
                 <div class="institution-info">
                   <h4 style="margin: 0; color: #1a365d; font-size: 0.9rem; font-weight: 600;"></h4>
                   <p style="margin: 0.25rem 0 0; color: #4a5568; font-size: 0.8rem; line-height: 1.4;"></p>
@@ -1719,361 +1749,264 @@
             </div>
           </div>
 
+          <h3 class="section-heading organizing-heading" style="color: #2E8B57; text-align: center; margin-bottom: 2.5rem; font-size: 1.8rem; font-weight: 600;">Organizing Committee</h3>
+          
           <!-- Organizing Committee Members -->
           <div class="speakers-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
             
+           <!-- Abdelkrim ABOURRICHE -->
+<article class="speaker-card" style="background: rgba(255, 255, 255, 0.95); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); transition: all 0.3s ease; text-align: center;">
+  <div class="speaker-img-container" style="position: relative; width: 100%; height: 280px; overflow: hidden;">
+    <img src="assets/committee/abourriche.jpg" alt="Abdelkrim ABOURRICHE" class="speaker-img" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='assets/og-placeholder.png'"/>
+    <div class="speaker-overlay" style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 0%,rgba(46,139,87,.8) 100%);display:flex;align-items:flex-end;padding:1rem;opacity:0;">
+      <span class="speaker-tag" style="background:#2E8B57;color:white;padding:.5rem 1rem;border-radius:20px;font-size:.8rem;font-weight:600;">Member</span>
+    </div>
+  </div>
+  <div class="speaker-info" style="padding:1.5rem;">
+    <h3>Abdelkrim ABOURRICHE</h3>
+    <p>Université Cadi Ayyad, ENSA-Safi</p>
+  </div>
+</article>
 
+<!-- Younes ABOULIATIM -->
+<article class="speaker-card" style="background: rgba(255, 255, 255, 0.95); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); transition: all 0.3s ease; text-align: center;">
+  <div class="speaker-img-container" style="position: relative; width: 100%; height: 280px; overflow: hidden;">
+    <img src="assets/committee/Younes Abouliatim.jpg" alt="Younes ABOULIATIM" class="speaker-img" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='assets/og-placeholder.png'"/>
+    <div class="speaker-overlay" style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 0%,rgba(46,139,87,.8) 100%);display:flex;align-items:flex-end;padding:1rem;opacity:0;">
+      <span class="speaker-tag">Member</span>
+    </div>
+  </div>
+  <div class="speaker-info"><h3>Younes ABOULIATIM</h3><p>Université Hassan II de Casablanca, ESTC</p></div>
+</article>
 
+<!-- Delia ARNAUD-CORMOS -->
+<article class="speaker-card">
+  <div class="speaker-img-container">
+    <img src="assets/committee/Delia ARNAUD-CORMOS.jpg" alt="Delia ARNAUD-CORMOS" class="speaker-img" onerror="this.src='assets/og-placeholder.png'"/>
+  </div>
+  <div class="speaker-info">
+    <h3>Delia ARNAUD-CORMOS</h3>
+    <p>Université de Limoges, XLIM</p>
+  </div>
+</article>
 
-            <!-- Abdelaziz BENHAMMOU -->
-            <article class="speaker-card" style="background: rgba(255, 255, 255, 0.95); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); transition: all 0.3s ease; text-align: center;">
-              <div class="speaker-img-container" style="position: relative; width: 100%; height: 280px; overflow: hidden;">
-                <img src="assets/committee/Photo_BENHAMMOU.jpeg" alt="Abdelaziz BENHAMMOU" class="speaker-img" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='assets/og-placeholder.png'" />
-                <div class="speaker-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, transparent 0%, rgba(46, 139, 87, 0.8) 100%); display: flex; align-items: flex-end; padding: 1rem; opacity: 0; transition: opacity 0.3s ease;">
-                  <span class="speaker-tag" style="background: #2E8B57; color: white; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">Member</span>
-                </div>
-              </div>
-              <div class="speaker-info" style="padding: 1.5rem;">
-                <h3 style="margin: 0; color: #1a365d; font-size: 1.2rem; font-weight: 600;">Abdelaziz BENHAMMOU</h3>
-                <p class="speaker-title" style="margin: 0.5rem 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">Université Cadi Ayyad, ENSA-Safi</p>
-              </div>
-            </article>
+<!-- Abdelaziz BENHAMMOU -->
+<article class="speaker-card">
+  <div class="speaker-img-container">
+    <img src="assets/committee/Photo_BENHAMMOU.jpeg" alt="Abdelaziz BENHAMMOU" class="speaker-img" onerror="this.src='assets/og-placeholder.png'"/>
+  </div>
+  <div class="speaker-info">
+    <h3>Abdelaziz BENHAMMOU</h3>
+    <p>Université Cadi Ayyad, ENSA-Safi</p>
+  </div>
+</article>
 
-            <!-- Abdelkrim ABOURRICHE -->
-            <article class="speaker-card" style="background: rgba(255, 255, 255, 0.95); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); transition: all 0.3s ease; text-align: center;">
-              <div class="speaker-img-container" style="position: relative; width: 100%; height: 280px; overflow: hidden;">
-                <img src="assets/committee/abourriche.jpg" alt="Abdelkrim ABOURRICHE" class="speaker-img" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='assets/og-placeholder.png'" />
-                <div class="speaker-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, transparent 0%, rgba(46, 139, 87, 0.8) 100%); display: flex; align-items: flex-end; padding: 1rem; opacity: 0; transition: opacity 0.3s ease;">
-                  <span class="speaker-tag" style="background: #2E8B57; color: white; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">Member</span>
-                </div>
-              </div>
-              <div class="speaker-info" style="padding: 1.5rem;">
-                <h3 style="margin: 0; color: #1a365d; font-size: 1.2rem; font-weight: 600;">Abdelkrim ABOURRICHE</h3>
-                <p class="speaker-title" style="margin: 0.5rem 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">Université Cadi Ayyad, ENSA-Safi</p>
-              </div>
-            </article>
+<!-- Ali CHOUKRI -->
+<article class="speaker-card">
+  <div class="speaker-img-container">
+    <img src="assets/committee/Ali CHOUKRI.jpg" alt="Ali CHOUKRI" class="speaker-img" onerror="this.src='assets/og-placeholder.png'"/>
+  </div>
+  <div class="speaker-info">
+    <h3>Ali CHOUKRI</h3>
+    <p>FSK Université Ibn Tofail de Kénitra</p>
+  </div>
+</article>
 
-            <!-- Ali CHOUKRI -->
-            <article class="speaker-card" style="background: rgba(255, 255, 255, 0.95); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); transition: all 0.3s ease; text-align: center;">
-              <div class="speaker-img-container" style="position: relative; width: 100%; height: 280px; overflow: hidden;">
-                <img src="assets/committee/Ali CHOUKRI.jpg" alt="Ali CHOUKRI" class="speaker-img" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='assets/og-placeholder.png'" />
-                <div class="speaker-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, transparent 0%, rgba(46, 139, 87, 0.8) 100%); display: flex; align-items: flex-end; padding: 1rem; opacity: 0; transition: opacity 0.3s ease;">
-                  <span class="speaker-tag" style="background: #2E8B57; color: white; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">Member</span>
-                </div>
-              </div>
-              <div class="speaker-info" style="padding: 1.5rem;">
-                <h3 style="margin: 0; color: #1a365d; font-size: 1.2rem; font-weight: 600;">Ali CHOUKRI</h3>
-                <p class="speaker-title" style="margin: 0.5rem 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">FSK Université Ibn Tofail de Kénitra</p>
-              </div>
-            </article>
+<!-- Claire DALMAY -->
+<article class="speaker-card">
+  <div class="speaker-img-container">
+    <img src="assets/committee/Photo Claire_DALMAY.jpg" alt="Claire DALMAY" class="speaker-img" onerror="this.src='assets/og-placeholder.png'"/>
+  </div>
+  <div class="speaker-info">
+    <h3>Claire DALMAY</h3>
+    <p>Université de Limoges, XLIM</p>
+  </div>
+</article>
 
-            <!-- Audrey PROROT -->
-            <article class="speaker-card" style="background: rgba(255, 255, 255, 0.95); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); transition: all 0.3s ease; text-align: center;">
-              <div class="speaker-img-container" style="position: relative; width: 100%; height: 280px; overflow: hidden;">
-                <img src="assets/committee/Photo_Audrey_Prorot.jpeg" alt="Audrey PROROT" class="speaker-img" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='assets/og-placeholder.png'" />
-                <div class="speaker-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, transparent 0%, rgba(46, 139, 87, 0.8) 100%); display: flex; align-items: flex-end; padding: 1rem; opacity: 0; transition: opacity 0.3s ease;">
-                  <span class="speaker-tag" style="background: #2E8B57; color: white; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">Member</span>
-                </div>
-              </div>
-              <div class="speaker-info" style="padding: 1.5rem;">
-                <h3 style="margin: 0; color: #1a365d; font-size: 1.2rem; font-weight: 600;">Audrey PROROT</h3>
-                <p class="speaker-title" style="margin: 0.5rem 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">Université de Limoges, E2LIM</p>
-              </div>
-            </article>
+<!-- Joanna DOS ANJOS -->
+<article class="speaker-card">
+  <div class="speaker-img-container">
+    <img src="assets/committee/Joanna DOS ANJOS.jpg" alt="Joanna DOS ANJOS" class="speaker-img" onerror="this.src='assets/og-placeholder.png'"/>
+  </div>
+  <div class="speaker-info">
+    <h3>Joanna DOS ANJOS</h3>
+    <p>Université de Limoges, ENSIL-ENSCI</p>
+  </div>
+</article>
 
-            <!-- Brahim MESSNAOUI -->
-            <article class="speaker-card" style="background: rgba(255, 255, 255, 0.95); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); transition: all 0.3s ease; text-align: center;">
-              <div class="speaker-img-container" style="position: relative; width: 100%; height: 280px; overflow: hidden;">
-                <img src="assets/committee/messnaoui.jpg" alt="Brahim MESSNAOUI" class="speaker-img" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='assets/og-placeholder.png'" />
-                <div class="speaker-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, transparent 0%, rgba(46, 139, 87, 0.8) 100%); display: flex; align-items: flex-end; padding: 1rem; opacity: 0; transition: opacity 0.3s ease;">
-                  <span class="speaker-tag" style="background: #2E8B57; color: white; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">Member</span>
-                </div>
-              </div>
-              <div class="speaker-info" style="padding: 1.5rem;">
-                <h3 style="margin: 0; color: #1a365d; font-size: 1.2rem; font-weight: 600;">Brahim MESSNAOUI</h3>
-                <p class="speaker-title" style="margin: 0.5rem 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">Université Cadi Ayyad, ENSA-Safi</p>
-              </div>
-            </article>
+<!-- Taha ELASSIMI -->
+<article class="speaker-card">
+  <div class="speaker-img-container">
+    <img src="assets/committee/El Assimi Taha.jpg" alt="Taha ELASSIMI" class="speaker-img" onerror="this.src='assets/og-placeholder.png'"/>
+  </div>
+  <div class="speaker-info">
+    <h3>Taha ELASSIMI</h3>
+    <p>Université Cadi Ayyad, ENSA-Safi</p>
+  </div>
+</article>
 
-            <!-- Cătălina Mihaela CULEA -->
-            <article class="speaker-card" style="background: rgba(255, 255, 255, 0.95); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); transition: all 0.3s ease; text-align: center;">
-              <div class="speaker-img-container" style="position: relative; width: 100%; height: 280px; overflow: hidden;">
-                <img src="assets/committee/Cătălina Mihaela CULEA.jpg" alt="Cătălina Mihaela CULEA" class="speaker-img" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='assets/og-placeholder.png'" />
-                <div class="speaker-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, transparent 0%, rgba(46, 139, 87, 0.8) 100%); display: flex; align-items: flex-end; padding: 1rem; opacity: 0; transition: opacity 0.3s ease;">
-                  <span class="speaker-tag" style="background: #2E8B57; color: white; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">Member</span>
-                </div>
-              </div>
-              <div class="speaker-info" style="padding: 1.5rem;">
-                <h3 style="margin: 0; color: #1a365d; font-size: 1.2rem; font-weight: 600;">Cătălina Mihaela CULEA</h3>
-                <p class="speaker-title" style="margin: 0.5rem 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">Université « Vasile Alecsandri » de Bacau</p>
-              </div>
-            </article>
+<!-- Youssef EL HAFIANE -->
+<article class="speaker-card">
+  <div class="speaker-img-container">
+    <img src="assets/committee/Youssef EL HAFIANE.jpg" alt="Youssef EL HAFIANE" class="speaker-img" onerror="this.src='assets/og-placeholder.png'"/>
+  </div>
+  <div class="speaker-info">
+    <h3>Youssef EL HAFIANE</h3>
+    <p>Université de Limoges, IRCER</p>
+  </div>
+</article>
 
-            <!-- Claire DALMAY -->
-            <article class="speaker-card" style="background: rgba(255, 255, 255, 0.95); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); transition: all 0.3s ease; text-align: center;">
-              <div class="speaker-img-container" style="position: relative; width: 100%; height: 280px; overflow: hidden;">
-                <img src="assets/committee/Photo Claire_DALMAY.jpg" alt="Claire DALMAY" class="speaker-img" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='assets/og-placeholder.png'" />
-                <div class="speaker-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, transparent 0%, rgba(46, 139, 87, 0.8) 100%); display: flex; align-items: flex-end; padding: 1rem; opacity: 0; transition: opacity 0.3s ease;">
-                  <span class="speaker-tag" style="background: #2E8B57; color: white; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">Member</span>
-                </div>
-              </div>
-              <div class="speaker-info" style="padding: 1.5rem;">
-                <h3 style="margin: 0; color: #1a365d; font-size: 1.2rem; font-weight: 600;">Claire DALMAY</h3>
-                <p class="speaker-title" style="margin: 0.5rem 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">Université de Limoges, XLIM</p>
-              </div>
-            </article>
+<!-- Oussama KHARROUFI -->
+<article class="speaker-card">
+  <div class="speaker-img-container">
+    <img src="assets/committee/oussama.jpg" alt="Oussama KHARROUFI" class="speaker-img" onerror="this.src='assets/og-placeholder.png'"/>
+  </div>
+  <div class="speaker-info">
+    <h3>Oussama KHARROUFI</h3>
+    <p>UM6P, MSN</p>
+  </div>
+</article>
 
-            <!-- Delia ARNAUD-CORMOS -->
-            <article class="speaker-card" style="background: rgba(255, 255, 255, 0.95); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); transition: all 0.3s ease; text-align: center;">
-              <div class="speaker-img-container" style="position: relative; width: 100%; height: 280px; overflow: hidden;">
-                <img src="assets/committee/Delia ARNAUD-CORMOS.jpg" alt="Delia ARNAUD-CORMOS" class="speaker-img" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='assets/og-placeholder.png'" />
-                <div class="speaker-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, transparent 0%, rgba(46, 139, 87, 0.8) 100%); display: flex; align-items: flex-end; padding: 1rem; opacity: 0; transition: opacity 0.3s ease;">
-                  <span class="speaker-tag" style="background: #2E8B57; color: white; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">Chair</span>
-                </div>
-              </div>
-              <div class="speaker-info" style="padding: 1.5rem;">
-                <h3 style="margin: 0; color: #1a365d; font-size: 1.2rem; font-weight: 600;">Delia ARNAUD-CORMOS</h3>
-                <p class="speaker-title" style="margin: 0.5rem 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">Université de Limoges, XLIM</p>
-              </div>
-            </article>
+<!-- Sanaa KOUZBOUR -->
+<article class="speaker-card">
+  <div class="speaker-img-container">
+    <img src="assets/committee/Sanaa Kouzbour.jpg" alt="Sanaa KOUZBOUR" class="speaker-img" onerror="this.src='assets/og-placeholder.png'"/>
+  </div>
+  <div class="speaker-info">
+    <h3>Sanaa KOUZBOUR</h3>
+    <p>Université Hassan II de Casablanca, ESTC</p>
+  </div>
+</article>
 
-            <!-- Elsa THUNE -->
-            <article class="speaker-card" style="background: rgba(255, 255, 255, 0.95); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); transition: all 0.3s ease; text-align: center;">
-              <div class="speaker-img-container" style="position: relative; width: 100%; height: 280px; overflow: hidden;">
-                <img src="assets/committee/Elsa_Thune.jpg" alt="Elsa THUNE" class="speaker-img" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='assets/og-placeholder.png'" />
-                <div class="speaker-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, transparent 0%, rgba(46, 139, 87, 0.8) 100%); display: flex; align-items: flex-end; padding: 1rem; opacity: 0; transition: opacity 0.3s ease;">
-                  <span class="speaker-tag" style="background: #2E8B57; color: white; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">Member</span>
-                </div>
-              </div>
-              <div class="speaker-info" style="padding: 1.5rem;">
-                <h3 style="margin: 0; color: #1a365d; font-size: 1.2rem; font-weight: 600;">Elsa THUNE</h3>
-                <p class="speaker-title" style="margin: 0.5rem 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">Université de Limoges, IRCER</p>
-              </div>
-            </article>
+<!-- Patrick LEPRAT -->
+<article class="speaker-card">
+  <div class="speaker-img-container">
+    <img src="assets/committee/Photo Patrick LEPRAT.jpg" alt="Patrick LEPRAT" class="speaker-img" onerror="this.src='assets/og-placeholder.png'"/>
+  </div>
+  <div class="speaker-info">
+    <h3>Patrick LEPRAT</h3>
+    <p>Université de Limoges, E2LIM</p>
+  </div>
+</article>
 
-            <!-- George CULEA -->
-            <article class="speaker-card" style="background: rgba(255, 255, 255, 0.95); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); transition: all 0.3s ease; text-align: center;">
-              <div class="speaker-img-container" style="position: relative; width: 100%; height: 280px; overflow: hidden;">
-                <img src="assets/committee/George CULEA.jpg" alt="George CULEA" class="speaker-img" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='assets/og-placeholder.png'" />
-                <div class="speaker-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, transparent 0%, rgba(46, 139, 87, 0.8) 100%); display: flex; align-items: flex-end; padding: 1rem; opacity: 0; transition: opacity 0.3s ease;">
-                  <span class="speaker-tag" style="background: #2E8B57; color: white; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">Member</span>
-                </div>
-              </div>
-              <div class="speaker-info" style="padding: 1.5rem;">
-                <h3 style="margin: 0; color: #1a365d; font-size: 1.2rem; font-weight: 600;">George CULEA</h3>
-                <p class="speaker-title" style="margin: 0.5rem 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">Université « Vasile Alecsandri » de Bacau</p>
-              </div>
-            </article>
+<!-- Philippe LEVEQUE -->
+<article class="speaker-card">
+  <div class="speaker-img-container">
+    <img src="assets/committee/Philippe Leveque.png" alt="Philippe LEVEQUE" class="speaker-img" onerror="this.src='assets/og-placeholder.png'"/>
+  </div>
+  <div class="speaker-info">
+    <h3>Philippe LEVEQUE</h3>
+    <p>CNRS, Université de Limoges, XLIM</p>
+  </div>
+</article>
 
-            <!-- Hicham Ait Ali Ouydir -->
-            <article class="speaker-card" style="background: rgba(255, 255, 255, 0.95); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); transition: all 0.3s ease; text-align: center;">
-              <div class="speaker-img-container" style="position: relative; width: 100%; height: 280px; overflow: hidden;">
-                <img src="assets/committee/Hicham Ait Ali Ouydir.jpg" alt="Hicham Ait Ali Ouydir" class="speaker-img" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='assets/og-placeholder.png'" />
-                <div class="speaker-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, transparent 0%, rgba(46, 139, 87, 0.8) 100%); display: flex; align-items: flex-end; padding: 1rem; opacity: 0; transition: opacity 0.3s ease;">
-                  <span class="speaker-tag" style="background: #2E8B57; color: white; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">Member</span>
-                </div>
-              </div>
-              <div class="speaker-info" style="padding: 1.5rem;">
-                <h3 style="margin: 0; color: #1a365d; font-size: 1.2rem; font-weight: 600;">Hicham Ait Ali Ouydir</h3>
-                <p class="speaker-title" style="margin: 0.5rem 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">Université Hassan II de Casablanca, ESTC</p>
-              </div>
-            </article>
+<!-- Youssef MEJDOUB -->
+<article class="speaker-card">
+  <div class="speaker-img-container">
+    <img src="assets/committee/mejdoub youssef.JPG" alt="Youssef MEJDOUB" class="speaker-img" onerror="this.src='assets/og-placeholder.png'"/>
+  </div>
+  <div class="speaker-info">
+    <h3>Youssef MEJDOUB</h3>
+    <p>Université Hassan II de Casablanca, ESTC</p>
+  </div>
+</article>
 
-            <!-- Joanna DOS ANJOS -->
-            <article class="speaker-card" style="background: rgba(255, 255, 255, 0.95); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); transition: all 0.3s ease; text-align: center;">
-              <div class="speaker-img-container" style="position: relative; width: 100%; height: 280px; overflow: hidden;">
-                <img src="assets/committee/Joanna DOS ANJOS.jpg" alt="Joanna DOS ANJOS" class="speaker-img" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='assets/og-placeholder.png'" />
-                <div class="speaker-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, transparent 0%, rgba(46, 139, 87, 0.8) 100%); display: flex; align-items: flex-end; padding: 1rem; opacity: 0; transition: opacity 0.3s ease;">
-                  <span class="speaker-tag" style="background: #2E8B57; color: white; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">Member</span>
-                </div>
-              </div>
-              <div class="speaker-info" style="padding: 1.5rem;">
-                <h3 style="margin: 0; color: #1a365d; font-size: 1.2rem; font-weight: 600;">Joanna DOS ANJOS</h3>
-                <p class="speaker-title" style="margin: 0.5rem 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">Université de Limoges, Service communication ENSIL-ENSCI</p>
-              </div>
-            </article>
+<!-- Karine MOUNIER -->
+<article class="speaker-card">
+  <div class="speaker-img-container">
+    <img src="assets/committee/Karine MOUNIER.jpg" alt="Karine MOUNIER" class="speaker-img" onerror="this.src='assets/og-placeholder.png'"/>
+  </div>
+  <div class="speaker-info">
+    <h3>Karine MOUNIER</h3>
+    <p>Université de Limoges, ENSIL-ENSCI</p>
+  </div>
+</article>
 
-            <!-- Karine MOUNIER -->
-            <article class="speaker-card" style="background: rgba(255, 255, 255, 0.95); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); transition: all 0.3s ease; text-align: center;">
-              <div class="speaker-img-container" style="position: relative; width: 100%; height: 280px; overflow: hidden;">
-                <img src="assets/committee/Karine MOUNIER.jpg" alt="Karine MOUNIER" class="speaker-img" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='assets/og-placeholder.png'" />
-                <div class="speaker-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, transparent 0%, rgba(46, 139, 87, 0.8) 100%); display: flex; align-items: flex-end; padding: 1rem; opacity: 0; transition: opacity 0.3s ease;">
-                  <span class="speaker-tag" style="background: #2E8B57; color: white; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">Member</span>
-                </div>
-              </div>
-              <div class="speaker-info" style="padding: 1.5rem;">
-                <h3 style="margin: 0; color: #1a365d; font-size: 1.2rem; font-weight: 600;">Karine MOUNIER</h3>
-                <p class="speaker-title" style="margin: 0.5rem 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">Université de Limoges, Service communication ENSIL-ENSCI</p>
-              </div>
-            </article>
+<!-- Audrey PROROT -->
+<article class="speaker-card">
+  <div class="speaker-img-container">
+    <img src="assets/committee/Photo_Audrey_Prorot.jpeg" alt="Audrey PROROT" class="speaker-img" onerror="this.src='assets/og-placeholder.png'"/>
+  </div>
+  <div class="speaker-info">
+    <h3>Audrey PROROT</h3>
+    <p>Université de Limoges, E2LIM</p>
+  </div>
+</article>
 
-            <!-- Mirela PANAINTE-LEHĂDUȘ -->
-            <article class="speaker-card" style="background: rgba(255, 255, 255, 0.95); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); transition: all 0.3s ease; text-align: center;">
-              <div class="speaker-img-container" style="position: relative; width: 100%; height: 280px; overflow: hidden;">
-                <img src="assets/committee/Mirela PANAINTE-LEHĂDUȘ.jpg" alt="Mirela PANAINTE-LEHĂDUȘ" class="speaker-img" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='assets/og-placeholder.png'" />
-                <div class="speaker-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, transparent 0%, rgba(46, 139, 87, 0.8) 100%); display: flex; align-items: flex-end; padding: 1rem; opacity: 0; transition: opacity 0.3s ease;">
-                  <span class="speaker-tag" style="background: #2E8B57; color: white; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">Member</span>
-                </div>
-              </div>
-              <div class="speaker-info" style="padding: 1.5rem;">
-                <h3 style="margin: 0; color: #1a365d; font-size: 1.2rem; font-weight: 600;">Mirela PANAINTE-LEHĂDUȘ</h3>
-                <p class="speaker-title" style="margin: 0.5rem 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">Université « Vasile Alecsandri » de Bacau</p>
-              </div>
-            </article>
+<!-- Youssef TAMRAOUI -->
+<article class="speaker-card">
+  <div class="speaker-img-container">
+    <img src="assets/tamraoui.png" alt="Youssef TAMRAOUI" class="speaker-img" onerror="this.src='assets/og-placeholder.png'"/>
+  </div>
+  <div class="speaker-info">
+    <h3>Youssef TAMRAOUI</h3>
+    <p>UM6P, MSN</p>
+  </div>
+</article>
 
-            <!-- Oussama KHARROUFI -->
-            <article class="speaker-card" style="background: rgba(255, 255, 255, 0.95); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); transition: all 0.3s ease; text-align: center;">
-              <div class="speaker-img-container" style="position: relative; width: 100%; height: 280px; overflow: hidden;">
-                <img src="assets/committee/oussama.jpg" alt="Oussama KHARROUFI" class="speaker-img" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='assets/og-placeholder.png'" />
-                <div class="speaker-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, transparent 0%, rgba(46, 139, 87, 0.8) 100%); display: flex; align-items: flex-end; padding: 1rem; opacity: 0; transition: opacity 0.3s ease;">
-                  <span class="speaker-tag" style="background: #2E8B57; color: white; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">Member</span>
-                </div>
-              </div>
-              <div class="speaker-info" style="padding: 1.5rem;">
-                <h3 style="margin: 0; color: #1a365d; font-size: 1.2rem; font-weight: 600;">Oussama KHARROUFI</h3>
-                <p class="speaker-title" style="margin: 0.5rem 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">University Mohammed VI Polytechnic - MSN</p>
-              </div>
-            </article>
+<!-- Said MANSOURI -->
+<article class="speaker-card">
+  <div class="speaker-img-container">
+    <img src="assets/committee/mansouri.jpg" alt="Said MANSOURI" class="speaker-img" onerror="this.src='assets/og-placeholder.png'"/>
+  </div>
+  <div class="speaker-info">
+    <h3>Said MANSOURI</h3>
+    <p>UM6P, MSN</p>
+  </div>
+</article>
 
-            <!-- Patrick LEPRAT -->
-            <article class="speaker-card" style="background: rgba(255, 255, 255, 0.95); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); transition: all 0.3s ease; text-align: center;">
-              <div class="speaker-img-container" style="position: relative; width: 100%; height: 280px; overflow: hidden;">
-                <img src="assets/committee/Photo Patrick LEPRAT.jpg" alt="Patrick LEPRAT" class="speaker-img" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='assets/og-placeholder.png'" />
-                <div class="speaker-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, transparent 0%, rgba(46, 139, 87, 0.8) 100%); display: flex; align-items: flex-end; padding: 1rem; opacity: 0; transition: opacity 0.3s ease;">
-                  <span class="speaker-tag" style="background: #2E8B57; color: white; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">Member</span>
-                </div>
-              </div>
-              <div class="speaker-info" style="padding: 1.5rem;">
-                <h3 style="margin: 0; color: #1a365d; font-size: 1.2rem; font-weight: 600;">Patrick LEPRAT</h3>
-                <p class="speaker-title" style="margin: 0.5rem 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">Université de Limoges, E2LIM</p>
-              </div>
-            </article>
+<!-- Elsa THUNE -->
+<article class="speaker-card">
+  <div class="speaker-img-container">
+    <img src="assets/committee/Elsa_Thune.jpg" alt="Elsa THUNE" class="speaker-img" onerror="this.src='assets/og-placeholder.png'"/>
+  </div>
+  <div class="speaker-info">
+    <h3>Elsa THUNE</h3>
+    <p>Université de Limoges, IRCER</p>
+  </div>
+</article>
 
-            <!-- Philippe LEVEQUE -->
-            <article class="speaker-card" style="background: rgba(255, 255, 255, 0.95); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); transition: all 0.3s ease; text-align: center;">
-              <div class="speaker-img-container" style="position: relative; width: 100%; height: 280px; overflow: hidden;">
-                <img src="assets/committee/Philippe Leveque.png" alt="Philippe LEVEQUE" class="speaker-img" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='assets/og-placeholder.png'" />
-                <div class="speaker-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, transparent 0%, rgba(46, 139, 87, 0.8) 100%); display: flex; align-items: flex-end; padding: 1rem; opacity: 0; transition: opacity 0.3s ease;">
-                  <span class="speaker-tag" style="background: #2E8B57; color: white; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">Member</span>
-                </div>
-              </div>
-              <div class="speaker-info" style="padding: 1.5rem;">
-                <h3 style="margin: 0; color: #1a365d; font-size: 1.2rem; font-weight: 600;">Philippe LEVEQUE</h3>
-                <p class="speaker-title" style="margin: 0.5rem 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">CNRS, Université de Limoges, XLIM</p>
-              </div>
-            </article>
-
-            <!-- Said MANSOURI -->
-            <article class="speaker-card" style="background: rgba(255, 255, 255, 0.95); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); transition: all 0.3s ease; text-align: center;">
-              <div class="speaker-img-container" style="position: relative; width: 100%; height: 280px; overflow: hidden;">
-                <img src="assets/committee/mansouri.jpg" alt="Said MANSOURI" class="speaker-img" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='assets/og-placeholder.png'" />
-                <div class="speaker-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, transparent 0%, rgba(46, 139, 87, 0.8) 100%); display: flex; align-items: flex-end; padding: 1rem; opacity: 0; transition: opacity 0.3s ease;">
-                  <span class="speaker-tag" style="background: #2E8B57; color: white; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">Member</span>
-                </div>
-              </div>
-              <div class="speaker-info" style="padding: 1.5rem;">
-                <h3 style="margin: 0; color: #1a365d; font-size: 1.2rem; font-weight: 600;">Said MANSOURI</h3>
-                <p class="speaker-title" style="margin: 0.5rem 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">University Mohammed VI Polytechnic - MSN</p>
-              </div>
-            </article>
-
-            <!-- Sanaa KOUZBOUR -->
-            <article class="speaker-card" style="background: rgba(255, 255, 255, 0.95); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); transition: all 0.3s ease; text-align: center;">
-              <div class="speaker-img-container" style="position: relative; width: 100%; height: 280px; overflow: hidden;">
-                <img src="assets/committee/Sanaa Kouzbour.jpg" alt="Sanaa KOUZBOUR" class="speaker-img" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='assets/og-placeholder.png'" />
-                <div class="speaker-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, transparent 0%, rgba(46, 139, 87, 0.8) 100%); display: flex; align-items: flex-end; padding: 1rem; opacity: 0; transition: opacity 0.3s ease;">
-                  <span class="speaker-tag" style="background: #2E8B57; color: white; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">Member</span>
-                </div>
-              </div>
-              <div class="speaker-info" style="padding: 1.5rem;">
-                <h3 style="margin: 0; color: #1a365d; font-size: 1.2rem; font-weight: 600;">Sanaa KOUZBOUR</h3>
-                <p class="speaker-title" style="margin: 0.5rem 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">Université Hassan II de Casablanca, ESTC</p>
-              </div>
-            </article>
-
-            <!-- Taha ELASSIMI -->
-            <article class="speaker-card" style="background: rgba(255, 255, 255, 0.95); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); transition: all 0.3s ease; text-align: center;">
-              <div class="speaker-img-container" style="position: relative; width: 100%; height: 280px; overflow: hidden;">
-                <img src="assets/committee/El Assimi Taha.jpg" alt="Taha ELASSIMI" class="speaker-img" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='assets/og-placeholder.png'" />
-                <div class="speaker-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, transparent 0%, rgba(46, 139, 87, 0.8) 100%); display: flex; align-items: flex-end; padding: 1rem; opacity: 0; transition: opacity 0.3s ease;">
-                  <span class="speaker-tag" style="background: #2E8B57; color: white; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">Member</span>
-                </div>
-              </div>
-              <div class="speaker-info" style="padding: 1.5rem;">
-                <h3 style="margin: 0; color: #1a365d; font-size: 1.2rem; font-weight: 600;">Taha ELASSIMI</h3>
-                <p class="speaker-title" style="margin: 0.5rem 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">Université Cadi Ayyad, ENSA-Safi</p>
-              </div>
-            </article>
-
-            <!-- Younes ABOULIATIM -->
-            <article class="speaker-card" style="background: rgba(255, 255, 255, 0.95); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); transition: all 0.3s ease; text-align: center;">
-              <div class="speaker-img-container" style="position: relative; width: 100%; height: 280px; overflow: hidden;">
-                <img src="assets/committee/Younes Abouliatim.jpg" alt="Younes ABOULIATIM" class="speaker-img" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='assets/og-placeholder.png'" />
-                <div class="speaker-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, transparent 0%, rgba(46, 139, 87, 0.8) 100%); display: flex; align-items: flex-end; padding: 1rem; opacity: 0; transition: opacity 0.3s ease;">
-                  <span class="speaker-tag" style="background: #2E8B57; color: white; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">Member</span>
-                </div>
-              </div>
-              <div class="speaker-info" style="padding: 1.5rem;">
-                <h3 style="margin: 0; color: #1a365d; font-size: 1.2rem; font-weight: 600;">Younes ABOULIATIM</h3>
-                <p class="speaker-title" style="margin: 0.5rem 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">Université Hassan II de Casablanca, ESTC</p>
-              </div>
-            </article>
-
-            <!-- Youssef EL HAFIANE -->
-            <article class="speaker-card" style="background: rgba(255, 255, 255, 0.95); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); transition: all 0.3s ease; text-align: center;">
-              <div class="speaker-img-container" style="position: relative; width: 100%; height: 280px; overflow: hidden;">
-                <img src="assets/committee/Youssef EL HAFIANE.jpg" alt="Youssef EL HAFIANE" class="speaker-img" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='assets/og-placeholder.png'" />
-                <div class="speaker-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, transparent 0%, rgba(46, 139, 87, 0.8) 100%); display: flex; align-items: flex-end; padding: 1rem; opacity: 0; transition: opacity 0.3s ease;">
-                  <span class="speaker-tag" style="background: #2E8B57; color: white; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">Member</span>
-                </div>
-              </div>
-              <div class="speaker-info" style="padding: 1.5rem;">
-                <h3 style="margin: 0; color: #1a365d; font-size: 1.2rem; font-weight: 600;">Youssef EL HAFIANE</h3>
-                <p class="speaker-title" style="margin: 0.5rem 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">Université de Limoges, IRCER</p>
-              </div>
-            </article>
-
-            <!-- Youssef MEJDOUB -->
-            <article class="speaker-card" style="background: rgba(255, 255, 255, 0.95); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); transition: all 0.3s ease; text-align: center;">
-              <div class="speaker-img-container" style="position: relative; width: 100%; height: 280px; overflow: hidden;">
-                <img src="assets/committee/mejdoub youssef.JPG" alt="Youssef MEJDOUB" class="speaker-img" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='assets/og-placeholder.png'" />
-                <div class="speaker-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, transparent 0%, rgba(46, 139, 87, 0.8) 100%); display: flex; align-items: flex-end; padding: 1rem; opacity: 0; transition: opacity 0.3s ease;">
-                  <span class="speaker-tag" style="background: #2E8B57; color: white; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">Member</span>
-                </div>
-              </div>
-              <div class="speaker-info" style="padding: 1.5rem;">
-                <h3 style="margin: 0; color: #1a365d; font-size: 1.2rem; font-weight: 600;">Youssef MEJDOUB</h3>
-                <p class="speaker-title" style="margin: 0.5rem 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">Université Hassan II de Casablanca, ESTC</p>
-              </div>
-            </article>
-
-            <!-- Youssef TAMRAOUI -->
-            <article class="speaker-card" style="background: rgba(255, 255, 255, 0.95); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); transition: all 0.3s ease; text-align: center;">
-              <div class="speaker-img-container" style="position: relative; width: 100%; height: 280px; overflow: hidden;">
-                <img src="assets/tamraoui.png" alt="Youssef TAMRAOUI" class="speaker-img" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='assets/og-placeholder.png'" />
-                <div class="speaker-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, transparent 0%, rgba(46, 139, 87, 0.8) 100%); display: flex; align-items: flex-end; padding: 1rem; opacity: 0; transition: opacity 0.3s ease;">
-                  <span class="speaker-tag" style="background: #2E8B57; color: white; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">Member</span>
-                </div>
-              </div>
-              <div class="speaker-info" style="padding: 1.5rem;">
-                <h3 style="margin: 0; color: #1a365d; font-size: 1.2rem; font-weight: 600;">Youssef TAMRAOUI</h3>
-                <p class="speaker-title" style="margin: 0.5rem 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">University Mohammed VI Polytechnic - MSN</p>
-              </div>
-            </article>
+<!-- Remaining members kept (CULEA, MESSNAOUI, etc.) -->
           </div>
-        </div>
+          </div>
       </div>
 
-      
+
 
 <!-- Scientific Committee -->
       <div class="container">
         <div class="committee-section" style="padding: 3rem 0;">
-          <h3 class="committee-heading" data-i18n="org.heading" style="color: #2E8B57; text-align: center; margin-bottom: 2.5rem; font-size: 1.8rem; font-weight: 600;">Scientific Committee</h3>
+          <h3 class="committee-heading" style="color: #2E8B57; text-align: center; margin-bottom: 2.5rem; font-size: 1.8rem; font-weight: 600;">Scientific Committee</h3>
           
           <div class="committee-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
             
-            <!-- Committee Member 1 -->
+            <!-- Committee Member 1 - Abdelkrim ABOURRICHE -->
+            <div class="committee-member" style="background: #f0f7f4; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-left: 4px solid #2E8B57; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+              <div class="member-header" style="display: flex; align-items: center; margin-bottom: 1rem;">
+                <div class="member-avatar" style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #2E8B57, #1e5c3a); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem; margin-right: 1rem;">
+                  BA
+                </div>
+                <div class="member-info">
+                  <h4 style="margin: 0; color: #1a365d; font-size: 1.1rem; font-weight: 600;">Abdelkrim ABOURRICHE</h4>
+                  <p style="margin: 0.25rem 0 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">UCA / Safi - Marrakech</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Committee Member 2 - Younes ABOULIATIM -->
+            <div class="committee-member" style="background: #f0f7f4; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-left: 4px solid #2E8B57; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+              <div class="member-header" style="display: flex; align-items: center; margin-bottom: 1rem;">
+                <div class="member-avatar" style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #2E8B57, #1e5c3a); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem; margin-right: 1rem;">
+                  YA
+                </div>
+                <div class="member-info">
+                  <h4 style="margin: 0; color: #1a365d; font-size: 1.1rem; font-weight: 600;">Younes ABOULIATIM</h4>
+                  <p style="margin: 0.25rem 0 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">UH2 / Casablanca</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Committee Member 3 - Delia ARNAUD-CORMOS -->
             <div class="committee-member" style="background: #f0f7f4; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-left: 4px solid #2E8B57; transition: transform 0.3s ease, box-shadow 0.3s ease;">
               <div class="member-header" style="display: flex; align-items: center; margin-bottom: 1rem;">
                 <div class="member-avatar" style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #2E8B57, #1e5c3a); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem; margin-right: 1rem;">
@@ -2084,116 +2017,35 @@
                   <p style="margin: 0.25rem 0 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">Université de Limoges, XLIM</p>
                 </div>
               </div>
-              <div class="member-details" style="color: #4a5568; font-size: 0.9rem; line-height: 1.5;">
-              </div>
             </div>
 
-            <!-- Committee Member 2 -->
+            <!-- Committee Member 4 - Ahmed BACHAR -->
             <div class="committee-member" style="background: #f0f7f4; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-left: 4px solid #2E8B57; transition: transform 0.3s ease, box-shadow 0.3s ease;">
               <div class="member-header" style="display: flex; align-items: center; margin-bottom: 1rem;">
                 <div class="member-avatar" style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #2E8B57, #1e5c3a); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem; margin-right: 1rem;">
-                  ND
+                  AB
                 </div>
                 <div class="member-info">
-                  <h4 style="margin: 0; color: #1a365d; font-size: 1.1rem; font-weight: 600;">Nicolas TESSIER-DOYEN</h4>
-                  <p style="margin: 0.25rem 0 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">Université de Limoges, IRCER</p>
+                  <h4 style="margin: 0; color: #1a365d; font-size: 1.1rem; font-weight: 600;">Ahmed BACHAR</h4>
+                  <p style="margin: 0.25rem 0 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">UIZ / Agadir</p>
                 </div>
-              </div>
-              <div class="member-details" style="color: #4a5568; font-size: 0.9rem; line-height: 1.5;">
               </div>
             </div>
 
-            <!-- Committee Member 3 -->
+            <!-- Committee Member 5 - Abdelaziz BENHAMMOU -->
             <div class="committee-member" style="background: #f0f7f4; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-left: 4px solid #2E8B57; transition: transform 0.3s ease, box-shadow 0.3s ease;">
               <div class="member-header" style="display: flex; align-items: center; margin-bottom: 1rem;">
                 <div class="member-avatar" style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #2E8B57, #1e5c3a); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem; margin-right: 1rem;">
-                  ET
+                  AB
                 </div>
                 <div class="member-info">
-                  <h4 style="margin: 0; color: #1a365d; font-size: 1.1rem; font-weight: 600;">Elsa THUNE</h4>
-                  <p style="margin: 0.25rem 0 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">Université de Limoges, XLIM</p>
+                  <h4 style="margin: 0; color: #1a365d; font-size: 1.1rem; font-weight: 600;">Abdelaziz BENHAMMOU</h4>
+                  <p style="margin: 0.25rem 0 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">UCA / Safi - Marrakech</p>
                 </div>
-              </div>
-              <div class="member-details" style="color: #4a5568; font-size: 0.9rem; line-height: 1.5;">
               </div>
             </div>
 
-            <!-- Committee Member 4 -->
-            <div class="committee-member" style="background: #f0f7f4; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-left: 4px solid #2E8B57; transition: transform 0.3s ease, box-shadow 0.3s ease;">
-              <div class="member-header" style="display: flex; align-items: center; margin-bottom: 1rem;">
-                <div class="member-avatar" style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #2E8B57, #1e5c3a); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem; margin-right: 1rem;">
-                  YH
-                </div>
-                <div class="member-info">
-                  <h4 style="margin: 0; color: #1a365d; font-size: 1.1rem; font-weight: 600;">Youssef EL HAFIANE</h4>
-                  <p style="margin: 0.25rem 0 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">Université de Limoges, XLIM</p>
-                </div>
-              </div>
-              <div class="member-details" style="color: #4a5568; font-size: 0.9rem; line-height: 1.5;">
-              </div>
-            </div>
-
-            <!-- Committee Member 5 -->
-            <div class="committee-member" style="background: #f0f7f4; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-left: 4px solid #2E8B57; transition: transform 0.3s ease, box-shadow 0.3s ease;">
-              <div class="member-header" style="display: flex; align-items: center; margin-bottom: 1rem;">
-                <div class="member-avatar" style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #2E8B57, #1e5c3a); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem; margin-right: 1rem;">
-                  CD
-                </div>
-                <div class="member-info">
-                  <h4 style="margin: 0; color: #1a365d; font-size: 1.1rem; font-weight: 600;">Claire DALMAY</h4>
-                  <p style="margin: 0.25rem 0 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">CNRS, Université de Limoges, XLIM</p>
-                </div>
-              </div>
-              <div class="member-details" style="color: #4a5568; font-size: 0.9rem; line-height: 1.5;">
-              </div>
-            </div>
-
-            <!-- Committee Member 6 -->
-            <div class="committee-member" style="background: #f0f7f4; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-left: 4px solid #2E8B57; transition: transform 0.3s ease, box-shadow 0.3s ease;">
-              <div class="member-header" style="display: flex; align-items: center; margin-bottom: 1rem;">
-                <div class="member-avatar" style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #2E8B57, #1e5c3a); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem; margin-right: 1rem;">
-                  GC
-                </div>
-                <div class="member-info">
-                  <h4 style="margin: 0; color: #1a365d; font-size: 1.1rem; font-weight: 600;">George CULEA</h4>
-                  <p style="margin: 0.25rem 0 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">Université «  Vasile Alecsandri »  de Bacau</p>
-                </div>
-              </div>
-              <div class="member-details" style="color: #4a5568; font-size: 0.9rem; line-height: 1.5;">
-              </div>
-            </div>
-
-            <!-- Committee Member 7 -->
-            <div class="committee-member" style="background: #f0f7f4; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-left: 4px solid #2E8B57; transition: transform 0.3s ease, box-shadow 0.3s ease;">
-              <div class="member-header" style="display: flex; align-items: center; margin-bottom: 1rem;">
-                <div class="member-avatar" style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #2E8B57, #1e5c3a); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem; margin-right: 1rem;">
-                  GC
-                </div>
-                <div class="member-info">
-                  <h4 style="margin: 0; color: #1a365d; font-size: 1.1rem; font-weight: 600;">Philippe LEVEQUE</h4>
-                  <p style="margin: 0.25rem 0 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">CNRS, Université de Limoges, XLIM</p>
-                </div>
-              </div>
-              <div class="member-details" style="color: #4a5568; font-size: 0.9rem; line-height: 1.5;">
-              </div>
-            </div>
-
-            <!-- Committee Member 8 -->
-            <div class="committee-member" style="background: #f0f7f4; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-left: 4px solid #2E8B57; transition: transform 0.3s ease, box-shadow 0.3s ease;">
-              <div class="member-header" style="display: flex; align-items: center; margin-bottom: 1rem;">
-                <div class="member-avatar" style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #2E8B57, #1e5c3a); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem; margin-right: 1rem;">
-                  CC
-                </div>
-                <div class="member-info">
-                  <h4 style="margin: 0; color: #1a365d; font-size: 1.1rem; font-weight: 600;">Cătălina Mihaela CULEA</h4>
-                  <p style="margin: 0.25rem 0 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">CNRS, Université de Limoges, XLIM</p>
-                </div>
-              </div>
-              <div class="member-details" style="color: #4a5568; font-size: 0.9rem; line-height: 1.5;">
-              </div>
-            </div>
-
-            <!-- Committee Member 9 -->
+            <!-- Committee Member 6 - Vincent COUDERC -->
             <div class="committee-member" style="background: #f0f7f4; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-left: 4px solid #2E8B57; transition: transform 0.3s ease, box-shadow 0.3s ease;">
               <div class="member-header" style="display: flex; align-items: center; margin-bottom: 1rem;">
                 <div class="member-avatar" style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #2E8B57, #1e5c3a); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem; margin-right: 1rem;">
@@ -2204,26 +2056,87 @@
                   <p style="margin: 0.25rem 0 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">Université de Limoges, XLIM</p>
                 </div>
               </div>
-              <div class="member-details" style="color: #4a5568; font-size: 0.9rem; line-height: 1.5;">
-              </div>
             </div>
 
-            <!-- Committee Member 10 -->
+            <!-- Committee Member 7 - Claire DALMAY -->
             <div class="committee-member" style="background: #f0f7f4; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-left: 4px solid #2E8B57; transition: transform 0.3s ease, box-shadow 0.3s ease;">
               <div class="member-header" style="display: flex; align-items: center; margin-bottom: 1rem;">
                 <div class="member-avatar" style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #2E8B57, #1e5c3a); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem; margin-right: 1rem;">
-                  SS
+                  CD
                 </div>
                 <div class="member-info">
-                  <h4 style="margin: 0; color: #1a365d; font-size: 1.1rem; font-weight: 600;">Stéphanie SAHUGUEDE</h4>
-                  <p style="margin: 0.25rem 0 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">Université de Limoges, E2LIM</p>
+                  <h4 style="margin: 0; color: #1a365d; font-size: 1.1rem; font-weight: 600;">Claire DALMAY</h4>
+                  <p style="margin: 0.25rem 0 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">CNRS, Université de Limoges, XLIM</p>
                 </div>
-              </div>
-              <div class="member-details" style="color: #4a5568; font-size: 0.9rem; line-height: 1.5;">
               </div>
             </div>
 
-            <!-- Committee Member 11 -->
+            <!-- Committee Member 8 - Mehdi ELBOUCHTI -->
+            <div class="committee-member" style="background: #f0f7f4; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-left: 4px solid #2E8B57; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+              <div class="member-header" style="display: flex; align-items: center; margin-bottom: 1rem;">
+                <div class="member-avatar" style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #2E8B57, #1e5c3a); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem; margin-right: 1rem;">
+                  ME
+                </div>
+                <div class="member-info">
+                  <h4 style="margin: 0; color: #1a365d; font-size: 1.1rem; font-weight: 600;">Mehdi ELBOUCHTI</h4>
+                  <p style="margin: 0.25rem 0 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">ESITH / Casablanca</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Committee Member 9 - Youssef EL HAFIANE -->
+            <div class="committee-member" style="background: #f0f7f4; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-left: 4px solid #2E8B57; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+              <div class="member-header" style="display: flex; align-items: center; margin-bottom: 1rem;">
+                <div class="member-avatar" style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #2E8B57, #1e5c3a); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem; margin-right: 1rem;">
+                  YH
+                </div>
+                <div class="member-info">
+                  <h4 style="margin: 0; color: #1a365d; font-size: 1.1rem; font-weight: 600;">Youssef EL HAFIANE</h4>
+                  <p style="margin: 0.25rem 0 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">Université de Limoges, IRCER</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Committee Member 10 - Geneviève FEUILLADE -->
+            <div class="committee-member" style="background: #f0f7f4; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-left: 4px solid #2E8B57; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+              <div class="member-header" style="display: flex; align-items: center; margin-bottom: 1rem;">
+                <div class="member-avatar" style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #2E8B57, #1e5c3a); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem; margin-right: 1rem;">
+                  GF
+                </div>
+                <div class="member-info">
+                  <h4 style="margin: 0; color: #1a365d; font-size: 1.1rem; font-weight: 600;">Geneviève FEUILLADE</h4>
+                  <p style="margin: 0.25rem 0 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">E2LIM</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Committee Member 11 - Abdelali IDER -->
+            <div class="committee-member" style="background: #f0f7f4; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-left: 4px solid #2E8B57; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+              <div class="member-header" style="display: flex; align-items: center; margin-bottom: 1rem;">
+                <div class="member-avatar" style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #2E8B57, #1e5c3a); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem; margin-right: 1rem;">
+                  AI
+                </div>
+                <div class="member-info">
+                  <h4 style="margin: 0; color: #1a365d; font-size: 1.1rem; font-weight: 600;">Abdelali IDER</h4>
+                  <p style="margin: 0.25rem 0 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">UHP / Settat</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Committee Member 12 - Sanaa KOUZBOUR -->
+            <div class="committee-member" style="background: #f0f7f4; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-left: 4px solid #2E8B57; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+              <div class="member-header" style="display: flex; align-items: center; margin-bottom: 1rem;">
+                <div class="member-avatar" style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #2E8B57, #1e5c3a); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem; margin-right: 1rem;">
+                  SK
+                </div>
+                <div class="member-info">
+                  <h4 style="margin: 0; color: #1a365d; font-size: 1.1rem; font-weight: 600;">Sanaa KOUZBOUR</h4>
+                  <p style="margin: 0.25rem 0 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">UH2 / Casablanca</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Committee Member 13 - Patrick LEPRAT -->
             <div class="committee-member" style="background: #f0f7f4; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-left: 4px solid #2E8B57; transition: transform 0.3s ease, box-shadow 0.3s ease;">
               <div class="member-header" style="display: flex; align-items: center; margin-bottom: 1rem;">
                 <div class="member-avatar" style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #2E8B57, #1e5c3a); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem; margin-right: 1rem;">
@@ -2231,14 +2144,64 @@
                 </div>
                 <div class="member-info">
                   <h4 style="margin: 0; color: #1a365d; font-size: 1.1rem; font-weight: 600;">Patrick LEPRAT</h4>
-                  <p style="margin: 0.25rem 0 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">Université de Limoges, E2LIM</p>
+                  <p style="margin: 0.25rem 0 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">E2LIM</p>
                 </div>
-              </div>
-              <div class="member-details" style="color: #4a5568; font-size: 0.9rem; line-height: 1.5;">
               </div>
             </div>
 
-            <!-- Committee Member 12 -->
+            <!-- Committee Member 14 - Philippe LEVEQUE -->
+            <div class="committee-member" style="background: #f0f7f4; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-left: 4px solid #2E8B57; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+              <div class="member-header" style="display: flex; align-items: center; margin-bottom: 1rem;">
+                <div class="member-avatar" style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #2E8B57, #1e5c3a); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem; margin-right: 1rem;">
+                  PL
+                </div>
+                <div class="member-info">
+                  <h4 style="margin: 0; color: #1a365d; font-size: 1.1rem; font-weight: 600;">Philippe LEVEQUE</h4>
+                  <p style="margin: 0.25rem 0 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">Université de Limoges, XLIM</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Committee Member 15 - Rachid Masrour -->
+            <div class="committee-member" style="background: #f0f7f4; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-left: 4px solid #2E8B57; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+              <div class="member-header" style="display: flex; align-items: center; margin-bottom: 1rem;">
+                <div class="member-avatar" style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #2E8B57, #1e5c3a); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem; margin-right: 1rem;">
+                  RM
+                </div>
+                <div class="member-info">
+                  <h4 style="margin: 0; color: #1a365d; font-size: 1.1rem; font-weight: 600;">Rachid Masrour</h4>
+                  <p style="margin: 0.25rem 0 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">USMB / Fès</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Committee Member 16 - Youssef MEJDOUB -->
+            <div class="committee-member" style="background: #f0f7f4; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-left: 4px solid #2E8B57; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+              <div class="member-header" style="display: flex; align-items: center; margin-bottom: 1rem;">
+                <div class="member-avatar" style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #2E8B57, #1e5c3a); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem; margin-right: 1rem;">
+                  YM
+                </div>
+                <div class="member-info">
+                  <h4 style="margin: 0; color: #1a365d; font-size: 1.1rem; font-weight: 600;">Youssef MEJDOUB</h4>
+                  <p style="margin: 0.25rem 0 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">UH2 / Casablanca</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Committee Member 17 - Lahbib NIBOU -->
+            <div class="committee-member" style="background: #f0f7f4; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-left: 4px solid #2E8B57; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+              <div class="member-header" style="display: flex; align-items: center; margin-bottom: 1rem;">
+                <div class="member-avatar" style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #2E8B57, #1e5c3a); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem; margin-right: 1rem;">
+                  LN
+                </div>
+                <div class="member-info">
+                  <h4 style="margin: 0; color: #1a365d; font-size: 1.1rem; font-weight: 600;">Lahbib NIBOU</h4>
+                  <p style="margin: 0.25rem 0 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">UCA / Safi - Marrakech</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Committee Member 18 - Audrey PROROT -->
             <div class="committee-member" style="background: #f0f7f4; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-left: 4px solid #2E8B57; transition: transform 0.3s ease, box-shadow 0.3s ease;">
               <div class="member-header" style="display: flex; align-items: center; margin-bottom: 1rem;">
                 <div class="member-avatar" style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #2E8B57, #1e5c3a); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem; margin-right: 1rem;">
@@ -2246,13 +2209,50 @@
                 </div>
                 <div class="member-info">
                   <h4 style="margin: 0; color: #1a365d; font-size: 1.1rem; font-weight: 600;">Audrey PROROT</h4>
+                  <p style="margin: 0.25rem 0 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">E2LIM</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Committee Member 19 - Stéphanie SAHUGUEDE -->
+            <div class="committee-member" style="background: #f0f7f4; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-left: 4px solid #2E8B57; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+              <div class="member-header" style="display: flex; align-items: center; margin-bottom: 1rem;">
+                <div class="member-avatar" style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #2E8B57, #1e5c3a); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem; margin-right: 1rem;">
+                  SS
+                </div>
+                <div class="member-info">
+                  <h4 style="margin: 0; color: #1a365d; font-size: 1.1rem; font-weight: 600;">Stéphanie SAHUGUEDE</h4>
                   <p style="margin: 0.25rem 0 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">Université de Limoges, XLIM</p>
                 </div>
               </div>
-              <div class="member-details" style="color: #4a5568; font-size: 0.9rem; line-height: 1.5;">
+            </div>
+
+            <!-- Committee Member 20 - Nicolas TESSIER-DOYEN -->
+            <div class="committee-member" style="background: #f0f7f4; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-left: 4px solid #2E8B57; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+              <div class="member-header" style="display: flex; align-items: center; margin-bottom: 1rem;">
+                <div class="member-avatar" style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #2E8B57, #1e5c3a); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem; margin-right: 1rem;">
+                  ND
+                </div>
+                <div class="member-info">
+                  <h4 style="margin: 0; color: #1a365d; font-size: 1.1rem; font-weight: 600;">Nicolas TESSIER-DOYEN</h4>
+                  <p style="margin: 0.25rem 0 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">Université de Limoges, IRCER</p>
+                </div>
               </div>
-          </div>
-        </div>
+            </div>
+
+            <!-- Committee Member 21 - Elsa THUNE -->
+            <div class="committee-member" style="background: #f0f7f4; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-left: 4px solid #2E8B57; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+              <div class="member-header" style="display: flex; align-items: center; margin-bottom: 1rem;">
+                <div class="member-avatar" style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #2E8B57, #1e5c3a); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem; margin-right: 1rem;">
+                  ET
+                </div>
+                <div class="member-info">
+                  <h4 style="margin: 0; color: #1a365d; font-size: 1.1rem; font-weight: 600;">Elsa THUNE</h4>
+                  <p style="margin: 0.25rem 0 0 0; color: #2E8B57; font-size: 0.9rem; font-weight: 500;">Université de Limoges, XLIM</p>
+                </div>
+              </div>
+            </div>
+            </div>
         </div>
       </div>
     </section>
@@ -2482,7 +2482,57 @@
   <script src="js/form-handler.js"></script>
   <script src="js/reveal.js"></script>
   <script src="app.js" defer></script>
+  
+  <!-- French Translation Script for Committees -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Check for language change events
+      const languageButtons = document.querySelectorAll('[data-lang]');
+      const committeeHeading = document.querySelector('.committee-heading');
+      const organizingHeadings = document.querySelectorAll('.organizing-heading');
+      
+      // Translation mapping
+      const translations = {
+        en: {
+          scientific: 'Scientific Committee',
+          organizing: 'Organizing Committee'
+        },
+        fr: {
+          scientific: 'Comité Scientifique',
+          organizing: 'Comité d\'Organisation'
+        }
+      };
+      
+      // Handle language button clicks
+      languageButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const lang = this.getAttribute('data-lang');
+          
+          // Update Scientific Committee heading
+          if (committeeHeading) {
+            committeeHeading.textContent = translations[lang].scientific;
+          }
+          
+          // Update all Organizing Committee headings
+          organizingHeadings.forEach(heading => {
+            heading.textContent = translations[lang].organizing;
+          });
+        });
+      });
+      
+      // Set initial language based on active button
+      const activeButton = document.querySelector('[data-lang][aria-pressed="true"]');
+      if (activeButton) {
+        const lang = activeButton.getAttribute('data-lang');
+        if (committeeHeading) {
+          committeeHeading.textContent = translations[lang].scientific;
+        }
+        organizingHeadings.forEach(heading => {
+            heading.textContent = translations[lang].organizing;
+          });
+      }
+    });
+  </script>
 </body>
 </html>
-
 

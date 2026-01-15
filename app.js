@@ -12,6 +12,7 @@ const STRINGS = {
       registration: "Registration",
       partners: "Organizers",
       venue: "Venue",
+      importantDates: "Important Dates",
       contact: "Contact",
     },
     hero: {
@@ -24,54 +25,24 @@ const STRINGS = {
     about: {
       heading: "About the Colloquium",
       kicker: "Why PLUMEE 2026",
-      body:
-        "PLUMEE brings together researchers, engineers, and industry to explore advances spanning materials science, environmental sustainability, and electronics. The 2026 edition emphasizes cross-disciplinary solutions— from valorizing natural resources and recycling, to novel depollution materials and surface treatments, to energy storage and renewable technologies. We highlight nanomaterials and advanced electronic materials, embedded systems supporting ecological transition, and AI-driven optimization of materials and electronic systems. The program also welcomes work on electromagnetic interactions with living matter, along with a dedicated Romanian theme, reflecting our international collaboration and shared scientific priorities.",
+      body: "PLUMEE 2026 brings together leading researchers, engineers, and industry professionals from around the world to explore the latest advances in materials, environment, and electronics. This 7th Multidisciplinary Colloquium serves as a platform for knowledge exchange, collaboration, and innovation across these interconnected fields.",
     },
     themes: {
       heading: "Topics",
       kicker: "Cross-disciplinary focus",
       items: [
-        { 
-          title: "Valorization & Recycling", 
-          desc: "Natural resources and waste recycling"
-        },
-        { 
-          title: "Depollution Materials", 
-          desc: "Catalysts, membranes, and adsorbents"
-        },
-        { 
-          title: "Energy Solutions", 
-          desc: "Storage and renewable energies"
-        },
-        { 
-          title: "Surface Engineering", 
-          desc: "Treatment and industrial impact"
-        },
-        { 
-          title: "Nanomaterials", 
-          desc: "Nanotechnologies and applications"
-        },
-        { 
-          title: "Electronic Materials", 
-          desc: "Advanced materials for electronics"
-        },
-        { 
-          title: "Embedded Systems", 
-          desc: "For ecological transition"
-        },
-        { 
-          title: "AI & Optimization", 
-          desc: "For materials and electronic systems"
-        },
-        { 
-          title: "EM Waves", 
-          desc: "Interaction with living matter"
-        },
-        { 
-          title: "Romanian Theme", 
-          desc: "Special focus session"
-        },
-      ],
+        { title: "Natural Resources and Waste Recycling", desc: "Valorization of natural resources and waste recycling" },
+        { title: "Materials for Depollution", desc: "Catalysts, membranes, and adsorbents" },
+        { title: "Energy Storage and Renewable Energy", desc: "Advanced solutions for energy storage and renewable sources" },
+        { title: "Surface Treatment", desc: "Industrial surface treatment and environmental impact" },
+        { title: "Nanomaterials and Nanotechnologies", desc: "Advanced nanomaterials and their applications" },
+        { title: "Advanced Materials for Electronics", desc: "Innovative materials for electronic applications" },
+        { title: "Embedded Systems for Ecological Transition", desc: "Embedded solutions for sustainable development" },
+        { title: "AI for Materials and Electronic Systems", desc: "Artificial intelligence applications in materials optimization" },
+        { title: "EM Waves and Living Matter", desc: "Interaction between electromagnetic waves and biological systems" },
+        { title: "Embedded Systems and Cybersecurity", desc: "Applications based on embedded systems, cybersecurity, and AI integration" },
+        { title: "Other", desc: "Other topics not listed above" }
+      ]
     },
     program: {
       heading: "Program",
@@ -133,6 +104,39 @@ const STRINGS = {
       body:
         "PLUMEE 2026 is organized by UM6P (Benguerir), Université de Limoges, Université de Bacau, MSN, ENSIL-ENSCI, and Université Cadi Ayyad (Marrakech).",
     },
+    importantDates: {
+      heading: "Important Dates",
+      kicker: "Mark your calendar",
+      mainEvent: "Main Conference",
+      conferenceDate: "21-23 April 2026",
+      conferenceTitle: "PLUMEE 2026 Conference",
+      conferenceDesc: "Join us in Benguerir for three days of innovation and collaboration in Materials, Environment, and Electronics.",
+      day1: "Day 1",
+      day2: "Day 2",
+      day3: "Day 3",
+      timeline: [
+        {
+          date: "January 16, 2026",
+          title: "Paper Submission Deadline",
+          desc: "Last day to submit your research papers for consideration."
+        },
+        {
+          date: "February 16, 2026",
+          title: "Notification of Acceptance",
+          desc: "Authors will be notified about the status of their submissions."
+        },
+        {
+          date: "February 02 - March 31, 2026",
+          title: "Registration Period",
+          desc: "Register during this period to secure your participation in PLUMEE 2026."
+        },
+        {
+          date: "April 21-23, 2026",
+          title: "PLUMEE 2026 Conference",
+          desc: "Join us for three days of scientific presentations and networking."
+        }
+      ]
+    },
     venue: {
       heading: "Venue",
       kicker: "UM6P · Benguerir, Morocco",
@@ -182,10 +186,11 @@ const STRINGS = {
       about: "À propos",
       themes: "Sujets",
       program: "Programme",
-      speakers: "Intervenants",
+      speakers: "Conférenciers",
       registration: "Inscription",
       partners: "Organisateurs",
       venue: "Lieu",
+      importantDates: "Dates importantes",
       contact: "Contact",
     },
     hero: {
@@ -198,54 +203,24 @@ const STRINGS = {
     about: {
       heading: "À propos du colloque",
       kicker: "Pourquoi PLUMEE 2026",
-      body:
-        "PLUMEE réunit chercheurs, ingénieurs et industriels autour des avancées en science des matériaux, durabilité environnementale et électronique. L’édition 2026 met l’accent sur des solutions pluridisciplinaires — de la valorisation des ressources naturelles et du recyclage, aux matériaux de dépollution et traitements de surface, jusqu’au stockage de l’énergie et aux technologies renouvelables. Nous mettons en avant les nanomatériaux et les matériaux avancés pour l’électronique, les systèmes embarqués au service de la transition écologique, ainsi que l’optimisation par l’IA des matériaux et des systèmes électroniques. Le programme accueille aussi des travaux sur les interactions des ondes électromagnétiques avec le vivant, et propose une thématique roumaine, reflet d’une collaboration internationale et de priorités scientifiques partagées.",
+      body: "PLUMEE est un colloque unique qui favorise les échanges et renforce les liens entre les différentes communautés scientifiques francophones dans les domaines des Matériaux, l'Environnement et l'Électronique.",
     },
     themes: {
       heading: "Sujets",
       kicker: "Approche pluridisciplinaire",
       items: [
-        { 
-          title: "Valorisation & Recyclage", 
-          desc: "Ressources naturelles et recyclage des déchets"
-        },
-        { 
-          title: "Matériaux de Dépollution", 
-          desc: "Catalyseurs, membranes et adsorbants"
-        },
-        { 
-          title: "Solutions Énergétiques", 
-          desc: "Stockage et énergies renouvelables"
-        },
-        { 
-          title: "Ingénierie des Surfaces", 
-          desc: "Traitement et impact industriel"
-        },
-        { 
-          title: "Nanomatériaux", 
-          desc: "Nanotechnologies et applications"
-        },
-        { 
-          title: "Matériaux Électroniques", 
-          desc: "Matériaux avancés pour l'électronique"
-        },
-        { 
-          title: "Systèmes Embarqués", 
-          desc: "Pour la transition écologique"
-        },
-        { 
-          title: "IA & Optimisation", 
-          desc: "Pour les matériaux et systèmes électroniques"
-        },
-        { 
-          title: "Ondes Électromagnétiques", 
-          desc: "Interaction avec le vivant"
-        },
-        { 
-          title: "Thème Roumain", 
-          desc: "Session spéciale"
-        },
-      ],
+        { title: "Valorisation des ressources naturelles et recyclage des déchets", desc: "Valorisation des ressources naturelles et recyclage des déchets" },
+        { title: "Matériaux pour la dépollution", desc: "Catalyseurs, membranes, adsorbants" },
+        { title: "Stockage d'énergie et énergies renouvelables", desc: "Solutions avancées pour le stockage d'énergie et les sources renouvelables" },
+        { title: "Traitement de surface", desc: "Traitement de surface industriel et impact environnemental" },
+        { title: "Nanomatériaux et nanotechnologies", desc: "Nanomatériaux avancés et leurs applications" },
+        { title: "Matériaux avancés pour l'électronique", desc: "Matériaux innovants pour applications électroniques" },
+        { title: "Systèmes embarqués pour la transition écologique", desc: "Solutions embarquées pour le développement durable" },
+        { title: "IA appliquée à l'optimisation des matériaux", desc: "Applications de l'intelligence artificielle dans l'optimisation des matériaux" },
+        { title: "Interaction ondes électromagnétiques et matières vivantes", desc: "Interaction entre les ondes électromagnétiques et les systèmes biologiques" },
+        { title: "Applications basées sur les systèmes embarqués", desc: "Systèmes intégrant cybersécurité, intelligence artificielle et sources d'énergie" },
+        { title: "Autre", desc: "Autres thèmes non listés ci-dessus" }
+      ]
     },
     program: {
       heading: "Programme",
@@ -306,6 +281,39 @@ const STRINGS = {
       kicker: "Collaboration internationale",
       body:
         "PLUMEE 2026 est organisé par l’UM6P (Benguerir), l’Université de Limoges, l’Université de Bacau, MSN, ENSIL-ENSCI, et l’Université Cadi Ayyad (Marrakech).",
+    },
+    importantDates: {
+      heading: "Dates importantes",
+      kicker: "Marquez vos calendriers",
+      mainEvent: "Conférence Principale",
+      conferenceDate: "21-23 Avril 2026",
+      conferenceTitle: "Colloque PLUMEE 2026",
+      conferenceDesc: "Rejoignez-nous à Benguerir pour trois jours d'innovation et de collaboration dans les domaines des Matériaux, de l'Environnement et de l'Électronique.",
+      day1: "Jour 1",
+      day2: "Jour 2",
+      day3: "Jour 3",
+      timeline: [
+        {
+          date: "16 Janvier 2026",
+          title: "Date limite de soumission des articles",
+          desc: "Dernier jour pour soumettre vos articles de recherche."
+        },
+        {
+          date: "16 Février 2026",
+          title: "Notification d'acceptation",
+          desc: "Les auteurs seront informés du statut de leurs soumissions."
+        },
+        {
+          date: "02 Février - 31 Mars 2026",
+          title: "Période d'inscription",
+          desc: "Inscrivez-vous pendant cette période pour assurer votre participation à PLUMEE 2026."
+        },
+        {
+          date: "21-23 Avril 2026",
+          title: "Colloque PLUMEE 2026",
+          desc: "Rejoignez-nous pour trois jours de présentations scientifiques et de réseautage."
+        }
+      ]
     },
     venue: {
       heading: "Lieu",
@@ -370,7 +378,11 @@ function applyI18n() {
   // data-i18n replacements for all elements with data-i18n attribute
   $$("[data-i18n]").forEach(el => {
     const key = el.getAttribute("data-i18n");
-    const value = key.split(".").reduce((acc, k) => acc && acc[k], dict);
+    // Handle array indices in keys (e.g., timeline[0].date)
+    const value = key.split(/[\[\].]/).reduce((acc, k) => {
+      if (k === '') return acc; // Skip empty segments from split
+      return acc && acc[k];
+    }, dict);
     if (typeof value === "string") el.textContent = value;
     else if (value !== undefined) console.warn(`Missing translation for key: ${key}`);
   });
@@ -441,15 +453,33 @@ function setupReveal() {
   Language switching
 =========== */
 function setupLang() {
-  $$(".lang-switch .chip").forEach(btn => {
-    btn.addEventListener("click", () => {
+  // Update active state of language buttons
+  const updateActiveState = () => {
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      const isActive = btn.dataset.lang === state.lang;
+      btn.setAttribute('aria-pressed', isActive);
+      btn.classList.toggle('active', isActive);
+    });
+  };
+
+  // Set initial language from localStorage or default to 'en'
+  state.lang = localStorage.getItem("lang") || 'en';
+  document.documentElement.setAttribute("lang", state.lang);
+  
+  // Set up click handlers for language buttons
+  document.querySelectorAll(".lang-btn").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
       state.lang = btn.dataset.lang;
       localStorage.setItem("lang", state.lang);
-      // Update html lang attribute
-      document.documentElement.setAttribute("lang", state.lang === "fr" ? "fr" : "en");
+      document.documentElement.setAttribute("lang", state.lang);
+      updateActiveState();
       applyI18n();
     });
   });
+
+  // Initialize active state
+  updateActiveState();
 }
 
 /* =========
